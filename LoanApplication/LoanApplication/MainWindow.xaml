@@ -54,5 +54,9 @@
             <Button Name="btnClose" Content="Close" Height="40" Width="90" ></Button>
         </StackPanel>
 
+        <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="6" Orientation="Vertical" >
+            <Image Source="Images\laptop.jpg" Height="300" Width="350" />
+        </StackPanel>
+
     </Grid>
 </Window>
