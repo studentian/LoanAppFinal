@@ -7,6 +7,49 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <!--means to use the remaing space-->
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="General Loan Calculator Application" FontSize="18" FontWeight="Medium" TextAlignment="Justify" Grid.ColumnSpan="3"/>
+
+        <TextBlock Name="lblUserName" Text="Username" Grid.Column="1" Grid.Row="2" />
+        <TextBox Name="tbxUserName" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" />
+
+        <TextBlock Name="lblPassword" Text="Password" Grid.Column="1" Grid.Row="3" />
+        <PasswordBox Name="pbxPassword" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" />
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Width="100">
+            <Button Name="btnLogin" Content="Login" BorderBrush="Aqua" Width="90" Grid.Column="1" Grid.Row="4" />
+        </StackPanel>
+
+        <TextBlock Name="lblNotRegistered" Text="Not a member? Please click below to register:" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="6" TextDecorations="underline" FontStyle="Italic" />
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Width="100">
+            <Button Name="btnRegister" Content="Register" BorderBrush="Aqua" Width="90" Grid.Column="1" Grid.Row="7" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="9" Grid.Column="4" Orientation="Horizontal" Width="90" Height="40">
+            <Button Name="btnClose" Content="Close" Margin="10" Width="70"></Button>
+        </StackPanel>
+
     </Grid>
 </Window>
