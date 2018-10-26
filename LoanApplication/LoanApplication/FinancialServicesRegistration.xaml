@@ -31,7 +31,7 @@
         <TextBlock Text="Financial Services Provider Registration" Margin="5" Grid.ColumnSpan="4" TextDecorations="underline" TextAlignment="Center" Grid.Row="1" Grid.Column="1" FontSize="30" FontFamily="Ariel" />
         <TextBlock Text="Not a member? Please register below:" Margin="6" FontSize="15" FontStyle="Italic" Grid.Row="2" Grid.Column="2" TextAlignment="Center" Grid.ColumnSpan="2"  TextDecorations="underline" />
 
-        <Button Content="Register" Name="btnRegister" Grid.Column="6" Width="100" Grid.Row="4" FontSize="16" Click="btnRegister_Click"/>
+        <Button Content="Register" Name="btnRegister" Grid.Column="6" Width="100" Grid.Row="4" FontSize="16" />
 
 
         <TextBlock Margin="5" Text="CompanyName" Grid.Column="1" Grid.Row="3" TextAlignment="Right" FontSize="16"/>
