@@ -42,5 +42,12 @@ namespace LoanApplication
             this.Close();
 
         }
+
+        private void btnProvider_Click(object sender, RoutedEventArgs e)
+        {
+            Provider provider = new Provider();
+            frmMain.Navigate(provider);
+        }
+
     }
 }

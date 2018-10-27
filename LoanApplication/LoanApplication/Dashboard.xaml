@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoanApplication"
         mc:Ignorable="d"
-        WindowStyle="ToolWindow"
-        Title="Dashboard" Height="500" Width="800">
+        WindowStyle="ThreeDBorderWindow"
+        Title="Dashboard" Height="650" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15" />
@@ -20,7 +20,7 @@
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="16" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -40,10 +40,10 @@
         </StackPanel>
         
         <StackPanel Orientation="Horizontal"  Grid.Column="4" Grid.Row="1" Width="100">
-            <Button Name="btnFS" Content="FS Provider" Width="100" Height="35" Grid.Column="1" Grid.Row="4" />
+            <Button Name="btnProvider" Content="Provider" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnProvider_Click" />
         </StackPanel>
         <StackPanel Orientation="Horizontal"  Grid.Column="5" Grid.Row="1" Width="100">
-            <Button Name="btnAdmin" Content="Admin" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnAdmin_Click" />
+            <Button Name="btnAdmin" Content="Admin" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnAdmin_Click" /> <!--Mouse event to load Admin panel into layout-->
         </StackPanel>
         <StackPanel Orientation="Horizontal"  Grid.Column="6" Grid.Row="1" Width="100">
             <Button Name="btnExit" Content="Exit" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnExit_Click"/>
@@ -53,7 +53,7 @@
             <Button Name="btnClose" Content="Close" Width="100" Height="35" Click="btnClose_Click" />
         </StackPanel>
 
-        <Frame Name="frmMain" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Frame Name="frmMain" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="6" >
             
         </Frame>
 
