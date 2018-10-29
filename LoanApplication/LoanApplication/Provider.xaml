@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LoanApplication"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="900"
       Title="Provider">
 
     <Grid>
@@ -15,18 +15,29 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
-            <TabControl>
-                <TabItem Header="Users">
+            <TabControl Height="400">
+                <TabItem Header="Loan Applicants">
                     <Grid>
+                        <Grid.ColumnDefinitions>
+  
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50*"/>
                             <RowDefinition Height="50*"/>
                         </Grid.RowDefinitions>
 
-                        <ListView Name="lstUserList" Grid.Column="1" >
+                        <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Account number" Width="120" >
+                                    <GridViewColumn Header="Username" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Password" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -42,7 +53,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Header="Offer Amount" Width="120" >
+                                    <GridViewColumn Header="Account number" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -50,7 +61,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Header="Term" Width="120" >
+                                    <GridViewColumn Header="Email" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -58,7 +69,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Header="Interest Rate" Width="120" >
+                                    <GridViewColumn Header="Access Level" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -66,24 +77,43 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Header="Approval" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    
                                 </GridView>
                             </ListView.View>
 
+                            <!--Enables right click-->
+                            <ListView.ContextMenu>
+                                <ContextMenu Name="UserListOverview" IsEnabled="True">
+                                    <ContextMenu.Items>
+                                        <MenuItem Header="Add New User" Name="submenuAddUser" IsEnabled="True" Click="submenuAddUser_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/user.png" Stretch="Uniform"></Image>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="Modify Selected User" Name="submenuModifyUser" IsEnabled="False" >
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/edituser.png" Stretch="Uniform"></Image>
+                                            </MenuItem.Icon>
+
+                                        </MenuItem>
+
+                                        <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="False">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/deleteuser.png" Stretch="Uniform"></Image>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu.Items>
+
+                                </ContextMenu>
+
+                            </ListView.ContextMenu>
                         </ListView>
 
-                        <StackPanel Name="stkUserDetails" Grid.Row="4" Grid.Column="1" Grid.RowSpan="4" Grid.ColumnSpan="2">
+                        <!--users and Logs tabs-->
+                        <StackPanel Name="stkProviderDetails" Grid.Row="1" Grid.Column="1" Width="300" Visibility="Visible" HorizontalAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30*"/>
-                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="60*"/>
 
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -96,36 +126,90 @@
                                     <RowDefinition Height="10*"/>
                                 </Grid.RowDefinitions>
                                 <!---No need to add names as they will not have any interaction-->
-                                <Label Grid.Row="0" Grid.Column="0" Content="Acount number" />
+                                <Label Grid.Row="0" Grid.Column="0" Content="Account number" />
                                 <Label Grid.Row="1" Grid.Column="0" Content="Full name" />
                                 <Label Grid.Row="2" Grid.Column="0" Content="Offer Amount" />
                                 <Label Grid.Row="3" Grid.Column="0" Content="Term" />
                                 <Label Grid.Row="4" Grid.Column="0" Content="Interest Rate" />
-                                <Label Grid.Row="5" Grid.Column="0" Content="Approval" />
+                                <Label Grid.Row="5" Grid.Column="0" Content="Status" />
 
                                 <TextBox Grid.Row="0" Grid.Column="1" Name="tbxAccNum" />
                                 <TextBox Grid.Row="1" Grid.Column="1" Name="tbxFullName" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxOfferAmt" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxOfferAmount" />
                                 <TextBox Grid.Row="3" Grid.Column="1" Name="tbxTerm" />
                                 <TextBox Grid.Row="4" Grid.Column="1" Name="tbxIntRate" />
-                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxApproval" />
+                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxStatus" />
 
-                                <ComboBox Grid.Column="2" Grid.Row="5">
+                                <ComboBox Grid.Column="1" Grid.Row="5">
                                     <ComboBoxItem Content="Approved"/>
                                     <ComboBoxItem Content="Rejected" />
                                     <ComboBoxItem Content="Pending" />
+                                    <ComboBoxItem Content="Revised Offer" />
+
                                 </ComboBox>
-                                
-                                
-                                <Button Grid.Row="7" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center"></Button>
+                                <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click" ></Button>
 
                             </Grid>
                         </StackPanel>
                     </Grid>
 
                 </TabItem>
-                <TabItem Header="Logs">
+                
+                <TabItem Header="Provider Logs">
+                    <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Username" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
+                                <GridViewColumn Header="Date/Time" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="File Name" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Member number" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Action" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Size" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </TabItem>
             </TabControl>
         </StackPanel>

@@ -16,7 +16,7 @@
 
         <StackPanel>
             <TabControl Height="400">
-                <TabItem Header="Users">
+                <TabItem Header="General User">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50*"/>
@@ -81,9 +81,23 @@
                                 <ListView.ContextMenu>
                                 <ContextMenu Name="UserListOverview" IsEnabled="True">
                                     <ContextMenu.Items>
-                                        <MenuItem Header="Add New User" Name="submenuAddUser" IsEnabled="True"></MenuItem>
-                                        <MenuItem Header="Edit Selected User" Name="submenuModifyUser" IsEnabled="True"></MenuItem>
-                                        <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="True"></MenuItem>
+                                        <MenuItem Header="Add New User" Name="submenuAddUser" IsEnabled="True" Click="submenuAddUser_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/user.png" Stretch="Uniform"></Image>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="Modify Selected User" Name="submenuModifyUser" IsEnabled="False" >
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/edituser.png" Stretch="Uniform"></Image>
+                                            </MenuItem.Icon>
+                                            
+                                        </MenuItem>
+
+                                        <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="False">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/deleteuser.png" Stretch="Uniform"></Image>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
                                     </ContextMenu.Items> 
                                     
                                 </ContextMenu>
@@ -94,7 +108,7 @@
                         </ListView>
                         
                         <!--users and Logs tabs-->
-                        <StackPanel Name="stkUserDetails" Grid.Row="5" Grid.Column="1" Width="300">
+                        <StackPanel Name="stkUserDetails" Grid.Row="5" Grid.Column="1" Width="300" Visibility="Collapsed">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
@@ -130,14 +144,14 @@
                                     <ComboBoxItem Content="Provider" />
 
                                 </ComboBox>
-                                <Button Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center"></Button>
+                                <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
 
                             </Grid>
                         </StackPanel>
                     </Grid>
                     
                 </TabItem>
-                <TabItem Header="Logs">
+                <TabItem Header="General Logs">
                     
                 </TabItem>
             </TabControl>

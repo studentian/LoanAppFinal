@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoanApplication"
         mc:Ignorable="d"
-        Title="ClientRegistration" Height="450" Width="800">
+        Title="ClientRegistration" Height="450" Width="950">
     <Grid>
         <Grid.ColumnDefinitions>
         <ColumnDefinition Width="30" />
@@ -28,7 +28,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Loan Applicant Registration" Margin="5" Grid.ColumnSpan="4" TextDecorations="underline" TextAlignment="Center" Grid.Row="1" Grid.Column="1" FontSize="30" FontFamily="Ariel" />
+        <TextBlock Text="Client Registration" Margin="5" Grid.ColumnSpan="4" TextDecorations="underline" TextAlignment="Center" Grid.Row="1" Grid.Column="1" FontSize="30" FontFamily="Ariel" />
         <TextBlock Text="Not a member? Please register below:" Margin="6" FontSize="15" FontStyle="Italic" Grid.Row="2" Grid.Column="2" TextAlignment="Center" Grid.ColumnSpan="2"  TextDecorations="underline" />
 
         <Button Content="Register" Name="btnRegister" Grid.Column="6" Width="100" Grid.Row="4" FontSize="16"/>

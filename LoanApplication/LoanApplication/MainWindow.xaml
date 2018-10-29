@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoanApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <!--means to use the remaing space-->
-            <ColumnDefinition Width="10" />
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
@@ -40,18 +40,22 @@
         <TextBlock Name="lblPassword" Text="Password" Grid.Column="1" Grid.Row="3" />
         <PasswordBox Name="pbxPassword" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Width="250" Height="40" />
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Width="100">
-            <Button Name="btnLogin" Content="Login" Width="90" Grid.Column="1" Grid.Row="4" />
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Height="40">
+            <Button Name="btnLogin" Content="Login" Width="120" Grid.Column="1" Grid.Row="4" />
         </StackPanel>
 
         <TextBlock Name="lblNotRegistered" Text="Not a member? Please click below to register:" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="6" TextDecorations="underline" FontStyle="Italic" />
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Width="100" Height="40">
-            <Button Name="btnRegister" Content="Register" Width="90" Grid.Column="1" Grid.Row="7" />
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Height="40">
+            <Button Name="btnClientRegister" Content="Client Registration" Width="120" Grid.Column="1" Grid.Row="7" Click="btnClientRegister_Click" />
         </StackPanel>
 
-        <StackPanel Grid.Row="8" Grid.Column="6" Orientation="Horizontal" >
-            <Button Name="btnClose" Content="Close" Height="40" Width="90" ></Button>
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="7" Height="40">
+            <Button Name="btnProviderRegister" Content="Provider Registration" Width="120" Grid.Column="1" Grid.Row="7" Click="btnProviderRegister_Click" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="8" Grid.Column="6" Orientation="Horizontal" Height="40" >
+            <Button Name="btnClose" Content="Close" Height="40" Width="120" Click="btnClose_Click" ></Button>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="6" Orientation="Vertical" >

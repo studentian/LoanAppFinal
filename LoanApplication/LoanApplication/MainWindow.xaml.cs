@@ -24,5 +24,24 @@ namespace LoanApplication
         {
             InitializeComponent();
         }
+
+        private void btnProviderRegister_Click(object sender, RoutedEventArgs e)
+        {
+            FinancialServicesRegistration providerReg = new FinancialServicesRegistration();
+            providerReg.Show();
+            this.Close();
+        }
+
+        private void btnClientRegister_Click(object sender, RoutedEventArgs e)
+        {
+            ClientRegistration clientReg = new ClientRegistration();
+            clientReg.Show();
+            this.Close();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

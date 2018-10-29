@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace LoanApplication
 {
     /// <summary>
-    /// Interaction logic for Provider.xaml
+    /// Interaction logic for Client.xaml
     /// </summary>
-    public partial class Provider : Page
+    public partial class Client : Page
     {
-        public Provider()
+        public Client()
         {
             InitializeComponent();
-        }
-
-        private void submenuAddUser_Click(object sender, RoutedEventArgs e)
-        {
-            stkProviderDetails.Visibility = Visibility.Visible;  
-        }
-
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            stkProviderDetails.Visibility = Visibility.Collapsed;
         }
     }
 }
