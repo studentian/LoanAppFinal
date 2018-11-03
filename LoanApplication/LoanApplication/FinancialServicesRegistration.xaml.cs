@@ -23,5 +23,22 @@ namespace LoanApplication
         {
             InitializeComponent();
         }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Welcome! \nRegistration Confirmed!", "Thank you for registering!", MessageBoxButton.OK);
+
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+            this.Close();
+        }
+
+        private void btnback_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            this.Close();
+        }
     }
 }

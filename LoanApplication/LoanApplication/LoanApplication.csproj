@@ -55,9 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Client.xaml.cs">
-      <DependentUpon>Client.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Offers.xaml.cs">
       <DependentUpon>Offers.xaml</DependentUpon>
     </Compile>
@@ -65,10 +62,6 @@
       <DependentUpon>Provider.xaml</DependentUpon>
     </Compile>
     <Page Include="Admin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Client.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

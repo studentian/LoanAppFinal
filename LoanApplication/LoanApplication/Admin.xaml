@@ -83,19 +83,19 @@
                                     <ContextMenu.Items>
                                         <MenuItem Header="Add New User" Name="submenuAddUser" IsEnabled="True" Click="submenuAddUser_Click">
                                             <MenuItem.Icon>
-                                                <Image Source="Images/user.png" Stretch="Uniform"></Image>
+                                                <Image Source="Images/add.png" Stretch="Uniform"></Image>
                                             </MenuItem.Icon>
                                         </MenuItem>
                                         <MenuItem Header="Modify Selected User" Name="submenuModifyUser" IsEnabled="False" >
                                             <MenuItem.Icon>
-                                                <Image Source="Images/edituser.png" Stretch="Uniform"></Image>
+                                                <Image Source="Images/update.png" Stretch="Uniform"></Image>
                                             </MenuItem.Icon>
                                             
                                         </MenuItem>
 
                                         <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="False">
                                             <MenuItem.Icon>
-                                                <Image Source="Images/deleteuser.png" Stretch="Uniform"></Image>
+                                                <Image Source="Images/remove.png" Stretch="Uniform"></Image>
                                             </MenuItem.Icon>
                                         </MenuItem>
                                     </ContextMenu.Items> 
@@ -140,8 +140,9 @@
                                 <TextBox Grid.Row="5" Grid.Column="1" Name="tbxAccessLevel" />
 
                                 <ComboBox Grid.Column="1" Grid.Row="5">
-                                    <ComboBoxItem Content="Basic"/>
+                                    <ComboBoxItem Content="Client"/>
                                     <ComboBoxItem Content="Provider" />
+                                    <ComboBoxItem Content="Administrator"/>
 
                                 </ComboBox>
                                 <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>

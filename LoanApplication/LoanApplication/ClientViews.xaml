@@ -72,7 +72,8 @@
                             <TextBox Name="tboxAffEstimatedRepayment" Width="50" Height="30" Grid.Column="1" Grid.Row="1" Margin="5" />
                         </StackPanel>
 
-                        <Button Name="btnAffNext" Content="NEXT >" Grid.Column="4" Grid.Row="5" Margin="2" BorderBrush="Aqua"/>
+                        <!--step 1 button-->
+                        <Button Name="btnAffNext" Content="Save" Grid.Column="4" Grid.Row="5" Margin="2" BorderBrush="Aqua" Click="btnAffNext_Click"/>
 
                     </Grid>
                 </StackPanel>
@@ -121,8 +122,8 @@
                         <TextBox Name="txtboxAffEstimatedRepayment" Width="50" Height="30" Grid.Column="1" Grid.Row="1" Margin="5" />
                     </StackPanel>
 
-
-                    <Button Name="btnRepayment" Content="NEXT >" Grid.Column="3" Grid.Row="5" Margin="10" BorderBrush="Aqua"/>
+                    <!--step 2 button-->    
+                    <Button Name="btnRepayment" Content="Save" Grid.Column="3" Grid.Row="5" Margin="10" BorderBrush="Aqua" Click="btnRepayment_Click"/>
 
                 </Grid>
             </TabItem>
@@ -172,171 +173,12 @@
                     <TextBlock Name="tblockSummaryMaxRepayment" Text="Maximum repayment" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"  />
                     <TextBlock Name="tboxSummaryInterestRate" Width="150" Height="30" Grid.Column="4" Grid.Row="4" Margin="5" />
 
-
-                    <Button Name="btnSummarySubmit" Content="Submit" Grid.Column="4" Grid.Row="5" Margin="10" BorderBrush="Aqua"/>
+                    <!--step3 button-->
+                    <Button Name="btnSummarySubmit" Content="Submit" Grid.Column="4" Grid.Row="5" Margin="10" BorderBrush="Aqua" Click="btnSummarySubmit_Click"/>
+                    
 
                 </Grid>
             </TabItem>
-
-            <TabItem Name="tbItemOffers" Header="4. Offers" Width="150" FontSize="15" FontWeight="Bold">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Name="tblockOffers" Text="List off loan approvals / rejections" FontSize="20" TextDecorations="underline" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" VerticalAlignment="Center" />
-
-                    <FlowDocumentReader Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" Grid.RowSpan="10">
-                        <FlowDocument>
-
-                            <Table CellSpacing="6">
-
-                                <Table.Columns>
-                                    <TableColumn/>
-                                    <TableColumn/>
-                                    <TableColumn/>
-                                    <TableColumn/>
-                                    <TableColumn/>
-                                    <TableColumn/>
-                                </Table.Columns>
-
-                                <TableRowGroup>
-
-                                    <!-- Header row for the table. -->
-                                    <TableRow Background="LightGoldenrodYellow">
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Bold">Loan Provider</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Bold">Loan Amount</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Bold">Term</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Bold">Approved</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Bold">Offer Value</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Bold">Offer Term</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Bold">Accept Offer</Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-
-                                    <!-- Four data rows for the inner planets. -->
-                                    <TableRow>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">AIB</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">€400,000</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">30</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">Confirmed</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow Background="lightgray">
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">Standard Chartered</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">€400,000</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">20</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">Confirmed</Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">HSBC</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">€400,000</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">30</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">Declined</Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow Background="lightgray">
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">Ulster Bank</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">€400,000</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">10</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">Declined</Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">Bank Of Ireland</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">€400,000</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">10</Paragraph>
-                                        </TableCell>
-                                        <TableCell>
-                                            <Paragraph FontSize="12" FontWeight="Medium">Confirmed</Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-
-                                    <!-- Footer row for the table. -->
-                                    <TableRow>
-                                        <TableCell ColumnSpan="4">
-                                            <Paragraph FontSize="10" FontStyle="Italic" Foreground="BlueViolet">
-                                                Information provided here is to provide guidance only.
-                                            </Paragraph>
-                                            <Paragraph FontSize="10" FontStyle="Italic" Foreground="BlueViolet">
-                                                Your financial services provider will provide you with additional documentation to sign prior to receiving a loan.
-                                            </Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-
-                                </TableRowGroup>
-                            </Table>
-                        </FlowDocument>
-                    </FlowDocumentReader>
-
-
-                </Grid>
-
-            </TabItem>
-
         </TabControl>
     </Grid>
 </Window>

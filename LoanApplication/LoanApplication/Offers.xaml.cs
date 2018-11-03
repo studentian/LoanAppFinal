@@ -29,7 +29,9 @@ namespace LoanApplication
         {
             ClientViews clientViews = new ClientViews();
             clientViews.Show();
+
            
         }
+
     }
 }

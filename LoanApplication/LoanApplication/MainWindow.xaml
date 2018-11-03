@@ -41,7 +41,7 @@
         <PasswordBox Name="pbxPassword" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Width="250" Height="40" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" Height="40">
-            <Button Name="btnLogin" Content="Login" Width="120" Grid.Column="1" Grid.Row="4" />
+            <Button Name="btnLogin" Content="Login" Width="120" Grid.Column="1" Grid.Row="4" Click="btnLogin_Click" />
         </StackPanel>
 
         <TextBlock Name="lblNotRegistered" Text="Not a member? Please click below to register:" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="6" TextDecorations="underline" FontStyle="Italic" />

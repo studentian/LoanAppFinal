@@ -108,7 +108,7 @@
                     </Grid.RowDefinitions>
 
                 </Grid>
-                <Button Name="btnOffers" Grid.Column="0" Grid.Row="7" Content="Start Offer Process"  Width="150" Height="50" Click="btnOffers_Click" Margin="10"></Button>
+                <Button Name="btnOffers" Grid.Column="0" Grid.Row="7" Content="Get Offers"  Width="150" Height="50" Click="btnOffers_Click" Margin="10"></Button>
             </StackPanel>
 
         </StackPanel><!--Closing stackpanel-->

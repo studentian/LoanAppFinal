@@ -43,5 +43,13 @@ namespace LoanApplication
         {
             this.Close();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Good day, thank you for visiting again!", "Login confirmed!", MessageBoxButton.OK);
+
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+        }
     }
 }

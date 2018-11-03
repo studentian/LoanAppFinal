@@ -51,9 +51,13 @@
         <StackPanel Orientation="Horizontal"  Grid.Column="6" Grid.Row="1" Width="100">
             <Button Name="btnAdmin" Content="Admin" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnAdmin_Click" /> <!--Mouse event to load Admin panel into layout-->
         </StackPanel>
-        
-        <StackPanel Orientation="Horizontal" Grid.Column="6" Grid.Row="7" Width="100">
+
+        <StackPanel Orientation="Horizontal" Grid.Column="6" Grid.Row="6" Width="100">
             <Button Name="btnClose" Content="Close" Width="100" Height="35" Click="btnClose_Click" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="6" Grid.Row="7" Width="100">
+            <Button Name="btnlogout" Content="Log Out" Width="100" Height="35" Click="btnlogout_Click"/>
         </StackPanel>
 
         <Frame Name="frmMain" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="6" >

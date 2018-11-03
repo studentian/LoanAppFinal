@@ -23,5 +23,24 @@ namespace LoanApplication
         {
             InitializeComponent();
         }
+
+        private void btnSummarySubmit_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Thank you! \nPlease check back in 24 hours. \nReceive quotes by email?", "Client View", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+            this.Close();
+        }
+
+        private void btnRepayment_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Saved! \nPlease complete Step 3", "Step.2 Saved!", MessageBoxButton.OK);
+        }
+
+        private void btnAffNext_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Saved! \nPlease complete Step 2", "Step.1 Saved!", MessageBoxButton.OK);
+        }
     }
 }
