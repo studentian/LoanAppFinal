@@ -45,8 +45,8 @@ namespace LoanApplication
 
         private void btnClient_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client();
-            frmMain.Navigate(client);
+            Offers offers = new Offers();
+            frmMain.Navigate(offers);
         }
     }
 }

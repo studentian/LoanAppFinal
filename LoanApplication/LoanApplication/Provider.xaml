@@ -84,21 +84,21 @@
                             <ListView.ContextMenu>
                                 <ContextMenu Name="UserListOverview" IsEnabled="True">
                                     <ContextMenu.Items>
-                                        <MenuItem Header="Add New User" Name="submenuAddUser" IsEnabled="True" Click="submenuAddUser_Click">
+                                        <MenuItem Header="Add New Offer" Name="submenuAddOffer" IsEnabled="True" Click="submenuAdd_Click">
                                             <MenuItem.Icon>
-                                                <Image Source="Images/user.png" Stretch="Uniform"></Image>
+                                                <Image Source="Images/add.png" Stretch="Uniform"></Image>
                                             </MenuItem.Icon>
                                         </MenuItem>
-                                        <MenuItem Header="Modify Selected User" Name="submenuModifyUser" IsEnabled="False" >
+                                        <MenuItem Header="Update Selected Offer" Name="submenuModifyOffer" IsEnabled="False" >
                                             <MenuItem.Icon>
-                                                <Image Source="Images/edituser.png" Stretch="Uniform"></Image>
+                                                <Image Source="Images/update.png" Stretch="Uniform"></Image>
                                             </MenuItem.Icon>
 
                                         </MenuItem>
 
-                                        <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="False">
+                                        <MenuItem Header="Remove Selected Offer" Name="submenuDeleteOffer" IsEnabled="False">
                                             <MenuItem.Icon>
-                                                <Image Source="Images/deleteuser.png" Stretch="Uniform"></Image>
+                                                <Image Source="Images/remove.png" Stretch="Uniform"></Image>
                                             </MenuItem.Icon>
                                         </MenuItem>
                                     </ContextMenu.Items>
@@ -109,7 +109,7 @@
                         </ListView>
 
                         <!--users and Logs tabs-->
-                        <StackPanel Name="stkProviderDetails" Grid.Row="1" Grid.Column="1" Width="300" Visibility="Visible" HorizontalAlignment="Center">
+                        <StackPanel Name="stkProviderDetails" Grid.Row="1" Grid.Column="1" Width="300" Visibility="Hidden" HorizontalAlignment="Center">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
