@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -34,5 +35,6 @@ namespace LoanApplication
         {
             stkProviderDetails.Visibility = Visibility.Collapsed;
         }
+
     }
 }

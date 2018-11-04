@@ -29,7 +29,7 @@
                         <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Username" Width="120" >
+                                    <GridViewColumn Header="UserID" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -37,7 +37,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Header="Password" Width="120" >
+                                    <GridViewColumn Header="QuoteID" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -45,7 +45,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Header="Full name" Width="120" >
+                                    <GridViewColumn Header="Loan Amount" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -53,7 +53,7 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Header="Account number" Width="120" >
+                                    <GridViewColumn Header="Proposed Term" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -69,7 +69,39 @@
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Header="Access Level" Width="120" >
+                                    <GridViewColumn Header="Proposed Int Rate" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="First Name" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Last Name" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="Date/Time" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    
+                                    <GridViewColumn Header="Offer Status" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -106,6 +138,7 @@
                                 </ContextMenu>
 
                             </ListView.ContextMenu>
+                            <ScrollBar x:Name="scrollBar1" Height="100" Width="100"/>
                         </ListView>
 
                         <!--users and Logs tabs-->
@@ -157,9 +190,10 @@
                 
                 <TabItem Header="Provider Logs">
                     <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="2">
+                        
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Username" Width="120" >
+                                <GridViewColumn Header="UserID" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -175,7 +209,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="File Name" Width="120" >
+                                <GridViewColumn Header="Offer Amount" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -183,7 +217,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Member number" Width="120" >
+                                <GridViewColumn Header="Term" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -199,7 +233,23 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Size" Width="120" >
+                                <GridViewColumn Header="Aff Int Rate" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Rpmt Int Rate" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Access Level" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
@@ -209,6 +259,7 @@
 
                             </GridView>
                         </ListView.View>
+                        <ScrollBar x:Name="scrollBar" Height="100" Width="100"/>
                     </ListView>
                 </TabItem>
             </TabControl>
