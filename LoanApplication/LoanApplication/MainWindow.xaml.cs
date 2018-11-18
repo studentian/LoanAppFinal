@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoanAppLibrary2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace LoanApplication
     public partial class MainWindow : Window
     {
 
-
+        loanappdbEntities db = new loanappdbEntities();
 
         public MainWindow()
         {
@@ -49,10 +50,22 @@ namespace LoanApplication
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Good day, thank you for visiting again!", "Login confirmed!", MessageBoxButton.OK);
 
-            Dashboard dashboard = new Dashboard();
-            dashboard.Show();
+            string currentUser = tbxUserName.Text;
+            string currentPassword = pbxPassword.Password;
+            foreach (var userRecord in db.Users.Where(t => t.Username == currentUser && t.Password == currentPassword))
+            {
+
+
+                MessageBox.Show("Good day, thank you for visiting!", "Login confirmed!", MessageBoxButton.OK);
+
+                Dashboard dashboard = new Dashboard();
+                dashboard.Show();
+
+            }
+            MessageBox.Show("Ooops!", "Username or Password incorrect. \nPlease try again!", MessageBoxButton.OK);
+
+
         }
     }
 }

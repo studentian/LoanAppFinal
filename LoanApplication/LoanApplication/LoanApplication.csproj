@@ -170,5 +170,11 @@
     <Resource Include="Images\remove.png" />
     <Resource Include="Images\update.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoanAppLibrary2\LoanAppLibrary2.csproj">
+      <Project>{e06b72f8-42c5-473b-b47b-579afd516e83}</Project>
+      <Name>LoanAppLibrary2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
