@@ -50,24 +50,6 @@ namespace LoanApplication
 
         }
 
-        //method created with James. This will record log entries. Create log event if logon successful or not.  
-        //private void CreateLogEntry(string category, string description, string userID, string userName)
-        //{
-        //    string comment = $"{description} user that logged in = {UserName}";
-
-        //    Log log = new Log();
-        //    log.UserId = userID;
-        //    Log.DateTime = DateTime.Now; 
-
-
-        //}
-
-        //private void SaveLog(Log log)
-        //{
-        //    db.Entry(log).State = System.Data.EntityState.Added;
-        //    db.SaveChanges();
-        //}
-
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             string currentUser = tbxUserName.Text;
@@ -78,15 +60,36 @@ namespace LoanApplication
                 {
                     MessageBox.Show("Good day, thank you for visiting!", "Login confirmed!", MessageBoxButton.OK);
 
-                    Dashboard dashboard = new Dashboard();
-                    dashboard.Owner = this;
-                    dashboard.ShowDialog(); //unlike dashboard.Show(), the showdialog opens the dashboard and does not allow flicking between windows. 
-                    this.Hide();
+                    if (userRecord.LevelId == 3)
+                    {
+                        Dashboard dashboard = new Dashboard();
+                        dashboard.Owner = this;
+                        dashboard.ShowDialog(); //unlike dashboard.Show(), the showdialog opens the dashboard and does not allow flicking between windows. 
+                        this.Hide();
 
-                    dashboard.Uid = currentUser;
+                        dashboard.Uid = currentUser;
+                    }
+                    else if (userRecord.LevelId == 2)
+                    {
+                        DashboardApplicant dashboardApplicant = new DashboardApplicant();
+                        dashboardApplicant.Owner = this;
+                        dashboardApplicant.ShowDialog(); //unlike dashboard.Show(), the showdialog opens the dashboard and does not allow flicking between windows. 
+                        this.Hide();
+
+                        dashboardApplicant.Uid = currentUser;
+                    }
+                    else if (userRecord.LevelId == 1)
+                    {
+                        DashboardProvider dashboardProvider = new DashboardProvider();
+                        dashboardProvider.Owner = this;
+                        dashboardProvider.ShowDialog(); //unlike dashboard.Show(), the showdialog opens the dashboard and does not allow flicking between windows. 
+                        this.Hide();
+
+                        dashboardProvider.Uid = currentUser;
+                    }
 
                 }
-                else
+                if (userRecord.Username != currentUser && userRecord.Password != currentPassword)
                 {
                     MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
                 }

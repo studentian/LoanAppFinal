@@ -26,6 +26,24 @@ namespace LoanApplication
             InitializeComponent();
         }
 
+        //method created with James. This will record log entries. Create log event if logon successful or not.  
+        //private void CreateLogEntry(string category, string description, string userID, string userName)
+        //{
+        //    string comment = $"{description} user that logged in = {UserName}";
+
+        //    Log log = new Log();
+        //    log.UserId = userID;
+        //    Log.DateTime = DateTime.Now; 
+
+
+        //}
+
+        //private void SaveLog(Log log)
+        //{
+        //    db.Entry(log).State = System.Data.EntityState.Added;
+        //    db.SaveChanges();
+        //}
+
         private void submenuAdd_Click(object sender, RoutedEventArgs e)
         {
             stkProviderDetails.Visibility = Visibility.Visible;  

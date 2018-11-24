@@ -23,5 +23,17 @@ namespace LoanApplication
         {
             InitializeComponent();
         }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Environment.Exit(0);
+        }
+
+        private void btnProvider_Click(object sender, RoutedEventArgs e)
+        {
+            Provider provider = new Provider();
+            frmMain.Navigate(provider);
+        }
     }
 }

@@ -40,14 +40,12 @@ namespace LoanApplication
 
         private void btnProvider_Click(object sender, RoutedEventArgs e)
         {
-            Provider provider = new Provider();
-            frmMain.Navigate(provider);
+          
         }
 
         private void btnClient_Click(object sender, RoutedEventArgs e)
         {
-            Offers offers = new Offers();
-            frmMain.Navigate(offers);
+           
 
         }
 
