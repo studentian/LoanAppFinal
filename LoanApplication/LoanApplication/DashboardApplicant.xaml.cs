@@ -36,5 +36,12 @@ namespace LoanApplication
             frmMain.Navigate(offers);
 
         }
+
+        private void btnlogout_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardApplicant dashboardApplicant = new DashboardApplicant();
+            dashboardApplicant.Close();
+          
+        }
     }
 }

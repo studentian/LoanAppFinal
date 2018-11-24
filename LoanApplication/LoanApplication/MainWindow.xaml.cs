@@ -69,7 +69,7 @@ namespace LoanApplication
 
                         dashboard.Uid = currentUser;
                     }
-                    else if (userRecord.LevelId == 2)
+                    else if (userRecord.LevelId == 1)
                     {
                         DashboardApplicant dashboardApplicant = new DashboardApplicant();
                         dashboardApplicant.Owner = this;
@@ -78,7 +78,7 @@ namespace LoanApplication
 
                         dashboardApplicant.Uid = currentUser;
                     }
-                    else if (userRecord.LevelId == 1)
+                    else if (userRecord.LevelId == 2)
                     {
                         DashboardProvider dashboardProvider = new DashboardProvider();
                         dashboardProvider.Owner = this;

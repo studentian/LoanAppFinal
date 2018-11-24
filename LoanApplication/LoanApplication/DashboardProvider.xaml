@@ -41,14 +41,15 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"  Grid.Column="4" Grid.Row="1" Width="100">
-            <Button Name="btnClient" Content="Client" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Visibility="Collapsed" Click="btnClient_Click" />
+            <Button Name="btnClient" Content="Client" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Visibility="Collapsed" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"  Grid.Column="5" Grid.Row="1" Width="100">
-            <Button Name="btnProvider" Content="Provider" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnProvider_Click" />
+            <Button Name="btnDashboardProvider" Content="Provider" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnDashboardProvider"/>
         </StackPanel>
+        
         <StackPanel Orientation="Horizontal"  Grid.Column="6" Grid.Row="1" Width="100">
-            <Button Name="btnAdmin" Content="Admin" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Visibility="Collapsed" Click="btnAdmin_Click" />
+            <Button Name="btnAdmin" Content="Admin" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Visibility="Collapsed"  />
             <!--Mouse event to load Admin panel into layout-->
         </StackPanel>
 
