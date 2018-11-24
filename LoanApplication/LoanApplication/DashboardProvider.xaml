@@ -45,7 +45,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"  Grid.Column="5" Grid.Row="1" Width="100">
-            <Button Name="btnDashboardProvider" Content="Provider" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnDashboardProvider"/>
+            <Button Name="btnDashProvider" Content="Provider" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="BtnDashProvider"/>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal"  Grid.Column="6" Grid.Row="1" Width="100">

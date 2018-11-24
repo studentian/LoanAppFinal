@@ -31,10 +31,15 @@ namespace LoanApplication
             Environment.Exit(0);
         }
 
-        private void btnDashboardProvider(object sender, RoutedEventArgs e)
+        private void BtnDashProvider(object sender, RoutedEventArgs e)
         {
             DashboardProvider btnDashboardProvider = new DashboardProvider();
         }
 
+        private void btnlogout_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardProvider dashboardProvider = new DashboardProvider();
+            dashboardProvider.Close();
+        }
     }
 }

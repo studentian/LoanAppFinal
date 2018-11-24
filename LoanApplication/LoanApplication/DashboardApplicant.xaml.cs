@@ -41,7 +41,19 @@ namespace LoanApplication
         {
             DashboardApplicant dashboardApplicant = new DashboardApplicant();
             dashboardApplicant.Close();
-          
+           
+        }
+
+        private void btnProvider_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardApplicant dashboardApplicant = new DashboardApplicant();
+            dashboardApplicant.Close();
+        }
+
+        private void btnAdmin_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardApplicant dashboardApplicant = new DashboardApplicant();
+            dashboardApplicant.Close();
         }
     }
 }
