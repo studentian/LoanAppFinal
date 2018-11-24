@@ -62,6 +62,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DashboardApplicant.xaml.cs">
+      <DependentUpon>DashboardApplicant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardProvider.xaml.cs">
+      <DependentUpon>DashboardProvider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Offers.xaml.cs">
       <DependentUpon>Offers.xaml</DependentUpon>
     </Compile>
@@ -81,6 +87,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DashboardApplicant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DashboardProvider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

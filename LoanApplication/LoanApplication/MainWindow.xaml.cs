@@ -46,26 +46,51 @@ namespace LoanApplication
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            Environment.Exit(0);
+
         }
+
+        //method created with James. This will record log entries. Create log event if logon successful or not.  
+        //private void CreateLogEntry(string category, string description, string userID, string userName)
+        //{
+        //    string comment = $"{description} user that logged in = {UserName}";
+
+        //    Log log = new Log();
+        //    log.UserId = userID;
+        //    Log.DateTime = DateTime.Now; 
+
+
+        //}
+
+        //private void SaveLog(Log log)
+        //{
+        //    db.Entry(log).State = System.Data.EntityState.Added;
+        //    db.SaveChanges();
+        //}
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-
             string currentUser = tbxUserName.Text;
             string currentPassword = pbxPassword.Password;
-            foreach (var userRecord in db.Users.Where(t => t.Username == currentUser && t.Password == currentPassword))
+            foreach (var userRecord in db.Users)
             {
+                if (userRecord.Username == currentUser && userRecord.Password == currentPassword)
+                {
+                    MessageBox.Show("Good day, thank you for visiting!", "Login confirmed!", MessageBoxButton.OK);
 
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.Owner = this;
+                    dashboard.ShowDialog(); //unlike dashboard.Show(), the showdialog opens the dashboard and does not allow flicking between windows. 
+                    this.Hide();
 
-                MessageBox.Show("Good day, thank you for visiting!", "Login confirmed!", MessageBoxButton.OK);
+                    dashboard.Uid = currentUser;
 
-                Dashboard dashboard = new Dashboard();
-                dashboard.Show();
-
+                }
+                else
+                {
+                    MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
+                }
             }
-            MessageBox.Show("Ooops!", "Username or Password incorrect. \nPlease try again!", MessageBoxButton.OK);
-
-
         }
     }
 }

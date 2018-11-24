@@ -32,7 +32,7 @@
                                     <GridViewColumn Header="UserID" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserId}" ></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -40,7 +40,7 @@
                                     <GridViewColumn Header="QuoteID" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding QuoteID}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -48,7 +48,7 @@
                                     <GridViewColumn Header="Loan Amount" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LoanAmount}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -56,7 +56,7 @@
                                     <GridViewColumn Header="Proposed Term" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding ProposedTerm}" ></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -64,7 +64,7 @@
                                     <GridViewColumn Header="Email" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Email}" ></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -72,7 +72,7 @@
                                     <GridViewColumn Header="Proposed Int Rate" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding ProposedIntRate}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -80,7 +80,7 @@
                                     <GridViewColumn Header="First Name" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding FirstName}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -88,7 +88,7 @@
                                     <GridViewColumn Header="Last Name" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LastName}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -96,7 +96,7 @@
                                     <GridViewColumn Header="Date/Time" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding DateTime}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -104,7 +104,7 @@
                                     <GridViewColumn Header="Offer Status" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding OfferStatus}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -196,7 +196,7 @@
                                 <GridViewColumn Header="UserID" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserID}" ></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -204,7 +204,7 @@
                                 <GridViewColumn Header="Date/Time" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding DateTime}" ></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -212,15 +212,15 @@
                                 <GridViewColumn Header="Offer Amount" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding OfferAmount}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Term" Width="120" >
+                                <GridViewColumn Header="Loan Term" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" ></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
