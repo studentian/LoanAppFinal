@@ -6,9 +6,12 @@
       xmlns:local="clr-namespace:LoanApplication"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="600"
+      
       Title="Admin">
 
     <Grid>
+        <!--Loaded="Page_Loaded"-->
+
         <Grid.RowDefinitions>
             <RowDefinition Height="90*" />
             <RowDefinition Height="10*" />
@@ -29,7 +32,7 @@
                                     <GridViewColumn Header="Username" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Username}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -37,7 +40,7 @@
                                     <GridViewColumn Header="Password" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Password}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -45,7 +48,7 @@
                                     <GridViewColumn Header="UserID" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserID}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -53,7 +56,7 @@
                                     <GridViewColumn Header="Email" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Email}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -61,7 +64,7 @@
                                     <GridViewColumn Header="Address" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Address}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -69,7 +72,7 @@
                                     <GridViewColumn Header="LevelID" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LevelID}"></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -77,7 +80,7 @@
                                     <GridViewColumn Header="Telephone" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" ></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -85,7 +88,7 @@
                                     <GridViewColumn Header="Provider Name" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" ></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -93,12 +96,12 @@
                                     <GridViewColumn Header="Company Reg No." Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" ></TextBlock>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     
-                                    <GridViewColumn Header="Access Level" Width="120" >
+                                    <GridViewColumn Header="Action" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>

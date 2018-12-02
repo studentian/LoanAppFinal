@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Ian\Source\Repos\LoanAppFinal\LoanApplication\LoanAppLibrary2\LoanAppModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Ian\source\repos\LoanAppFinal\LoanApplication\DBClassEFLibrary\LoanAppModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

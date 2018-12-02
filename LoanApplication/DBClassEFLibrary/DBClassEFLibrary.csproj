@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E06B72F8-42C5-473B-B47B-579AFD516E83}</ProjectGuid>
+    <ProjectGuid>{2DD969B9-942A-48E1-8CC3-38E11BC6F99A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoanAppLibrary2</RootNamespace>
-    <AssemblyName>LoanAppLibrary2</AssemblyName>
+    <RootNamespace>DBClassEFLibrary</RootNamespace>
+    <AssemblyName>DBClassEFLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

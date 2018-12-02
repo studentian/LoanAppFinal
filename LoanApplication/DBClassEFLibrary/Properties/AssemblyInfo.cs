@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LoanAppLibrary2")]
+[assembly: AssemblyTitle("DBClassEFLibrary")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hewlett-Packard")]
-[assembly: AssemblyProduct("LoanAppLibrary2")]
+[assembly: AssemblyProduct("DBClassEFLibrary")]
 [assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e06b72f8-42c5-473b-b47b-579afd516e83")]
+[assembly: Guid("2dd969b9-942a-48e1-8cc3-38e11bc6f99a")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanApplication", "LoanApplication\LoanApplication.csproj", "{D3EA47E1-5463-47CB-9F3C-CB264DFF3E24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanAppLibrary2", "LoanAppLibrary2\LoanAppLibrary2.csproj", "{E06B72F8-42C5-473B-B47B-579AFD516E83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBClassEFLibrary", "DBClassEFLibrary\DBClassEFLibrary.csproj", "{2DD969B9-942A-48E1-8CC3-38E11BC6F99A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{D3EA47E1-5463-47CB-9F3C-CB264DFF3E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3EA47E1-5463-47CB-9F3C-CB264DFF3E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3EA47E1-5463-47CB-9F3C-CB264DFF3E24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E06B72F8-42C5-473B-B47B-579AFD516E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E06B72F8-42C5-473B-B47B-579AFD516E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E06B72F8-42C5-473B-B47B-579AFD516E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E06B72F8-42C5-473B-B47B-579AFD516E83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD969B9-942A-48E1-8CC3-38E11BC6F99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD969B9-942A-48E1-8CC3-38E11BC6F99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD969B9-942A-48E1-8CC3-38E11BC6F99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD969B9-942A-48E1-8CC3-38E11BC6F99A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

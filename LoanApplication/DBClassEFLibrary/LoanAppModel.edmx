@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="loanappdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="loanappdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccessLevel">
           <Key>
             <PropertyRef Name="LevelId" />
@@ -17,16 +17,17 @@
             <PropertyRef Name="LogId" />
           </Key>
           <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Action" Type="varchar" MaxLength="100" />
           <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Offer Amount" Type="money" Nullable="false" />
-          <Property Name="Term" Type="int" Nullable="false" />
-          <Property Name="Interest Rate" Type="float" Nullable="false" />
+          <Property Name="Offer Amount" Type="money" />
+          <Property Name="Term" Type="int" />
+          <Property Name="Interest Rate" Type="float" />
           <Property Name="Status" Type="text" />
-          <Property Name="LevelId" Type="int" Nullable="false" />
-          <Property Name="Offer Status" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Provider name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LevelId" Type="int" />
+          <Property Name="Offer Status" Type="varchar" MaxLength="50" />
+          <Property Name="Provider name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Offers">
           <Key>
@@ -81,7 +82,7 @@
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Log_To_User">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Log" Type="Self.Log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -135,7 +136,8 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="loanappdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -152,16 +154,17 @@
             <PropertyRef Name="LogId" />
           </Key>
           <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Action" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Offer_Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Term" Type="Int32" Nullable="false" />
-          <Property Name="Interest_Rate" Type="Double" Nullable="false" />
+          <Property Name="Offer_Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Term" Type="Int32" />
+          <Property Name="Interest_Rate" Type="Double" />
           <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="LevelId" Type="Int32" Nullable="false" />
-          <Property Name="Offer_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Provider_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LevelId" Type="Int32" />
+          <Property Name="Offer_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Provider_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_Log_To_User" FromRole="Log" ToRole="Users" />
         </EntityType>
         <EntityType Name="Offer">
@@ -216,9 +219,9 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Provider_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Company_reg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="AccessLevel" Relationship="Self.FK_Users_To_AccessLevel" FromRole="Users" ToRole="AccessLevel" />
           <NavigationProperty Name="Logs" Relationship="Self.FK_Log_To_User" FromRole="Users" ToRole="Log" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Users_To_AccessLevel">
           <End Role="AccessLevel" Type="Self.AccessLevel" Multiplicity="1" />
@@ -233,7 +236,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Log_To_User">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="Log" Type="Self.Log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -303,6 +306,7 @@
                 <ScalarProperty Name="LevelId" ColumnName="LevelId" />
                 <ScalarProperty Name="Offer_Status" ColumnName="Offer Status" />
                 <ScalarProperty Name="Provider_name" ColumnName="Provider name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -344,7 +348,6 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="loanappdbModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LevelId" ColumnName="LevelId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -358,6 +361,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Provider_name" ColumnName="Provider name" />
                 <ScalarProperty Name="Company_reg" ColumnName="Company reg" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

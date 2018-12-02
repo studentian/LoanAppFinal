@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoanAppLibrary
+namespace DBClassEFLibrary
 {
     using System;
     using System.Collections.Generic;

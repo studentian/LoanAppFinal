@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,12 @@ namespace LoanApplication
     /// </summary>
     public partial class Admin : Page
     {
+       // loanappdbEntities dbo = new loanappdbEntities();
+
+        //all methods need to access the list
+       // List<User> users = new List<User>();
+
+
         public Admin()
         {
             InitializeComponent();
@@ -33,6 +40,22 @@ namespace LoanApplication
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             stkUserDetails.Visibility = Visibility.Collapsed;
+        }
+
+        //private void Page_Loaded(object sender, RoutedEventArgs e)
+        //{
+
+        //    lstUserList.ItemsSource = users;
+        //    foreach (var user in dbo.Users)
+        //    {
+        //        users.Add(user);
+        //    }
+        //}
+
+        
+        private void cboAccessLevel_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -41,14 +41,14 @@
             <Button Name="btnreset" Content="Reset" Width="100" Height="35" Grid.Column="1" Grid.Row="4" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal"  Grid.Column="4" Grid.Row="1" Width="100">
+        <StackPanel Name="stkpnlClient" Orientation="Horizontal"  Grid.Column="4" Grid.Row="1" Width="100">
             <Button Name="btnClient" Content="Client" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnClient_Click" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal"  Grid.Column="5" Grid.Row="1" Width="100">
+        <StackPanel Name="stkpnlProvider" Orientation="Horizontal"  Grid.Column="5" Grid.Row="1" Width="100">
             <Button Name="btnProvider" Content="Provider" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnProvider_Click" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal"  Grid.Column="6" Grid.Row="1" Width="100">
+        <StackPanel Name="stkpnlAdmin" Orientation="Horizontal"  Grid.Column="6" Grid.Row="1" Width="100">
             <Button Name="btnAdmin" Content="Admin" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnAdmin_Click" /> <!--Mouse event to load Admin panel into layout-->
         </StackPanel>
 

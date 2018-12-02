@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3cb3a7a65417440bab4049ad5d276ce6" Name="Diagram1">
-        <EntityTypeShape EntityType="loanappdbModel.AccessLevel" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="loanappdbModel.Log" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="loanappdbModel.Offer" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="loanappdbModel.UserFinancial" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+      <Diagram DiagramId="6b0fe0d6e8434042a3dba0f15c7520b9" Name="Diagram1">
+        <EntityTypeShape EntityType="loanappdbModel.AccessLevel" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.Log" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.Offer" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.UserFinancial" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="loanappdbModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="loanappdbModel.FK_Users_To_AccessLevel" ManuallyRouted="false" />
         <AssociationConnector Association="loanappdbModel.FK_Log_To_User" ManuallyRouted="false" />

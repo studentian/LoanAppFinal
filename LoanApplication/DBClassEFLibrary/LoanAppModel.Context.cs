@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoanAppLibrary2
+namespace DBClassEFLibrary
 {
     using System;
     using System.Data.Entity;
@@ -15,8 +15,8 @@ namespace LoanAppLibrary2
     
     public partial class loanappdbEntities : DbContext
     {
-        public loanappdbEntities()
-            : base("name=loanappdbEntities")
+        public loanappdbEntities(string connectionString)
+            : base(connectionString) 
         {
         }
     

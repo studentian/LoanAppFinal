@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoanAppLibrary
+namespace DBClassEFLibrary
 {
     using System;
     using System.Collections.Generic;
@@ -33,6 +33,7 @@ namespace LoanAppLibrary
         public string Email { get; set; }
         public string Provider_name { get; set; }
         public string Company_reg { get; set; }
+        public string Username { get; set; }
     
         public virtual AccessLevel AccessLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
