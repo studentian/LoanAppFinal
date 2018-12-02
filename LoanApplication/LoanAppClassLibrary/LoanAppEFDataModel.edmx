@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="loanappdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="loanappdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccessLevel">
           <Key>
             <PropertyRef Name="LevelId" />
@@ -136,7 +136,8 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="loanappdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -258,7 +259,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="loanappdbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LoanAppDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AccessLevels" EntityType="Self.AccessLevel" />
           <EntitySet Name="Logs" EntityType="Self.Log" />
           <EntitySet Name="Offers" EntityType="Self.Offer" />
@@ -282,7 +283,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="loanappdbModelStoreContainer" CdmEntityContainer="loanappdbEntities">
+        <EntityContainerMapping StorageEntityContainer="loanappdbModelStoreContainer" CdmEntityContainer="LoanAppDBEntities">
           <EntitySetMapping Name="AccessLevels">
             <EntityTypeMapping TypeName="loanappdbModel.AccessLevel">
               <MappingFragment StoreEntitySet="AccessLevel">

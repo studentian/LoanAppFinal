@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:LoanApplication"
         mc:Ignorable="d"
         WindowStyle="ThreeDBorderWindow"
+        Loaded="Window_Loaded"
         Title="Dashboard" Height="650" Width="1000">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="15" />
@@ -29,27 +31,46 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*" />
 
-    
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="1" Width="100">
-  
-                <Button Name="btnSearch" Content="Search" Width="100" Height="35" Grid.Column="1" Grid.Row="4"></Button>
- 
+        <DockPanel Grid.ColumnSpan="8">
+            <Menu DockPanel.Dock="Top" Margin="2,5">
+                <MenuItem Header="_File" >
+                    <MenuItem Header="_New" Name="mnuNew" />
+                    <MenuItem Header="_Open" Name="mnuOpen" />
+                    <MenuItem Header="_Save" Name="mnuSave" />
+                    <Separator />
+                    <MenuItem Header="_Exit" Name="mnuExit" />
+                </MenuItem>
+
+                <MenuItem Header="_User"  Name="mnuClient"></MenuItem>
+                <MenuItem Header="_Provider" Name="mnuProvider" ></MenuItem>
+                <MenuItem Header="_Admin" Name="mnuAdmin"></MenuItem>
+
+            </Menu>
+            
+                <TextBox AcceptsReturn="True" />
+            
+        </DockPanel>
+
+        <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="1" Width="100">  
+                <Button Name="btnSearch" Content="Search" Width="100" Height="35" Grid.Column="1" Grid.Row="4"></Button> 
         </StackPanel>
+        
         <StackPanel Orientation="Horizontal"  Grid.Column="2" Grid.Row="1" Width="100">
             <Button Name="btnreset" Content="Reset" Width="100" Height="35" Grid.Column="1" Grid.Row="4" />
         </StackPanel>
 
         <StackPanel Name="stkpnlClient" Orientation="Horizontal"  Grid.Column="4" Grid.Row="1" Width="100">
-            <Button Name="btnClient" Content="Client" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnClient_Click" />
+            <Button Name="btnClient" Content="Client" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnClient_Click" Visibility="Visible"  />
         </StackPanel>
 
         <StackPanel Name="stkpnlProvider" Orientation="Horizontal"  Grid.Column="5" Grid.Row="1" Width="100">
-            <Button Name="btnProvider" Content="Provider" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnProvider_Click" />
+            <Button Name="btnProvider" Content="Provider" Width="100" Height="35" Grid.Column="2" Grid.Row="4" Click="btnProvider_Click" Visibility="Visible"  />
         </StackPanel>
+        
         <StackPanel Name="stkpnlAdmin" Orientation="Horizontal"  Grid.Column="6" Grid.Row="1" Width="100">
-            <Button Name="btnAdmin" Content="Admin" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnAdmin_Click" /> <!--Mouse event to load Admin panel into layout-->
+            <Button Name="btnAdmin" Content="Admin" Width="100" Height="35" Grid.Column="1" Grid.Row="4" Click="btnAdmin_Click" Visibility="Visible" /> <!--Mouse event to load Admin panel into layout-->
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="6" Grid.Row="6" Width="100">
@@ -63,8 +84,6 @@
         <Frame Name="frmMain" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="6" >
             
         </Frame>
-
-        
 
     </Grid>
 </Window>

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DBClassEFLibrary;
+using LoanAppClassLibrary;
 using LoanApplication;
 
 namespace LoanApplication
@@ -30,7 +30,7 @@ namespace LoanApplication
         //connection string='data source=192.168.1.138;initial catalog=loanappdb;
         //user id = ianl; MultipleActiveResultSets=True;App=EntityFramework'"
 
-        loanappdbEntities db = new loanappdbEntities("metadata=res://*/LoanAppModel.csdl|res://*/LoanAppModel.ssdl|res://*/LoanAppModel.msl;provider=System.Data.SqlClient;provider connection string = 'data source=192.168.1.138;initial catalog=loanappdb;user id = ianl; password = Apples2018;MultipleActiveResultSets=True;App=EntityFramework'");
+        LoanAppDBEntities db = new LoanAppDBEntities();
 
         public MainWindow()
         {
@@ -75,7 +75,7 @@ namespace LoanApplication
                     //if (userRecord.LevelId == 3)
                     //{
                         Dashboard dashboard = new Dashboard();
-                        dashboard.Owner = this;
+                        dashboard.Owner= this;
                         dashboard.ShowDialog();
                         this.Hide();
 

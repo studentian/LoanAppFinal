@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoanAppClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,8 @@ namespace LoanApplication
     /// </summary>
     public partial class Dashboard : Window
     {
-
+        User user = new User(); 
+        
         public Dashboard()
         {
             InitializeComponent();
@@ -61,6 +63,50 @@ namespace LoanApplication
 
             this.Close();
             Environment.Exit(0);
+        }
+        
+        private void checkUserAccess(){
+
+            if (user.LevelId == 1)
+            {
+                btnClient.Visibility = Visibility.Visible;
+                mnuClient.Visibility = Visibility.Visible;
+
+                btnProvider.Visibility = Visibility.Collapsed;
+                mnuProvider.Visibility = Visibility.Collapsed;
+
+                btnAdmin.Visibility = Visibility.Collapsed;
+                mnuAdmin.Visibility = Visibility.Collapsed;
+
+            }
+            if (user.LevelId == 2)
+            {
+                btnClient.Visibility = Visibility.Collapsed;
+                mnuClient.Visibility = Visibility.Collapsed;
+
+                btnProvider.Visibility = Visibility.Visible;
+                mnuProvider.Visibility = Visibility.Visible;
+
+                btnAdmin.Visibility = Visibility.Collapsed;
+                mnuAdmin.Visibility = Visibility.Collapsed;
+
+            }
+            if (user.LevelId == 3)
+            {
+                btnClient.Visibility = Visibility.Visible;
+                btnProvider.Visibility = Visibility.Visible;
+                btnAdmin.Visibility = Visibility.Visible;
+
+                btnAdmin.Visibility = Visibility.Visible;
+                btnClient.Visibility = Visibility.Visible;
+                btnProvider.Visibility = Visibility.Visible;
+
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            checkUserAccess();
         }
     }
 }

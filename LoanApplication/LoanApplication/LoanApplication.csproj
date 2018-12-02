@@ -64,9 +64,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DashboardApplicant.xaml.cs">
-      <DependentUpon>DashboardApplicant.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DashboardProvider.xaml.cs">
       <DependentUpon>DashboardProvider.xaml</DependentUpon>
     </Compile>
@@ -76,6 +73,7 @@
     <Compile Include="Provider.xaml.cs">
       <DependentUpon>Provider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Users.cs" />
     <Page Include="Admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,10 +87,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dashboard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DashboardApplicant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,9 +184,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DBClassEFLibrary\DBClassEFLibrary.csproj">
-      <Project>{2dd969b9-942a-48e1-8cc3-38e11bc6f99a}</Project>
-      <Name>DBClassEFLibrary</Name>
+    <ProjectReference Include="..\LoanAppClassLibrary\LoanAppClassLibrary.csproj">
+      <Project>{0CC616B8-F4DB-41FB-BBFC-793EF28286F0}</Project>
+      <Name>LoanAppClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
