@@ -63,56 +63,21 @@ namespace LoanApplication
             string currentUser = tbxUserName.Text;
             string currentPassword = pbxPassword.Password;
 
-            foreach (var userRecord in db.Users)
+            foreach (var user in db.Users)
             {
-                if (userRecord.Username == currentUser && userRecord.Password == currentPassword)
+                if (user.Username == currentUser && user.Password == currentPassword)
                 {
-                    //User validatedUser = new User(); //validatedUser is made to be a user object so pass db columns. See createlogentery IF statement below 
-                    //loginlog = true;
 
                     MessageBox.Show("Good day, thank you for visiting!", "Login confirmed!", MessageBoxButton.OK);
 
-                    //if (userRecord.LevelId == 3)
-                    //{
                         Dashboard dashboard = new Dashboard();
-                        dashboard.Owner= this;
+                        dashboard.user = user;
                         dashboard.ShowDialog();
                         this.Hide();
 
-                        dashboard.Uid = currentUser;
-
-
-                    //}
-
-                    //    else if (userRecord.LevelId == 1)
-                    //    {
-                    //        DashboardApplicant dashboardApplicant = new DashboardApplicant();
-                    //        dashboardApplicant.Owner = this;
-                    //        dashboardApplicant.Show();
-                    //        this.Hide();
-
-                    //        dashboardApplicant.Uid = currentUser;
-
-
-
-                    //    }
-                    //    else if (userRecord.LevelId == 2)
-                    //    {
-                    //        DashboardProvider dashboardProvider = new DashboardProvider();
-                    //        dashboardProvider.Owner = this;
-                    //        dashboardProvider.ShowDialog();
-                    //        this.Hide();
-
-                    //        dashboardProvider.Uid = currentUser;
-
-
-                    //    }
-
-                    //}
-
                 }
 
-                if (userRecord.Username != currentUser && userRecord.Password != currentPassword)
+                if (user.Username != currentUser && user.Password != currentPassword)
                 {
                     MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
                 }

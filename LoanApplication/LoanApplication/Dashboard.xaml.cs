@@ -1,4 +1,5 @@
 ﻿using LoanAppClassLibrary;
+using LoanApplication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,52 @@ namespace LoanApplication
     /// </summary>
     public partial class Dashboard : Window
     {
-        User user = new User(); 
-        
+  
+        public User user = new User();
+
+
+
         public Dashboard()
         {
             InitializeComponent();
+        }
+
+        public void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            checkUserAccess(user);
+        }
+
+        private void checkUserAccess(User user)
+        {
+
+            if (user.LevelId == 3)
+            {
+                btnClient.Visibility = Visibility.Visible;
+                btnProvider.Visibility = Visibility.Visible;
+                btnAdmin.Visibility = Visibility.Visible;
+
+                btnAdmin.Visibility = Visibility.Visible;
+                btnClient.Visibility = Visibility.Visible;
+                btnProvider.Visibility = Visibility.Visible;
+
+            }
+
+            if (user.LevelId == 1)
+                {
+                    btnClient.Visibility = Visibility.Visible;
+
+
+                }
+                if (user.LevelId == 2)
+                {
+
+                    btnProvider.Visibility = Visibility.Visible;
+                    mnuProvider.Visibility = Visibility.Visible;
+
+
+                }
+
+
         }
 
         /*Create a new instance of the screen then create a new instance to show on the screen*/
@@ -65,48 +107,6 @@ namespace LoanApplication
             Environment.Exit(0);
         }
         
-        private void checkUserAccess(){
-
-            if (user.LevelId == 1)
-            {
-                btnClient.Visibility = Visibility.Visible;
-                mnuClient.Visibility = Visibility.Visible;
-
-                btnProvider.Visibility = Visibility.Collapsed;
-                mnuProvider.Visibility = Visibility.Collapsed;
-
-                btnAdmin.Visibility = Visibility.Collapsed;
-                mnuAdmin.Visibility = Visibility.Collapsed;
-
-            }
-            if (user.LevelId == 2)
-            {
-                btnClient.Visibility = Visibility.Collapsed;
-                mnuClient.Visibility = Visibility.Collapsed;
-
-                btnProvider.Visibility = Visibility.Visible;
-                mnuProvider.Visibility = Visibility.Visible;
-
-                btnAdmin.Visibility = Visibility.Collapsed;
-                mnuAdmin.Visibility = Visibility.Collapsed;
-
-            }
-            if (user.LevelId == 3)
-            {
-                btnClient.Visibility = Visibility.Visible;
-                btnProvider.Visibility = Visibility.Visible;
-                btnAdmin.Visibility = Visibility.Visible;
-
-                btnAdmin.Visibility = Visibility.Visible;
-                btnClient.Visibility = Visibility.Visible;
-                btnProvider.Visibility = Visibility.Visible;
-
-            }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            checkUserAccess();
-        }
+       
     }
 }
