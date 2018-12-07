@@ -21,10 +21,7 @@ namespace LoanApplication
     /// </summary>
     public partial class Dashboard : Window
     {
-  
         public User user = new User();
-
-
 
         public Dashboard()
         {
@@ -44,10 +41,6 @@ namespace LoanApplication
                 btnClient.Visibility = Visibility.Visible;
                 btnProvider.Visibility = Visibility.Visible;
                 btnAdmin.Visibility = Visibility.Visible;
-
-                btnAdmin.Visibility = Visibility.Visible;
-                btnClient.Visibility = Visibility.Visible;
-                btnProvider.Visibility = Visibility.Visible;
 
             }
 

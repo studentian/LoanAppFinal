@@ -17,15 +17,15 @@ namespace LoanAppClassLibrary
         public int OfferId { get; set; }
         public int UserId { get; set; }
         public int QuoteId { get; set; }
-        public decimal Offer_Amount { get; set; }
         public int Term { get; set; }
-        public double Interest_Rate { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
         public System.DateTime Date { get; set; }
-        public string Offer_Status { get; set; }
-        public string Provider_Name { get; set; }
-        public string Company_Reg { get; set; }
+        public decimal OfferAmount { get; set; }
+        public double InterestRate { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string ProviderName { get; set; }
+        public string CompanyReg { get; set; }
+        public string OfferStatus { get; set; }
     
         public virtual UserFinancial UserFinancial { get; set; }
     }

@@ -51,15 +51,41 @@ namespace LoanApplication
             this.Close();
         }
 
+        //method to save logs
+        //below created the structure to cave log
+        private void createLogEntry(int UserId, string Action, string Status, string Description)
+        {
+            string comment = $"{Description} user credentials = {UserId}";
+
+            //create log event, fill in information for it and send it to the database
+            Log log = new Log();
+            log.UserId = UserId;
+            log.Action = Action;
+            log.Description = Description;
+            log.Status = Status;
+            log.Date = DateTime.Now;
+
+            SaveLog(log);
+        }
+
+        private void SaveLog(Log log)
+        {
+            db.Entry(log).State = System.Data.Entity.EntityState.Added;
+            db.SaveChanges();
+        }
+
+
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             Environment.Exit(0);
-
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            User validatedUser = new User();
+            bool login = false;
+
             string currentUser = tbxUserName.Text;
             string currentPassword = pbxPassword.Password;
 
@@ -67,13 +93,17 @@ namespace LoanApplication
             {
                 if (user.Username == currentUser && user.Password == currentPassword)
                 {
+                    login = true;
+                    validatedUser = user;
 
-                    MessageBox.Show("Good day, thank you for visiting!", "Login confirmed!", MessageBoxButton.OK);
+                    //createLogEntry(validatedUser.UserId, "Login", " Successful", "login successful");
 
-                        Dashboard dashboard = new Dashboard();
-                        dashboard.user = user;
-                        dashboard.ShowDialog();
-                        this.Hide();
+                    //MessageBox.Show("Welcome " + validatedUser.First_name, "Login confirmed!", MessageBoxButton.OK);
+
+                    //Dashboard dashboard = new Dashboard();
+                    //dashboard.user = validatedUser;
+                    //dashboard.ShowDialog();
+                    //this.Hide();
 
                 }
 
@@ -82,6 +112,23 @@ namespace LoanApplication
                     MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
                 }
             }
+
+            if (login)
+            {
+                createLogEntry(validatedUser.UserId, "Login", " Successful", "login successful");
+
+                MessageBox.Show("Welcome " + validatedUser.FirstName, "Login confirmed.", MessageBoxButton.OK);
+                Dashboard dashboard = new Dashboard();
+                dashboard.user = validatedUser;
+                dashboard.Show();
+                this.Hide();
+
+            }
+            //else
+            //{
+            //    createLogEntry(0, "Login", "Not Successful", "Login unsuccessful");
+            //}
+
         }
     }
 }

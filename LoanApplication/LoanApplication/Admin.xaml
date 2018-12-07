@@ -6,228 +6,94 @@
       xmlns:local="clr-namespace:LoanApplication"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="600"
-      
+      Loaded="Page_Loaded"  
       Title="Admin">
 
     <Grid>
-        <!--Loaded="Page_Loaded"-->
 
         <Grid.RowDefinitions>
             <RowDefinition Height="90*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <TabControl Height="400">
-                <TabItem Header="General User">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50*"/>
-                            <RowDefinition Height="50*"/>
-                        </Grid.RowDefinitions>
+        <TabControl Height="400">
 
-                        <ListView Name="lstUserList" Grid.Column="1" Grid.Row="0">
-                           <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Username" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Username}"></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
+            <TabItem Header="Admin User">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="117*"/>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="464*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                    </Grid.RowDefinitions>
 
-                                    <GridViewColumn Header="Password" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Password}"></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
-                                    <GridViewColumn Header="UserID" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserID}"></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
-                                    <GridViewColumn Header="Email" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Email}"></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
-                                    <GridViewColumn Header="Address" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Address}"></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
-                                    <GridViewColumn Header="LevelID" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LevelID}"></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
-                                    <GridViewColumn Header="Telephone" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" ></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
-                                    <GridViewColumn Header="Provider Name" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" ></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
-                                    <GridViewColumn Header="Company Reg No." Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" ></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                    
-                                    <GridViewColumn Header="Action" Width="120" >
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-
-                                </GridView>
-                            </ListView.View> 
-
-                            <!--Enables right click-->
-                                <ListView.ContextMenu>
-                                <ContextMenu Name="UserListOverview" IsEnabled="True">
-                                    <ContextMenu.Items>
-                                        <MenuItem Header="Add New User" Name="submenuAddUser" IsEnabled="True" Click="submenuAddUser_Click">
-                                            <MenuItem.Icon>
-                                                <Image Source="Images/add.png" Stretch="Uniform"></Image>
-                                            </MenuItem.Icon>
-                                        </MenuItem>
-                                        <MenuItem Header="Modify Selected User" Name="submenuModifyUser" IsEnabled="False" >
-                                            <MenuItem.Icon>
-                                                <Image Source="Images/update.png" Stretch="Uniform"></Image>
-                                            </MenuItem.Icon>
-                                            
-                                        </MenuItem>
-
-                                        <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="False">
-                                            <MenuItem.Icon>
-                                                <Image Source="Images/remove.png" Stretch="Uniform"></Image>
-                                            </MenuItem.Icon>
-                                        </MenuItem>
-                                    </ContextMenu.Items> 
-                                    
-                                </ContextMenu>
-                                    
-
-                                
-                            </ListView.ContextMenu>
-                            <ScrollBar x:Name="scrollBar1" Height="100" Width="100"/>
-                        </ListView>
-                        
-                        <!--users and Logs tabs-->
-                        <StackPanel Name="stkUserDetails" Grid.Row="5" Grid.Column="1" Width="300" Visibility="Collapsed">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40*"/>
-                                    <ColumnDefinition Width="60*"/>
-
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                </Grid.RowDefinitions>
-                                <!---No need to add names as they will not have any interaction-->
-                                <Label Grid.Row="0" Grid.Column="0" Content="Username" />
-                                <Label Grid.Row="1" Grid.Column="0" Content="Password" />
-                                <Label Grid.Row="2" Grid.Column="0" Content="Full name" />
-                                <Label Grid.Row="3" Grid.Column="0" Content="Account number" />
-                                <Label Grid.Row="4" Grid.Column="0" Content="Email" />
-                                <Label Grid.Row="5" Grid.Column="0" Content="Access level" />
-
-                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbxUserName" />
-                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbxPassword" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxFullname" />
-                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbxAccountNumber" />
-                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbxEmail" />
-                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxAccessLevel" />
-
-                                <ComboBox Grid.Column="1" Grid.Row="5">
-                                    <ComboBoxItem Content="Client"/>
-                                    <ComboBoxItem Content="Provider" />
-                                    <ComboBoxItem Content="Administrator"/>
-
-                                </ComboBox>
-                                <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
-
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-                    
-                </TabItem>
-                <TabItem Header="General Logs">
-                    <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="2">
-
+                    <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="3" SelectionChanged="lstUserList_SelectionChanged">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="UserID" Width="120" >
+
+                                <GridViewColumn Header="UserId" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserId}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="First Name" Width="120" >
+                                <GridViewColumn Header="Telephone" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="Last Name" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Telephone}" ></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Offer Amount" Width="120" >
+                                <GridViewColumn Header="Email" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Email}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Term" Width="120" >
+                                <GridViewColumn Header="Username" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Username}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+
+                </ListView>
+                </Grid>
+            </TabItem>
+            
+            <!--next tab item-->
+
+            <TabItem Header="Admin Logs">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="117*"/>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="464*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="3" SelectionChanged="lstUserList_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+
+                                <GridViewColumn Header="UserId" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserId}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -235,41 +101,33 @@
                                 <GridViewColumn Header="Action" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Action}" ></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Aff Int Rate" Width="120" >
+                                <GridViewColumn Header="Date" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Date}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Rpmt Int Rate" Width="120" >
+                                <GridViewColumn Header="Description" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-
-                                <GridViewColumn Header="Access Level" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
                             </GridView>
                         </ListView.View>
-                        <ScrollBar x:Name="scrollBar" Height="100" Width="100"/>
                     </ListView>
-                </TabItem>
-            </TabControl>
-        </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>
+                

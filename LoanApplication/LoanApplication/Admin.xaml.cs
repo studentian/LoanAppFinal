@@ -1,4 +1,5 @@
 ﻿
+using LoanAppClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,13 @@ namespace LoanApplication
     /// </summary>
     public partial class Admin : Page
     {
-       // loanappdbEntities dbo = new loanappdbEntities();
+        LoanAppDBEntities db = new LoanAppDBEntities();
 
         //all methods need to access the list
-       // List<User> users = new List<User>();
+        List<User> users = new List<User>();
+
+        //open logs
+        List<Log> logs = new List<Log>();
 
 
         public Admin()
@@ -32,28 +36,46 @@ namespace LoanApplication
             InitializeComponent();
         }
 
-        private void submenuAddUser_Click(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            stkUserDetails.Visibility = Visibility.Visible;
+
+            lstUserList.ItemsSource = users; //admin link for admin user fails here
+            lstProviderList.ItemsSource = logs;
+
+            foreach (var user in db.Users)
+            {
+                users.Add(user);
+                
+            }
+
+            foreach(var log in db.Logs)
+            {
+                logs.Add(log);
+
+            }
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            stkUserDetails.Visibility = Visibility.Collapsed;
-        }
-
-        //private void Page_Loaded(object sender, RoutedEventArgs e)
+        //private void submenuAddUser_Click(object sender, RoutedEventArgs e)
         //{
-
-        //    lstUserList.ItemsSource = users;
-        //    foreach (var user in dbo.Users)
-        //    {
-        //        users.Add(user);
-        //    }
+        //    stkUserDetails.Visibility = Visibility.Visible;
         //}
 
-        
+        //private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        //{
+        //    stkUserDetails.Visibility = Visibility.Collapsed;
+        //}
+
         private void cboAccessLevel_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lstUserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void lstProviderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

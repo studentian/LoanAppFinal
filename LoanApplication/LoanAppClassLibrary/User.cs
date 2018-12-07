@@ -23,17 +23,17 @@ namespace LoanAppClassLibrary
         public int UserId { get; set; }
         public int LevelId { get; set; }
         public string Password { get; set; }
-        public string First_name { get; set; }
-        public string Last_name_ { get; set; }
-        public string Address_line_1 { get; set; }
-        public string Address_line_2 { get; set; }
         public string City { get; set; }
-        public string Post_code { get; set; }
         public string Telephone { get; set; }
         public string Email { get; set; }
-        public string Provider_name { get; set; }
-        public string Company_reg { get; set; }
         public string Username { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string Postcode { get; set; }
+        public string ProviderName { get; set; }
+        public string CompanyReg { get; set; }
     
         public virtual AccessLevel AccessLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

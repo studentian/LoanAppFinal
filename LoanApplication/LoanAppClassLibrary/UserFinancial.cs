@@ -22,15 +22,15 @@ namespace LoanAppClassLibrary
     
         public int QuoteId { get; set; }
         public int UserId { get; set; }
-        public int Loan_Term { get; set; }
-        public double Aff_Int_Rate { get; set; }
-        public double Rpmt_Int_Rate { get; set; }
-        public decimal Purchase_Price { get; set; }
         public decimal Deposit { get; set; }
-        public string Telephone_ { get; set; }
-        public decimal Qualify_Amount { get; set; }
+        public string Telephone { get; set; }
         public decimal Salary { get; set; }
         public decimal Expenses { get; set; }
+        public int LoanTerm { get; set; }
+        public double AffIntRate { get; set; }
+        public double RpmtIntRate { get; set; }
+        public decimal PurchasePrice { get; set; }
+        public decimal QualifyAmount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Offer> Offers { get; set; }
