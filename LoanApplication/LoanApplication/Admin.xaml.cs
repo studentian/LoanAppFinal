@@ -30,6 +30,18 @@ namespace LoanApplication
         //open logs
         List<Log> logs = new List<Log>();
 
+        User selectedUser = new User();
+
+        enum DBOperation
+        {
+            //The one update button needs to do three things
+            Add,
+            Modify,
+            Delete
+        }
+
+        //create an instance of DB Enum
+        DBOperation dbOperation = new DBOperation();
 
         public Admin()
         {
@@ -39,14 +51,16 @@ namespace LoanApplication
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
-            lstUserList.ItemsSource = users; //admin link for admin user fails here
+            RefreshUserList();
+
+            //lstUserList.ItemsSource = users; //admin link for admin user fails here
             lstProviderList.ItemsSource = logs;
 
-            foreach (var user in db.Users)
-            {
-                users.Add(user);
+            //foreach (var user in db.Users)
+            //{
+            //    users.Add(user);
                 
-            }
+            //}
 
             foreach(var log in db.Logs)
             {
@@ -54,30 +68,146 @@ namespace LoanApplication
 
             }
         }
-
-        //private void submenuAddUser_Click(object sender, RoutedEventArgs e)
-        //{
-        //    stkUserDetails.Visibility = Visibility.Visible;
-        //}
-
-        //private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        //{
-        //    stkUserDetails.Visibility = Visibility.Collapsed;
-        //}
-
-        private void cboAccessLevel_SelectionChanged(object sender, RoutedEventArgs e)
+    
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            if (dbOperation == DBOperation.Add)
+            {
+                User user = new User();
+                user.Password = tbxPassword.Text.Trim();
+                user.FirstName = tbxFirstName.Text.Trim();
+                user.LastName = tbxLastName.Text.Trim();
+                user.Email = tbxEmail.Text.Trim();
+                user.Username = tbxUsername.Text.Trim(); //username could be switched with email here making the username the email address
+                user.LevelId = cboAccessLevel.SelectedIndex; //selected index is an Int and levelid is also an Int So selcted index here will match the selected index on the db.
+
+                int saveSuccess = SaveUser(user);
+
+                if (saveSuccess == 1)
+                {
+                    MessageBox.Show("User saved successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                    RefreshUserList();
+                    clearUserDetails();
+                    stkUserDetails.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            if (dbOperation == DBOperation.Modify)
+            {
+                foreach(var user in db.Users.Where(t => t.UserId == selectedUser.UserId))
+                {
+                    user.Password = tbxPassword.Text.Trim();
+                    user.FirstName = tbxFirstName.Text.Trim();
+                    user.LastName = tbxLastName.Text.Trim();
+                    user.Email = tbxEmail.Text.Trim();
+                    user.Username = tbxUsername.Text.Trim();
+                    user.LevelId = cboAccessLevel.SelectedIndex;
+                 
+                }
+                int saveSuccess = db.SaveChanges();
+                if(saveSuccess == 1)
+                {
+                    MessageBox.Show("User modified successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                    RefreshUserList();
+                    clearUserDetails();
+                    stkUserDetails.Visibility = Visibility.Collapsed;
+                }
+            }
+
+        }
+
+            public int SaveUser(User user)
+        {
+            db.Entry(user).State = System.Data.Entity.EntityState.Added;
+            int saveSuccess = db.SaveChanges();
+            return saveSuccess;
+
+
+        }
+
+        private void RefreshUserList()
+        {
+            lstUserList.ItemsSource = users;
+            users.Clear(); 
+            foreach(var user in db.Users)
+            {
+                users.Add(user);
+            }
+            lstUserList.Items.Refresh();
+        }
+
+        private void clearUserDetails()
+        {
+            tbxPassword.Text = "";
+            tbxFirstName.Text = "";
+            tbxLastName.Text = "";
+            tbxEmail.Text = "";
+            tbxUsername.Text = "";
+            tbxAccessLevel.Text = "";
+            cboAccessLevel.SelectedIndex = 0;
 
         }
 
         private void lstUserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            if(lstUserList.SelectedIndex > 0)
+            {
+                selectedUser = users.ElementAt(lstUserList.SelectedIndex); //number corresponding to value on list view
+
+                submenuModifyUser.IsEnabled = true;
+                submenuDeleteUser.IsEnabled = true;
+
+                if (dbOperation == DBOperation.Add)
+                {
+                    clearUserDetails();
+                }
+                
+                    tbxPassword.Text = selectedUser.Password;
+                    tbxFirstName.Text = selectedUser.FirstName;
+                    tbxLastName.Text = selectedUser.LastName;
+                    tbxEmail.Text = selectedUser.Email;
+                    tbxUsername.Text = selectedUser.Username;
+                    cboAccessLevel.SelectedIndex = selectedUser.LevelId; //combo box and selcted index in combo box
+
+            }
         }
 
-        private void lstProviderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+
+        private void submenuAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            stkUserDetails.Visibility = Visibility.Visible;
+            dbOperation = DBOperation.Add;
+        }
+
+
+        private void submenuModifyUser_Click(object sender, RoutedEventArgs e)
+        {
+            stkUserDetails.Visibility = Visibility.Visible;
+            dbOperation = DBOperation.Modify;
+
+        }
+
+        private void submenuDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            stkUserDetails.Visibility = Visibility.Visible;
+            db.Users.RemoveRange(db.Users.Where(t => t.UserId == selectedUser.UserId));
+            int saveSuccess = db.SaveChanges();
+            if (saveSuccess == 1)
+            {
+                MessageBox.Show("User deleted successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                RefreshUserList();
+                clearUserDetails();
+                stkUserDetails.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("Problem deleting user record.", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

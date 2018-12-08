@@ -13,10 +13,19 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="90*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="40*" />
         </Grid.RowDefinitions>
 
-        <TabControl Height="400">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <TabControl Height="400" Grid.ColumnSpan="4">
 
             <TabItem Header="Admin User">
                 <Grid>
@@ -42,10 +51,18 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Telephone" Width="120" >
+                                <GridViewColumn Header="FirstName" Width="120" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Telephone}" ></TextBlock>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding FirstName}" ></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="LastName" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LastName}" ></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -65,14 +82,38 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+
                             </GridView>
                         </ListView.View>
-
-                </ListView>
+                        <!-- Right Click Options==================================================-->
+                        <ListView.ContextMenu>
+                            <ContextMenu Name="UserListOverview" IsEnabled="True">
+                                <ContextMenu.Items>
+                                    <MenuItem Header="Add New User" Name="submenuAddUser" IsEnabled="True" Click="submenuAddUser_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="Images/add.png" Stretch="Uniform"></Image>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Modify Selected User" Name="submenuModifyUser" IsEnabled="True" Click="submenuModifyUser_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="Images/update.png" Stretch="Uniform"></Image>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="True" Click="submenuDeleteUser_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="Images/remove.png" Stretch="Uniform"></Image>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </ContextMenu.Items>
+                            </ContextMenu>
+                        </ListView.ContextMenu>
+                        <!--Context menu which contains right click options===========================-->
+                        
+                    </ListView>
                 </Grid>
             </TabItem>
             
-            <!--next tab item-->
+            <!--Next tab item==================-->
 
             <TabItem Header="Admin Logs">
                 <Grid>
@@ -86,7 +127,7 @@
                         <RowDefinition Height="50*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="3" SelectionChanged="lstUserList_SelectionChanged">
+                    <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="3">
                         <ListView.View>
                             <GridView>
 
@@ -121,13 +162,59 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Grid>
             </TabItem>
         </TabControl>
+        
+        
+        
+        <!--Right click - Add User Account (Set to collapsed or Visible)=============================-->
+        <StackPanel Name="stkUserDetails" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2" Width="500" Visibility="Collapsed">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="60*"/>
+
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                </Grid.RowDefinitions>
+                                <!---No need to add names as they will not have any interaction-->
+                                <Label Grid.Row="0" Grid.Column="0" Content="Password" />
+                                <Label Grid.Row="1" Grid.Column="0" Content="First Name" />
+                                <Label Grid.Row="2" Grid.Column="0" Content="Last Name" />
+                                <Label Grid.Row="3" Grid.Column="0" Content="Email" />
+                                <Label Grid.Row="4" Grid.Column="0" Content="Username" />
+                                <Label Grid.Row="5" Grid.Column="0" Content="Access Level" />
+
+                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbxPassword" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbxFirstName" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxLastName" />
+                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbxEmail" />
+                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbxUsername" />
+                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxAccessLevel" />
+                                
+                                <ComboBox Name="cboAccessLevel" Grid.Column="1" Grid.Row="5">
+                                    <ComboBoxItem Content="Please select"></ComboBoxItem>
+                                    <ComboBoxItem Content="Client"/>
+                                    <ComboBoxItem Content="Provider" />
+                                    
+
+                </ComboBox>
+                                <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
+                                <!--<Button Name="btnCancel" Grid.Row="6" Grid.Column="1" Content="Update" Width="60" Height="30" HorizontalAlignment="Center"></Button>-->
+            </Grid>
+        </StackPanel>
+        <!--End Stack Panel - Add User Account==============================-->
     </Grid>
 </Page>
                 

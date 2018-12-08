@@ -95,22 +95,14 @@ namespace LoanApplication
                 {
                     login = true;
                     validatedUser = user;
-
-                    //createLogEntry(validatedUser.UserId, "Login", " Successful", "login successful");
-
-                    //MessageBox.Show("Welcome " + validatedUser.First_name, "Login confirmed!", MessageBoxButton.OK);
-
-                    //Dashboard dashboard = new Dashboard();
-                    //dashboard.user = validatedUser;
-                    //dashboard.ShowDialog();
-                    //this.Hide();
-
+                    
                 }
 
                 if (user.Username != currentUser && user.Password != currentPassword)
                 {
                     MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
                 }
+
             }
 
             if (login)
@@ -124,10 +116,13 @@ namespace LoanApplication
                 this.Hide();
 
             }
-            //else
+            //else if (user.Username == currentUser && user.Password != currentPassword)
             //{
-            //    createLogEntry(0, "Login", "Not Successful", "Login unsuccessful");
+            //    login = false;
+            //    MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
+            //    createLogEntry(validatedUser.UserId, "Login", "Not Successful", "Login unsuccessful");
             //}
+
 
         }
     }
