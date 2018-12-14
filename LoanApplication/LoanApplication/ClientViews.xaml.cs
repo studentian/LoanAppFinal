@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoanAppClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,15 @@ namespace LoanApplication
     /// </summary>
     public partial class ClientViews : Window
     {
+
+        LoanAppDBEntities db = new LoanAppDBEntities();
+
+        List<User> listUser = new List<User>();
+        List<UserFinancial> UserFinancial = new List<UserFinancial>();
+
+        UserFinancial userFinancial = new UserFinancial();
+        User user = new User();
+
         public ClientViews()
         {
             InitializeComponent();
@@ -35,12 +45,38 @@ namespace LoanApplication
 
         private void btnRepayment_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Saved! \nPlease complete Step 3", "Step.2 Saved!", MessageBoxButton.OK);
+                userFinancial.PurchasePrice = decimal.Parse(tboxRpmtPurchasePrice.Text);
+                userFinancial.Deposit = decimal.Parse(tboxRpmtDeposit.Text);
+                userFinancial.RpmtIntRate = float.Parse(tboxRpmtInterestRate.Text);
+                userFinancial.RpmtLoanTerm = int.Parse(tboxRpmtLoanTerm.Text);
+
+            int saveSuccess = saveUser();
+            if (saveSuccess == 1)
+            {
+                MessageBox.Show("Saved! \nPlease complete Step 2", "Step.1 Saved!", MessageBoxButton.OK);
+            }
         }
 
         private void btnAffNext_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Saved! \nPlease complete Step 2", "Step.1 Saved!", MessageBoxButton.OK);
+                //userFinancial.UserId = user.UserId;
+                userFinancial.Salary = decimal.Parse(tboxAffSalary.Text); // I am trying here to add the user input here into the db.UserFinancial
+                userFinancial.Expenses = decimal.Parse(tboxAffExpenses.Text);
+                userFinancial.LoanTerm = int.Parse(tboxAffTerm.Text);
+                userFinancial.AffIntRate = float.Parse(tboxAffIntRate.Text);
+
+            int saveSuccess = saveUser();
+            if (saveSuccess == 1)
+            {
+                MessageBox.Show("Saved! \nPlease complete Step 2", "Step.1 Saved!", MessageBoxButton.OK);
+            }
+        }
+
+        public int saveUser()
+        {
+            db.Entry(userFinancial).State = System.Data.Entity.EntityState.Added;
+            int saveSuccess = db.SaveChanges();
+            return saveSuccess;
         }
     }
 }

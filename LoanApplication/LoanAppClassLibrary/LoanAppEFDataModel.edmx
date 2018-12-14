@@ -35,16 +35,23 @@
           </Key>
           <Property Name="OfferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="QuoteId" Type="int" Nullable="false" />
+          <Property Name="QuoteId" Type="int" />
           <Property Name="OfferAmount" Type="money" Nullable="false" />
           <Property Name="Term" Type="int" Nullable="false" />
           <Property Name="InterestRate" Type="float" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="OfferStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="OfferStatus" Type="int" />
           <Property Name="ProviderName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CompanyReg" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OfferStatus">
+          <Key>
+            <PropertyRef Name="OfferId" />
+          </Key>
+          <Property Name="OfferId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="UserFinancials">
           <Key>
@@ -52,15 +59,15 @@
           </Key>
           <Property Name="QuoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="LoanTerm" Type="int" Nullable="false" />
-          <Property Name="AffIntRate" Type="float" Nullable="false" />
-          <Property Name="RpmtIntRate" Type="float" Nullable="false" />
-          <Property Name="PurchasePrice" Type="money" Nullable="false" />
-          <Property Name="Deposit" Type="money" Nullable="false" />
-          <Property Name="Telephone " Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="QualifyAmount" Type="money" Nullable="false" />
-          <Property Name="Salary" Type="money" Nullable="false" />
-          <Property Name="Expenses" Type="money" Nullable="false" />
+          <Property Name="LoanTerm" Type="int" />
+          <Property Name="AffIntRate" Type="float" />
+          <Property Name="RpmtIntRate" Type="float" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Deposit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="QualifyAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Expenses" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RpmtLoanTerm" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -80,7 +87,20 @@
           <Property Name="ProviderName" Type="varchar" MaxLength="50" />
           <Property Name="CompanyReg" Type="varchar" MaxLength="50" />
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OfferId" Type="int" />
         </EntityType>
+        <Association Name="FK__Users__OfferId__6FE99F9F">
+          <End Role="OfferStatus" Type="Self.OfferStatus" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfferStatus">
+              <PropertyRef Name="OfferId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="OfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Log_To_User">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Log" Type="Self.Log" Multiplicity="*" />
@@ -94,7 +114,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Offers_UserFinancials">
-          <End Role="UserFinancials" Type="Self.UserFinancials" Multiplicity="1" />
+          <End Role="UserFinancials" Type="Self.UserFinancials" Multiplicity="0..1" />
           <End Role="Offers" Type="Self.Offers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserFinancials">
@@ -121,8 +141,13 @@
           <EntitySet Name="AccessLevel" EntityType="Self.AccessLevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfferStatus" EntityType="Self.OfferStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserFinancials" EntityType="Self.UserFinancials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Users__OfferId__6FE99F9F" Association="Self.FK__Users__OfferId__6FE99F9F">
+            <End Role="OfferStatus" EntitySet="OfferStatus" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
           <AssociationSet Name="FK_Log_To_User" Association="Self.FK_Log_To_User">
             <End Role="Users" EntitySet="Users" />
             <End Role="Log" EntitySet="Log" />
@@ -172,9 +197,9 @@
           </Key>
           <Property Name="OfferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="QuoteId" Type="Int32" Nullable="false" />
+          <Property Name="QuoteId" Type="Int32" />
           <Property Name="Term" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserFinancial" Relationship="Self.FK_Offers_UserFinancials" FromRole="Offers" ToRole="UserFinancials" />
           <Property Name="OfferAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="InterestRate" Type="Double" Nullable="false" />
@@ -182,7 +207,7 @@
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ProviderName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CompanyReg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="OfferStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OfferStatus" Type="String" />
         </EntityType>
         <EntityType Name="UserFinancial">
           <Key>
@@ -190,16 +215,17 @@
           </Key>
           <Property Name="QuoteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Deposit" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Expenses" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Deposit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Expenses" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Offers" Relationship="Self.FK_Offers_UserFinancials" FromRole="UserFinancials" ToRole="Offers" />
-          <Property Name="LoanTerm" Type="Int32" Nullable="false" />
-          <Property Name="AffIntRate" Type="Double" Nullable="false" />
-          <Property Name="RpmtIntRate" Type="Double" Nullable="false" />
-          <Property Name="PurchasePrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="QualifyAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="LoanTerm" Type="Int32" />
+          <Property Name="AffIntRate" Type="Double" />
+          <Property Name="RpmtIntRate" Type="Double" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="QualifyAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RpmtLoanTerm" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="loanappdbModel.FK__UserFinan__UserI__5FB337D6" FromRole="UserFinancial" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -221,6 +247,9 @@
           <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CompanyReg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserFinancials" Relationship="loanappdbModel.FK__UserFinan__UserI__5FB337D6" FromRole="User" ToRole="UserFinancial" />
+          <Property Name="OfferId" Type="Int32" />
+          <NavigationProperty Name="OfferStatu" Relationship="loanappdbModel.FK__Users__OfferId__6FE99F9F" FromRole="User" ToRole="OfferStatu" />
         </EntityType>
         <Association Name="FK_Users_To_AccessLevel">
           <End Role="AccessLevel" Type="Self.AccessLevel" Multiplicity="1" />
@@ -276,7 +305,48 @@
             <End Role="UserFinancials" EntitySet="UserFinancials" />
             <End Role="Offers" EntitySet="Offers" />
           </AssociationSet>
+          <AssociationSet Name="FK__UserFinan__UserI__5FB337D6" Association="loanappdbModel.FK__UserFinan__UserI__5FB337D6">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserFinancial" EntitySet="UserFinancials" />
+          </AssociationSet>
+          <EntitySet Name="OfferStatus" EntityType="loanappdbModel.OfferStatu" />
+          <AssociationSet Name="FK__Users__OfferId__6FE99F9F" Association="loanappdbModel.FK__Users__OfferId__6FE99F9F">
+            <End Role="OfferStatu" EntitySet="OfferStatus" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__UserFinan__UserI__5FB337D6">
+          <End Type="loanappdbModel.User" Role="User" Multiplicity="1" />
+          <End Type="loanappdbModel.UserFinancial" Role="UserFinancial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserFinancial">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OfferStatu">
+          <Key>
+            <PropertyRef Name="OfferId" />
+          </Key>
+          <Property Name="OfferId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="loanappdbModel.FK__Users__OfferId__6FE99F9F" FromRole="OfferStatu" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Users__OfferId__6FE99F9F">
+          <End Type="loanappdbModel.OfferStatu" Role="OfferStatu" Multiplicity="0..1" />
+          <End Type="loanappdbModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfferStatu">
+              <PropertyRef Name="OfferId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="OfferId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -330,6 +400,7 @@
           <EntitySetMapping Name="UserFinancials">
             <EntityTypeMapping TypeName="loanappdbModel.UserFinancial">
               <MappingFragment StoreEntitySet="UserFinancials">
+                <ScalarProperty Name="RpmtLoanTerm" ColumnName="RpmtLoanTerm" />
                 <ScalarProperty Name="QualifyAmount" ColumnName="QualifyAmount" />
                 <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
                 <ScalarProperty Name="RpmtIntRate" ColumnName="RpmtIntRate" />
@@ -338,7 +409,6 @@
                 <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Deposit" ColumnName="Deposit" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone " />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Expenses" ColumnName="Expenses" />
               </MappingFragment>
@@ -347,6 +417,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="loanappdbModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="OfferId" ColumnName="OfferId" />
                 <ScalarProperty Name="CompanyReg" ColumnName="CompanyReg" />
                 <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
                 <ScalarProperty Name="Postcode" ColumnName="Postcode" />
@@ -361,6 +432,14 @@
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfferStatus">
+            <EntityTypeMapping TypeName="loanappdbModel.OfferStatu">
+              <MappingFragment StoreEntitySet="OfferStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OfferId" ColumnName="OfferId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

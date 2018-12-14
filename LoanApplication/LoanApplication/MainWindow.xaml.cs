@@ -84,27 +84,24 @@ namespace LoanApplication
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             User validatedUser = new User();
-            bool login = false;
 
+            bool login = false;
+            bool credentialsValidated = false;
             string currentUser = tbxUserName.Text;
             string currentPassword = pbxPassword.Password;
 
-            foreach (var user in db.Users)
+            credentialsValidated = validatedUserInput(currentUser, currentPassword);
+            if (credentialsValidated)
             {
-                if (user.Username == currentUser && user.Password == currentPassword)
+                foreach (var user in db.Users)
                 {
-                    login = true;
-                    validatedUser = user;
-                    
+                    if (user.Username == currentUser && user.Password == currentPassword)
+                    {
+                        login = true;
+                        validatedUser = user;
+                    }
                 }
-
-                if (user.Username != currentUser && user.Password != currentPassword)
-                {
-                    MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
-                }
-
             }
-
             if (login)
             {
                 createLogEntry(validatedUser.UserId, "Login", " Successful", "login successful");
@@ -114,16 +111,38 @@ namespace LoanApplication
                 dashboard.user = validatedUser;
                 dashboard.Show();
                 this.Hide();
-
             }
-            //else if (user.Username == currentUser && user.Password != currentPassword)
-            //{
-            //    login = false;
-            //    MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
-            //    createLogEntry(validatedUser.UserId, "Login", "Not Successful", "Login unsuccessful");
-            //}
 
+            if (login == false)
+            {
+                MessageBox.Show("Username or Password incorrect. Please try again!", "Notice!", MessageBoxButton.OK);
+            }
 
+        }
+        
+        //take away
+        private bool validatedUserInput(string username, string password)
+        {
+            //It is easier to set validated to false inside one of the checks 
+            //than to validate each check
+            bool validated = true;
+            if(username.Length == 0 || username.Length > 30)
+            {
+                validated = false;
+            }
+            foreach (char ch in username)
+            {
+                if (ch > '0' && ch < '9')
+                {
+                    validated = false;
+                }
+            }
+            if (password.Length == 0 || password.Length > 30)
+            {
+                validated = false;
+            }
+
+            return validated;
         }
     }
 }

@@ -29,32 +29,37 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
         <TextBlock Text="Financial Services Provider Registration" Margin="5" Grid.ColumnSpan="4" TextDecorations="underline" TextAlignment="Center" Grid.Row="1" Grid.Column="1" FontSize="30" FontFamily="Ariel" />
-        <TextBlock Text="Not a member? Please register below:" Margin="6" FontSize="15" FontStyle="Italic" Grid.Row="2" Grid.Column="2" TextAlignment="Center" Grid.ColumnSpan="2"  TextDecorations="underline" />
+        <TextBlock Text="Not a member? Register here:" Margin="6" FontSize="15" FontStyle="Italic" Grid.Row="2" Grid.Column="1" TextAlignment="Left" Grid.ColumnSpan="2"  TextDecorations="underline" />
 
         <Button Content="Register" Name="btnRegister" Grid.Column="6" Width="100" Grid.Row="4" FontSize="16" Click="btnRegister_Click" />
         <Button Content="back" Name="btnback" Grid.Column="6" Width="100" Grid.Row="6" FontSize="16" Click="btnback_Click" />
 
-
         <TextBlock Margin="5" Text="CompanyName" Grid.Column="1" Grid.Row="3" TextAlignment="Right" FontSize="16"/>
-        <TextBox Grid.Column="2" Grid.Row="3" Width="200" Name="tbxCompanyName" FontSize="16" />
+        <TextBox Grid.Column="2" Grid.Row="3" Width="200" Name="tbxCompanyName" FontSize="16" Text="{Binding tbxCompanyName}" />
+        
         <TextBlock Margin="5" Text="Registration" Grid.Column="3" Grid.Row="3" Width="100" TextAlignment="Right" FontSize="16"/>
-        <TextBox Grid.Column="4" Grid.Row="3" Width="200" Name="tbxRegistration" FontSize="16"/>
+        <TextBox Grid.Column="4" Grid.Row="3" Width="200" Name="tbxRegistration" FontSize="16" Text="{Binding tbxRegistration}" />
 
         <TextBlock Margin="5" Text="Password" Grid.Column="1" Grid.Row="4" Padding="2 2 2 2" TextAlignment="Right" FontSize="16"/>
-        <TextBox Grid.Column="2" Grid.Row="4" Width="200" Name="tbxUserName" FontSize="16" />
+        <TextBox Grid.Column="2" Grid.Row="4" Width="200" Name="tbxPassword" FontSize="16" Text="{Binding tbxPassword}" />
+        
         <TextBlock Margin="5" Text="Confirm Pswd" Grid.Column="3" Grid.Row="4" Width="100" Padding="2 2 2 2" TextAlignment="left" FontSize="16" />
-        <TextBox Grid.Column="4" Grid.Row="4" Width="200" Name="tbxPassword" FontSize="16"/>
+        <TextBox Grid.Column="4" Grid.Row="4" Width="200" Name="tbxconfirmPassword" FontSize="16" Text="{Binding tbxConfirmPassword}" />
 
         <TextBlock Margin="5" Text="Address" Grid.Column="1" Grid.Row="5" TextAlignment="Right" FontSize="16"/>
-        <TextBox Grid.Column="2" Grid.Row="5" Width="200" Name="tbxAddress" FontSize="16" />
+        <TextBox Grid.Column="2" Grid.Row="5" Width="200" Name="tbxAddress" FontSize="16" Text="{Binding tbxAddress}"/>
+       
         <TextBlock Margin="5" Text="Telephone" Grid.Column="3" Grid.Row="5" Width="100" TextAlignment="Right" FontSize="16"/>
-        <TextBox Grid.Column="4" Grid.Row="5" Width="200" Name="tbxTelephone" FontSize="16"/>
+        <TextBox Grid.Column="4" Grid.Row="5" Width="200" Name="tbxTelephone" FontSize="16" Text="{Binding tbxTelephone}" />
 
         <TextBlock Text="PostCode" Grid.Column="1" Grid.Row="6" Width="100" TextAlignment="Right" FontSize="16"/>
-        <TextBox Grid.Column="2" Grid.Row="6" Width="200" Name="tbxPostCode" FontSize="16"/>
+        <TextBox Grid.Column="2" Grid.Row="6" Width="200" Name="tbxPostCode" FontSize="16" Text="{Binding tbxPostCode}" />
 
         <TextBlock Margin="5" Text="Email" Grid.Column="3" Grid.Row="6" Width="100" TextAlignment="Right" FontSize="16"/>
-        <TextBox Grid.Column="4" Grid.Row="6" Width="200" Name="tbxEmail" FontSize="16"/>
+        <TextBox Grid.Column="4" Grid.Row="6" Width="200" Name="tbxEmail" FontSize="16" Text="{Binding tbxEmail}" />
+
+        <TextBlock Margin="5" Text="Username" Grid.Column="3" Grid.Row="2" Width="100" TextAlignment="Right" FontSize="16"/>
+        <TextBox Grid.Column="4" Grid.Row="2" Width="200" Name="tbxUsername" FontSize="16" Text="{Binding tbxUsername}" />
 
         <WrapPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="6" Margin="5" Height="100" >
             <Image Source="Images\startup.jpg" Height="100" Width="180" />

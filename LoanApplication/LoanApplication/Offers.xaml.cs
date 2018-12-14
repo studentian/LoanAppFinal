@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoanAppClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,10 @@ namespace LoanApplication
     /// </summary>
     public partial class Offers : Page
     {
+        LoanAppDBEntities db = new LoanAppDBEntities();
+        UserFinancial userFinancial = new UserFinancial();
+        User user = new User();
+
         public Offers()
         {
             InitializeComponent();
@@ -28,10 +33,7 @@ namespace LoanApplication
         private void btnOffers_Click(object sender, RoutedEventArgs e)
         {
             ClientViews clientViews = new ClientViews();
-            clientViews.Show();
-
-           
+                clientViews.Show();
         }
-
     }
 }

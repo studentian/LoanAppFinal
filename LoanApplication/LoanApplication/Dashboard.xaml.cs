@@ -41,7 +41,6 @@ namespace LoanApplication
                 btnClient.Visibility = Visibility.Visible;
                 btnProvider.Visibility = Visibility.Visible;
                 btnAdmin.Visibility = Visibility.Visible;
-
             }
 
             if (user.LevelId == 1)
@@ -50,13 +49,10 @@ namespace LoanApplication
 
 
                 }
-                if (user.LevelId == 2)
+            if (user.LevelId == 2)
                 {
-
                     btnProvider.Visibility = Visibility.Visible;
                     mnuProvider.Visibility = Visibility.Visible;
-
-
                 }
 
 

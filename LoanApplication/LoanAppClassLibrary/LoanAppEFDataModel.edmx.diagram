@@ -6,13 +6,18 @@
     <edmx:Diagrams>
       <Diagram DiagramId="44ae9fdf58c8433bb6cf62fe4545ea6f" Name="Diagram1">
         <EntityTypeShape EntityType="loanappdbModel.AccessLevel" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="loanappdbModel.Log" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="loanappdbModel.Offer" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="loanappdbModel.UserFinancial" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.Log" Width="1.5" PointX="5.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.Offer" Width="1.5" PointX="8.375" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.UserFinancial" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="loanappdbModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="loanappdbModel.FK_Users_To_AccessLevel" ManuallyRouted="false" />
         <AssociationConnector Association="loanappdbModel.FK_Log_To_User" ManuallyRouted="false" />
         <AssociationConnector Association="loanappdbModel.FK_Offers_UserFinancials" ManuallyRouted="false" />
+        <AssociationConnector Association="loanappdbModel.FK__UserFinan__UserI__5FB337D6" />
+        <EntityTypeShape EntityType="loanappdbModel.FinancialServicesRegistration" Width="1.5" PointX="8" PointY="0.875" />
+        <InheritanceConnector EntityType="loanappdbModel.FinancialServicesRegistration" />
+        <EntityTypeShape EntityType="loanappdbModel.OfferStatu" Width="1.5" PointX="0.625" PointY="4.5" />
+        <AssociationConnector Association="loanappdbModel.FK__Users__OfferId__6FE99F9F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

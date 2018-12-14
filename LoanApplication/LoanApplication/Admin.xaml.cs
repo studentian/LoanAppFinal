@@ -1,6 +1,4 @@
-﻿
-using LoanAppClassLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,14 +51,7 @@ namespace LoanApplication
 
             RefreshUserList();
 
-            //lstUserList.ItemsSource = users; //admin link for admin user fails here
             lstProviderList.ItemsSource = logs;
-
-            //foreach (var user in db.Users)
-            //{
-            //    users.Add(user);
-                
-            //}
 
             foreach(var log in db.Logs)
             {
@@ -74,12 +65,12 @@ namespace LoanApplication
             if (dbOperation == DBOperation.Add)
             {
                 User user = new User();
-                user.Password = tbxPassword.Text.Trim();
-                user.FirstName = tbxFirstName.Text.Trim();
-                user.LastName = tbxLastName.Text.Trim();
-                user.Email = tbxEmail.Text.Trim();
-                user.Username = tbxUsername.Text.Trim(); //username could be switched with email here making the username the email address
-                user.LevelId = cboAccessLevel.SelectedIndex; //selected index is an Int and levelid is also an Int So selcted index here will match the selected index on the db.
+                    user.Password = tbxPassword.Text.Trim();
+                    user.FirstName = tbxFirstName.Text.Trim();
+                    user.LastName = tbxLastName.Text.Trim();
+                    user.Email = tbxEmail.Text.Trim();
+                    user.Username = tbxUsername.Text.Trim(); 
+                    user.LevelId = cboAccessLevel.SelectedIndex; //selected index is an Int and levelid is also an Int So selcted index here will match the selected index on the db.
 
                 int saveSuccess = SaveUser(user);
 
@@ -95,6 +86,7 @@ namespace LoanApplication
                     MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
+
             if (dbOperation == DBOperation.Modify)
             {
                 foreach(var user in db.Users.Where(t => t.UserId == selectedUser.UserId))
@@ -105,10 +97,11 @@ namespace LoanApplication
                     user.Email = tbxEmail.Text.Trim();
                     user.Username = tbxUsername.Text.Trim();
                     user.LevelId = cboAccessLevel.SelectedIndex;
-                 
                 }
+
                 int saveSuccess = db.SaveChanges();
-                if(saveSuccess == 1)
+
+                if (saveSuccess == 1)
                 {
                     MessageBox.Show("User modified successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshUserList();
@@ -118,13 +111,12 @@ namespace LoanApplication
             }
 
         }
-
+            
             public int SaveUser(User user)
         {
             db.Entry(user).State = System.Data.Entity.EntityState.Added;
             int saveSuccess = db.SaveChanges();
             return saveSuccess;
-
 
         }
 
@@ -156,32 +148,34 @@ namespace LoanApplication
 
             if(lstUserList.SelectedIndex > 0)
             {
-                selectedUser = users.ElementAt(lstUserList.SelectedIndex); //number corresponding to value on list view
+                    selectedUser = users.ElementAt(lstUserList.SelectedIndex); //number corresponding to value on list view
+                    submenuModifyUser.IsEnabled = true;
+                    submenuDeleteUser.IsEnabled = true;
 
-                submenuModifyUser.IsEnabled = true;
-                submenuDeleteUser.IsEnabled = true;
-
-                if (dbOperation == DBOperation.Add)
+                //User must click in another field if details do not auto populate
+                if (dbOperation == DBOperation.Modify)
                 {
-                    clearUserDetails();
-                }
-                
                     tbxPassword.Text = selectedUser.Password;
                     tbxFirstName.Text = selectedUser.FirstName;
                     tbxLastName.Text = selectedUser.LastName;
                     tbxEmail.Text = selectedUser.Email;
                     tbxUsername.Text = selectedUser.Username;
                     cboAccessLevel.SelectedIndex = selectedUser.LevelId; //combo box and selcted index in combo box
+                }
 
+                //User must click in another field to clear the auto loaded details to add a user
+                if (dbOperation == DBOperation.Add)
+                {
+                    clearUserDetails();
+                }
             }
         }
-
-
 
         private void submenuAddUser_Click(object sender, RoutedEventArgs e)
         {
             stkUserDetails.Visibility = Visibility.Visible;
             dbOperation = DBOperation.Add;
+
         }
 
 
@@ -189,7 +183,6 @@ namespace LoanApplication
         {
             stkUserDetails.Visibility = Visibility.Visible;
             dbOperation = DBOperation.Modify;
-
         }
 
         private void submenuDeleteUser_Click(object sender, RoutedEventArgs e)

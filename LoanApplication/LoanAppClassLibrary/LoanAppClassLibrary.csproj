@@ -50,9 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessLevel.cs">
-      <DependentUpon>LoanAppEFDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="LoanAppEFDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,19 +65,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoanAppEFDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Log.cs">
-      <DependentUpon>LoanAppEFDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Offer.cs">
-      <DependentUpon>LoanAppEFDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs">
-      <DependentUpon>LoanAppEFDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserFinancial.cs">
-      <DependentUpon>LoanAppEFDataModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="LoanAppEFDataModel.edmx">

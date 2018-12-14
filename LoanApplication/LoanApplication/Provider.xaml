@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LoanApplication"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="900"
+      Loaded="Page_Loaded"
+      d:DesignHeight="750" d:DesignWidth="900"
       Title="Provider">
 
     <Grid>
@@ -157,30 +158,40 @@
                                     <RowDefinition Height="10*"/>
                                     <RowDefinition Height="10*"/>
                                     <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
+                                    <RowDefinition Height="10*"/>
                                 </Grid.RowDefinitions>
                                 <!---No need to add names as they will not have any interaction-->
-                                <Label Grid.Row="0" Grid.Column="0" Content="Account number" />
-                                <Label Grid.Row="1" Grid.Column="0" Content="Full name" />
-                                <Label Grid.Row="2" Grid.Column="0" Content="Offer Amount" />
-                                <Label Grid.Row="3" Grid.Column="0" Content="Term" />
-                                <Label Grid.Row="4" Grid.Column="0" Content="Interest Rate" />
-                                <Label Grid.Row="5" Grid.Column="0" Content="Status" />
+                                <Label Grid.Row="0" Grid.Column="0" Content="UserId" />
+                                <Label Grid.Row="1" Grid.Column="0" Content="QuoteId" />
+                                <Label Grid.Row="2" Grid.Column="0" Content="First Name" />
+                                <Label Grid.Row="3" Grid.Column="0" Content="Last Name" />
+                                <Label Grid.Row="4" Grid.Column="0" Content="Offer Amount" />
+                                <Label Grid.Row="5" Grid.Column="0" Content="Term" />
+                                <Label Grid.Row="6" Grid.Column="0" Content="Interest Rate" />
+                                <Label Grid.Row="7" Grid.Column="0" Content="Provider Name" />
+                                <Label Grid.Row="8" Grid.Column="0" Content="Date" />
 
-                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbxAccNum" />
-                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbxFullName" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxOfferAmount" />
-                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbxTerm" />
-                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbxIntRate" />
-                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxStatus" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbxUserId" />
+                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbxQuoteId" />
+                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxFirstName" />
+                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbxLastName" />
+                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbxOfferAmount" />
+                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxTerm" />
+                                <TextBox Grid.Row="6" Grid.Column="1" Name="tbxIntRate" />
+                                <TextBox Grid.Row="7" Grid.Column="1" Name="tbxProviderName" />
 
-                                <ComboBox Grid.Column="1" Grid.Row="5">
+                                <ComboBox Name="cboOfferStatus" Grid.Column="1" Grid.Row="5">
+                                    <ComboBoxItem Content="Please select"/>
                                     <ComboBoxItem Content="Approved"/>
                                     <ComboBoxItem Content="Rejected" />
                                     <ComboBoxItem Content="Pending" />
                                     <ComboBoxItem Content="Revised Offer" />
 
                                 </ComboBox>
-                                <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click" ></Button>
+                                <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
 
                             </Grid>
                         </StackPanel>
