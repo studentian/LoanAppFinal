@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e72117a54d074b2f86c638183b17cb71" Name="Diagram1">
+        <EntityTypeShape EntityType="loanappdbModel.AccessLevel" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.Log" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.Offer" Width="1.5" PointX="10.125" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.OfferStatus" Width="1.25" PointX="8.875" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.UserFinancial" Width="1.5" PointX="7.625" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="loanappdbModel.User" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="loanappdbModel.FK_Users_To_AccessLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="loanappdbModel.FK_Log_To_User" ManuallyRouted="false" />
+        <AssociationConnector Association="loanappdbModel.FK_Offers_UserFinancials" ManuallyRouted="false" />
+        <AssociationConnector Association="loanappdbModel.FK__Offers__OfferSta__73BA3083" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

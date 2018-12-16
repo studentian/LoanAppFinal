@@ -16,18 +16,20 @@
         </Grid.RowDefinitions>
 
         <StackPanel>
-            <TabControl Height="400">
+            <TabControl Height="200">
                 <TabItem Header="Loan Applicants">
                     <Grid>
                         <Grid.ColumnDefinitions>
-  
+
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50*"/>
-                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2">
+                        <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="1">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="UserID" Width="120" >
@@ -101,7 +103,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    
+
                                     <GridViewColumn Header="Offer Status" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -139,141 +141,149 @@
                                 </ContextMenu>
 
                             </ListView.ContextMenu>
-                            <ScrollBar x:Name="scrollBar1" Height="100" Width="100"/>
-                        </ListView>
+                          </ListView>
 
-                        <!--users and Logs tabs-->
-                        <StackPanel Name="stkProviderDetails" Grid.Row="1" Grid.Column="1" Width="300" Visibility="Hidden" HorizontalAlignment="Center">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40*"/>
-                                    <ColumnDefinition Width="60*"/>
-
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                    <RowDefinition Height="10*"/>
-                                </Grid.RowDefinitions>
-                                <!---No need to add names as they will not have any interaction-->
-                                <Label Grid.Row="0" Grid.Column="0" Content="UserId" />
-                                <Label Grid.Row="1" Grid.Column="0" Content="QuoteId" />
-                                <Label Grid.Row="2" Grid.Column="0" Content="First Name" />
-                                <Label Grid.Row="3" Grid.Column="0" Content="Last Name" />
-                                <Label Grid.Row="4" Grid.Column="0" Content="Offer Amount" />
-                                <Label Grid.Row="5" Grid.Column="0" Content="Term" />
-                                <Label Grid.Row="6" Grid.Column="0" Content="Interest Rate" />
-                                <Label Grid.Row="7" Grid.Column="0" Content="Provider Name" />
-                                <Label Grid.Row="8" Grid.Column="0" Content="Date" />
-
-                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbxUserId" />
-                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbxQuoteId" />
-                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxFirstName" />
-                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbxLastName" />
-                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbxOfferAmount" />
-                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxTerm" />
-                                <TextBox Grid.Row="6" Grid.Column="1" Name="tbxIntRate" />
-                                <TextBox Grid.Row="7" Grid.Column="1" Name="tbxProviderName" />
-
-                                <ComboBox Name="cboOfferStatus" Grid.Column="1" Grid.Row="5">
-                                    <ComboBoxItem Content="Please select"/>
-                                    <ComboBoxItem Content="Approved"/>
-                                    <ComboBoxItem Content="Rejected" />
-                                    <ComboBoxItem Content="Pending" />
-                                    <ComboBoxItem Content="Revised Offer" />
-
-                                </ComboBox>
-                                <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
-
-                            </Grid>
-                        </StackPanel>
                     </Grid>
-
                 </TabItem>
-                
+
                 <TabItem Header="Provider Logs">
-                    <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="2">
-                        
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="UserID" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserID}" ></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
 
-                                <GridViewColumn Header="Date/Time" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding DateTime}" ></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1200*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="400"/>
+                            <RowDefinition Height="50*"/>
+                        </Grid.RowDefinitions>
+                        <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="2">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="UserId" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserId}" ></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Offer Amount" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding OfferAmount}"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Date}" ></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Loan Term" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" ></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="OfferAmount" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding OfferAmount}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Action" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="Term" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Term}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Aff Int Rate" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="Action" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Action}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Rpmt Int Rate" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="AffIntRate" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding AffIntRate}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Access Level" Width="120" >
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="RpmtIntRate" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding RpmtIntRate}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                            </GridView>
-                        </ListView.View>
-                        <ScrollBar x:Name="scrollBar" Height="100" Width="100"/>
-                    </ListView>
+                                    <GridViewColumn Header="OfferStatusId" Width="120" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding OfferStatusId}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
                 </TabItem>
             </TabControl>
         </StackPanel>
+
+        <!--users and Logs tabs-->
+         <StackPanel Name="stkProviderDetails" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" Width="400" Visibility="Visible" HorizontalAlignment="Center">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="60*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!---No need to add names as they will not have any interaction-->
+                    <Label Grid.Row="0" Grid.Column="0" Content="UserId" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="QuoteId" />
+                    <Label Grid.Row="2" Grid.Column="0" Content="First Name" />
+                    <Label Grid.Row="3" Grid.Column="0" Content="Last Name" />
+                    <Label Grid.Row="4" Grid.Column="0" Content="Offer Amount" />
+                    <Label Grid.Row="5" Grid.Column="0" Content="Term" />
+                    <Label Grid.Row="6" Grid.Column="0" Content="Interest Rate" />
+                    <Label Grid.Row="7" Grid.Column="0" Content="Provider Name" />
+                    <Label Grid.Row="8" Grid.Column="0" Content="Date" />
+
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="tbxUserId" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Name="tbxQuoteId" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Name="tbxFirstName" />
+                    <TextBox Grid.Row="3" Grid.Column="1" Name="tbxLastName" />
+                    <TextBox Grid.Row="4" Grid.Column="1" Name="tbxOfferAmount" />
+                    <TextBox Grid.Row="5" Grid.Column="1" Name="tbxTerm" />
+                    <TextBox Grid.Row="6" Grid.Column="1" Name="tbxIntRate" />
+                    <TextBox Grid.Row="7" Grid.Column="1" Name="tbxProviderName" />
+
+                    <ComboBox Name="cboOfferStatus" Grid.Column="1" Grid.Row="5">
+                        <ComboBoxItem Content="Please select"/>
+                        <ComboBoxItem Content="Approved"/>
+                        <ComboBoxItem Content="Rejected" />
+                        <ComboBoxItem Content="Pending" />
+                        <ComboBoxItem Content="Revised Offer" />
+
+                    </ComboBox>
+                    <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
+                </Grid>
+            </StackPanel>
     </Grid>
 </Page>

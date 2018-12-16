@@ -184,9 +184,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoanAppClassLibrary\LoanAppClassLibrary.csproj">
-      <Project>{0CC616B8-F4DB-41FB-BBFC-793EF28286F0}</Project>
-      <Name>LoanAppClassLibrary</Name>
+    <ProjectReference Include="..\LoanAppLibV1\LoanAppLibV1.csproj">
+      <Project>{66916E7C-F9C2-42DF-9187-A56257CF49FE}</Project>
+      <Name>LoanAppLibV1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

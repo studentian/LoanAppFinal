@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoanAppLibV1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,7 +72,7 @@ namespace LoanApplication
                 offer.InterestRate = float.Parse(tbxIntRate.Text.Trim());
                 offer.ProviderName = tbxProviderName.Text.Trim();
 
-                offer.OfferStatus = cboOfferStatus.SelectionBoxItemStringFormat; 
+                offer.OfferStatus = cboOfferStatus.SelectedIndex; 
 
                 int saveSuccess = SaveOffer(offer);
 
@@ -155,7 +156,6 @@ namespace LoanApplication
             tbxProviderName.Text = "";
 
             cboOfferStatus.SelectedIndex = 0;
-
         }
 
         private void lstProviderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -163,7 +163,7 @@ namespace LoanApplication
 
             if (lstUserList.SelectedIndex > 0)
             {
-                offer = cboOfferStatus.ElementAt(lstProviderList.SelectedIndex); //number corresponding to value on list view
+               // offer = offerList.ElementAt(lstProviderList.SelectedIndex); //number corresponding to value on list view
                 submenuModifyOffer.IsEnabled = true;
                 submenuDeleteOffer.IsEnabled = true;
 
