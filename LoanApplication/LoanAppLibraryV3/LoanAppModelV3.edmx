@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="loanappdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LoanAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccessLevel">
           <Key>
             <PropertyRef Name="LevelId" />
@@ -27,6 +27,7 @@
           <Property Name="ProviderName" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="OfferStatusId" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Offers">
           <Key>
@@ -35,15 +36,15 @@
           <Property Name="OfferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="QuoteId" Type="int" />
-          <Property Name="OfferAmount" Type="money" Nullable="false" />
-          <Property Name="Term" Type="int" Nullable="false" />
-          <Property Name="InterestRate" Type="float" Nullable="false" />
+          <Property Name="OfferAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Term" Type="int" />
+          <Property Name="InterestRate" Type="float" />
           <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Date" Type="datetime" />
-          <Property Name="OfferStatusId" Type="int" />
-          <Property Name="ProviderName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CompanyReg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OfferStatusId" Type="int" Nullable="false" />
+          <Property Name="ProviderName" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyReg" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="OfferStatus">
           <Key>
@@ -89,7 +90,7 @@
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK__Offers__OfferSta__73BA3083">
-          <End Role="OfferStatus" Type="Self.OfferStatus" Multiplicity="0..1" />
+          <End Role="OfferStatus" Type="Self.OfferStatus" Multiplicity="1" />
           <End Role="Offers" Type="Self.Offers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OfferStatus">
@@ -136,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="loanappdbModelStoreContainer">
+        <EntityContainer Name="LoanAppDBModelStoreContainer">
           <EntitySet Name="AccessLevel" EntityType="Self.AccessLevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
@@ -160,10 +161,11 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="loanappdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LoanAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AccessLevel">
           <Key>
             <PropertyRef Name="LevelId" />
@@ -186,8 +188,9 @@
           <Property Name="LevelId" Type="Int32" />
           <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Log_To_User" FromRole="Log" ToRole="Users" />
           <Property Name="OfferStatusId" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Log_To_User" FromRole="Log" ToRole="Users" />
         </EntityType>
         <EntityType Name="Offer">
           <Key>
@@ -196,28 +199,25 @@
           <Property Name="OfferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="QuoteId" Type="Int32" />
-          <Property Name="OfferAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Term" Type="Int32" Nullable="false" />
-          <Property Name="InterestRate" Type="Double" Nullable="false" />
+          <Property Name="OfferAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Term" Type="Int32" />
+          <Property Name="InterestRate" Type="Double" />
           <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="OfferStatus" Type="Int32" />
-          <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CompanyReg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OfferStatusId" Type="Int32" Nullable="false" />
+          <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyReg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OfferStatu" Relationship="Self.FK__Offers__OfferSta__73BA3083" FromRole="Offers" ToRole="OfferStatus" />
           <NavigationProperty Name="UserFinancial" Relationship="Self.FK_Offers_UserFinancials" FromRole="Offers" ToRole="UserFinancials" />
-          <Property Name="OfferStatusId" Type="Int32" />
-          <NavigationProperty Name="OfferStatu1" Relationship="loanappdbModel.FK__Offers__OfferSta__73BA30831" FromRole="Offer" ToRole="OfferStatu" />
         </EntityType>
         <EntityType Name="OfferStatu">
           <Key>
             <PropertyRef Name="OfferStatusId" />
           </Key>
+          <Property Name="OfferStatusId" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Offers" Relationship="Self.FK__Offers__OfferSta__73BA3083" FromRole="OfferStatus" ToRole="Offers" />
-          <Property Name="OfferStatusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Offers1" Relationship="loanappdbModel.FK__Offers__OfferSta__73BA30831" FromRole="OfferStatu" ToRole="Offer" />
         </EntityType>
         <EntityType Name="UserFinancial">
           <Key>
@@ -234,8 +234,8 @@
           <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Expenses" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="RpmtLoanTerm" Type="Int32" />
-          <NavigationProperty Name="Offers" Relationship="Self.FK_Offers_UserFinancials" FromRole="UserFinancials" ToRole="Offers" />
           <Property Name="OfferStatusId" Type="Int32" />
+          <NavigationProperty Name="Offers" Relationship="Self.FK_Offers_UserFinancials" FromRole="UserFinancials" ToRole="Offers" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -283,12 +283,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Offers__OfferSta__73BA3083">
-          <End Role="OfferStatus" Type="Self.OfferStatu" Multiplicity="0..1" />
+          <End Role="OfferStatus" Type="Self.OfferStatu" Multiplicity="1" />
           <End Role="Offers" Type="Self.Offer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OfferStatus">
+              <PropertyRef Name="OfferStatusId" />
             </Principal>
             <Dependent Role="Offers">
+              <PropertyRef Name="OfferStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -327,31 +329,15 @@
             <End Role="UserFinancials" EntitySet="UserFinancials" />
             <End Role="Offers" EntitySet="Offers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Offers__OfferSta__73BA30831" Association="loanappdbModel.FK__Offers__OfferSta__73BA30831">
-            <End Role="OfferStatu" EntitySet="OfferStatus" />
-            <End Role="Offer" EntitySet="Offers" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK__Offers__OfferSta__73BA30831">
-          <End Type="loanappdbModel.OfferStatu" Role="OfferStatu" Multiplicity="0..1" />
-          <End Type="loanappdbModel.Offer" Role="Offer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OfferStatu">
-              <PropertyRef Name="OfferStatusId" />
-            </Principal>
-            <Dependent Role="Offer">
-              <PropertyRef Name="OfferStatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="loanappdbModelStoreContainer" CdmEntityContainer="LoanAppDBEntities">
+        <EntityContainerMapping StorageEntityContainer="LoanAppDBModelStoreContainer" CdmEntityContainer="LoanAppDBEntities">
           <EntitySetMapping Name="AccessLevels">
-            <EntityTypeMapping TypeName="loanappdbModel.AccessLevel">
+            <EntityTypeMapping TypeName="LoanAppDBModel.AccessLevel">
               <MappingFragment StoreEntitySet="AccessLevel">
                 <ScalarProperty Name="LevelId" ColumnName="LevelId" />
                 <ScalarProperty Name="RoleProfile" ColumnName="RoleProfile" />
@@ -359,9 +345,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Logs">
-            <EntityTypeMapping TypeName="loanappdbModel.Log">
+            <EntityTypeMapping TypeName="LoanAppDBModel.Log">
               <MappingFragment StoreEntitySet="Log">
-                <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
                 <ScalarProperty Name="LogId" ColumnName="LogId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Action" ColumnName="Action" />
@@ -372,13 +357,14 @@
                 <ScalarProperty Name="LevelId" ColumnName="LevelId" />
                 <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Offers">
-            <EntityTypeMapping TypeName="loanappdbModel.Offer">
+            <EntityTypeMapping TypeName="LoanAppDBModel.Offer">
               <MappingFragment StoreEntitySet="Offers">
-                <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
                 <ScalarProperty Name="OfferId" ColumnName="OfferId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
@@ -388,13 +374,14 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
                 <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
                 <ScalarProperty Name="CompanyReg" ColumnName="CompanyReg" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OfferStatus">
-            <EntityTypeMapping TypeName="loanappdbModel.OfferStatu">
+            <EntityTypeMapping TypeName="LoanAppDBModel.OfferStatu">
               <MappingFragment StoreEntitySet="OfferStatus">
                 <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -402,9 +389,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserFinancials">
-            <EntityTypeMapping TypeName="loanappdbModel.UserFinancial">
+            <EntityTypeMapping TypeName="LoanAppDBModel.UserFinancial">
               <MappingFragment StoreEntitySet="UserFinancials">
-                <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
                 <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LoanTerm" ColumnName="LoanTerm" />
@@ -416,11 +402,12 @@
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Expenses" ColumnName="Expenses" />
                 <ScalarProperty Name="RpmtLoanTerm" ColumnName="RpmtLoanTerm" />
+                <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="loanappdbModel.User">
+            <EntityTypeMapping TypeName="LoanAppDBModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LevelId" ColumnName="LevelId" />

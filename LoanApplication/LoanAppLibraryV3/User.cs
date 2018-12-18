@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoanAppLibV1
+namespace LoanAppLibraryV3
 {
     using System;
     using System.Collections.Generic;

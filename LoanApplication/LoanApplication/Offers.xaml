@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LoanApplication"
       mc:Ignorable="d" 
+      Loaded="Page_Loaded"
       d:DesignHeight="400" d:DesignWidth="900"
       Title="Offers">
 
@@ -28,82 +29,99 @@
 
             </Grid>
 
-
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <ListView Name="lvOffers" Width="700" Height="300" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <ListView Name="lstOfferList" Grid.Row="0" Height="320" Grid.ColumnSpan="1" Grid.RowSpan="3" SelectionChanged="lstOfferList_SelectionChanged">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Provider Name" Width="110">
-
+                            <GridViewColumn Header="UserId" Width="70">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserId}" ></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Header="Client name" Width="110">
+                            <GridViewColumn Header="QuoteId" Width="70">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding QuoteId}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="OfferAmount" Width="90">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding OfferAmount}"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Header="Offer Amount" Width="110">
+                            <GridViewColumn Header="Term" Width="70" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Term}" ></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Header="Loan Term" Width="110">
+                            <GridViewColumn Header="InterestRate" Width="70" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding InterestRate}"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Header="Interest Rate" Width="110">
+                            <GridViewColumn Header="FirstName" Width="70" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding FirstName}"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Header="Offer Status" Width="110">
+                            <GridViewColumn Header="LastName" Width="70" >
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LastName}"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
+                            <GridViewColumn Header="OfferStatusId" Width="90" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding OfferStatusId}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="ProviderName" Width="90" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding ProviderName}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="CompanyReg" Width="90" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding CompanyReg}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
-
                     </ListView.View>
-
                 </ListView>
-
             </StackPanel>
 
             <StackPanel Name="stkButton" Width="300" Visibility="Visible" HorizontalAlignment="Center">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40*"/>
-                        <ColumnDefinition Width="60*"/>
-
-                    </Grid.ColumnDefinitions>
+                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
                         <RowDefinition Height="10*"/>
                     </Grid.RowDefinitions>
 

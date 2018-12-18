@@ -1,4 +1,4 @@
-﻿using LoanAppLibV1;
+﻿using LoanAppLibraryV3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +65,7 @@ namespace LoanApplication
         {
             if (dbOperation == DBOperation.Add)
             {
-                User user = new User();
+                    User user = new User();
                     user.Password = tbxPassword.Text.Trim();
                     user.FirstName = tbxFirstName.Text.Trim();
                     user.LastName_ = tbxLastName.Text.Trim();

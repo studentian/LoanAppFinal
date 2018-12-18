@@ -7,26 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoanAppLibV1
+namespace LoanAppLibraryV3
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Log
+    public partial class Offer
     {
-        public int LogId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public string Action { get; set; }
-        public System.DateTime Date { get; set; }
+        public int OfferId { get; set; }
+        public int UserId { get; set; }
+        public Nullable<int> QuoteId { get; set; }
         public Nullable<decimal> OfferAmount { get; set; }
         public Nullable<int> Term { get; set; }
         public Nullable<double> InterestRate { get; set; }
-        public string Status { get; set; }
-        public Nullable<int> LevelId { get; set; }
-        public string OfferStatus { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public int OfferStatusId { get; set; }
         public string ProviderName { get; set; }
-        public string Description { get; set; }
+        public string CompanyReg { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual OfferStatu OfferStatu { get; set; }
+        public virtual UserFinancial UserFinancial { get; set; }
     }
 }

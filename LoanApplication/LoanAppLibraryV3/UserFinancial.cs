@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoanAppLibV1
+namespace LoanAppLibraryV3
 {
     using System;
     using System.Collections.Generic;
@@ -31,6 +31,7 @@ namespace LoanAppLibV1
         public Nullable<decimal> Salary { get; set; }
         public Nullable<decimal> Expenses { get; set; }
         public Nullable<int> RpmtLoanTerm { get; set; }
+        public Nullable<int> OfferStatusId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Offer> Offers { get; set; }

@@ -15,6 +15,7 @@
         <AssociationConnector Association="loanappdbModel.FK_Log_To_User" ManuallyRouted="false" />
         <AssociationConnector Association="loanappdbModel.FK__Offers__OfferSta__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="loanappdbModel.FK_Offers_UserFinancials" ManuallyRouted="false" />
+        <AssociationConnector Association="loanappdbModel.FK__Offers__OfferSta__73BA30831" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

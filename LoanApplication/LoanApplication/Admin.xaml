@@ -207,9 +207,7 @@
                                     <ComboBoxItem Content="Please select"></ComboBoxItem>
                                     <ComboBoxItem Content="Client"/>
                                     <ComboBoxItem Content="Provider" />
-                                    
-
-                </ComboBox>
+                                </ComboBox>
                                 <Button Name="btnUpdate" Grid.Row="6" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
                                 <!--<Button Name="btnCancel" Grid.Row="6" Grid.Column="1" Content="Update" Width="60" Height="30" HorizontalAlignment="Center"></Button>-->
             </Grid>

@@ -1,4 +1,4 @@
-﻿using LoanAppLibV1;
+﻿using LoanAppLibraryV3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +22,10 @@ namespace LoanApplication
     public partial class Offers : Page
     {
         LoanAppDBEntities db = new LoanAppDBEntities();
-        UserFinancial userFinancial = new UserFinancial();
-        User user = new User();
+
+        List<Offer> offerList = new List<Offer>();
+
+        Offer selectedOffer = new Offer();
 
         public Offers()
         {
@@ -33,7 +35,32 @@ namespace LoanApplication
         private void btnOffers_Click(object sender, RoutedEventArgs e)
         {
             ClientViews clientViews = new ClientViews();
-                clientViews.Show();
+            clientViews.Show();
+        }
+
+        private void RefreshOfferList()
+        {
+            lstOfferList.ItemsSource = offerList;
+            offerList.Clear();
+            
+            foreach (var offVar in db.Offers)
+            {
+                offerList.Add(offVar);
+            }
+            lstOfferList.Items.Refresh();
+        }
+
+        private void lstOfferList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstOfferList.SelectedIndex > 0)
+            {
+                selectedOffer = offerList.ElementAt(lstOfferList.SelectedIndex); //number corresponding to value on list view
+             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            RefreshOfferList();
         }
     }
 }

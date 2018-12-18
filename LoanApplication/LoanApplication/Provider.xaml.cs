@@ -1,4 +1,4 @@
-﻿using LoanAppLibV1;
+﻿using LoanAppLibraryV3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +24,11 @@ namespace LoanApplication
     {
         LoanAppDBEntities db = new LoanAppDBEntities();
 
-        List<Offers> offerList = new List<Offers>();
+        List<Offer> offerList = new List<Offer>();
+        List<UserFinancial> applicantList = new List<UserFinancial>();
 
-        //open logs
-        List<Log> logs = new List<Log>();
-
-        Offer offer = new Offer();
+        Offer selectedOffer = new Offer();
+        UserFinancial applicant = new UserFinancial();
 
         enum DBOperation
         {
@@ -48,41 +47,33 @@ namespace LoanApplication
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //RefreshProviderList();
-
-            lstProviderList.ItemsSource = logs;
-
-            foreach (var log in db.Logs)
-            {
-                logs.Add(log);
-
-            }
+            RefreshOfferList();
+            RefreshApplicantList();
         }
 
         public void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             if (dbOperationOffer == DBOperation.Add)
             {
-
+                Offer offer = new Offer();
                 offer.QuoteId = int.Parse(tbxQuoteId.Text.Trim());
-                offer.FirstName = tbxFirstName.Text.Trim();
-                offer.LastName = tbxLastName.Text.Trim();
+                offer.UserId = int.Parse(tbxUserId.Text.Trim());
                 offer.OfferAmount = decimal.Parse(tbxOfferAmount.Text.Trim());
-                offer.Term = int.Parse(tbxTerm.Text.Trim());
-                offer.InterestRate = float.Parse(tbxIntRate.Text.Trim());
+                offer.Term = int.Parse(tbxOfferTerm.Text.Trim());
+                offer.InterestRate = float.Parse(tbxOfferIntRate.Text.Trim());
                 offer.ProviderName = tbxProviderName.Text.Trim();
 
-                offer.OfferStatus = cboOfferStatus.SelectedIndex; 
+                offer.OfferStatusId = cboOfferStatus.SelectedIndex;
 
-                int saveSuccess = SaveOffer(offer);
+                int saveSuccess = db.SaveChanges();
 
                 if (saveSuccess == 1)
                 {
                     MessageBox.Show("User saved successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
-                   //RefreshProviderList();
-                    clearProviderDetails();
-                    stkProviderDetails.Visibility = Visibility.Collapsed;
-                } 
+                    RefreshOfferList();
+                    clearOfferDetails();
+                    stkMakeOffer.Visibility = Visibility.Collapsed;
+                }
                 else
                 {
                     MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -91,17 +82,17 @@ namespace LoanApplication
 
             if (dbOperationOffer == DBOperation.Modify)
             {
-                foreach (var user in db.Users.Where(t => t.UserId == offer.UserId))
+                foreach (var offer in db.Offers.Where(t => t.OfferId == selectedOffer.OfferId))
                 {
                     offer.QuoteId = int.Parse(tbxQuoteId.Text.Trim());
-                    offer.FirstName = tbxFirstName.Text.Trim();
-                    offer.LastName = tbxLastName.Text.Trim();
+                    offer.UserId = int.Parse(tbxUserId.Text.Trim());
                     offer.OfferAmount = decimal.Parse(tbxOfferAmount.Text.Trim());
-                    offer.Term = int.Parse(tbxTerm.Text.Trim());
-                    offer.InterestRate = float.Parse(tbxIntRate.Text.Trim());
+                    offer.Term = int.Parse(tbxOfferTerm.Text.Trim());
+                    offer.InterestRate = float.Parse(tbxOfferIntRate.Text.Trim());
                     offer.ProviderName = tbxProviderName.Text.Trim();
 
-                    offer.OfferStatus = cboOfferStatus.SelectedIndex;
+                    offer.OfferStatusId = cboOfferStatus.SelectedIndex;
+
                 }
 
                 int saveSuccess = db.SaveChanges();
@@ -109,87 +100,99 @@ namespace LoanApplication
                 if (saveSuccess == 1)
                 {
                     MessageBox.Show("User modified successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //RefreshProviderList();
-                    clearProviderDetails();
-                    stkProviderDetails.Visibility = Visibility.Collapsed;
+                    RefreshOfferList();
+                    clearOfferDetails();
+                    stkMakeOffer.Visibility = Visibility.Collapsed;
                 }
             }
-
         }
 
         private void submenuAdd_Click(object sender, RoutedEventArgs e)
         {
-            stkProviderDetails.Visibility = Visibility.Visible;  
+            stkMakeOffer.Visibility = Visibility.Visible;
         }
 
-        //private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        //{
-        //    stkProviderDetails.Visibility = Visibility.Collapsed;
-        //}
-
-        public int SaveOffer(Offer saveOffer)
+        public int SaveOffer(Offers saveOffer)
         {
             db.Entry(saveOffer).State = System.Data.Entity.EntityState.Added;
             int saveSuccess = db.SaveChanges();
             return saveSuccess;
-
         }
 
-        //private void RefreshProviderList()
-        //{
-        //    lstProviderList.ItemsSource = offer;
-        //    offer.Clear();
-        //    foreach (var user in db.Offers)
-        //    {
-        //        offer.Add(offer);
-        //    }
-        //    lstProviderList.Items.Refresh();
-        //}
+        private void RefreshOfferList()
+        {
+            lstOfferList.ItemsSource = offerList;
 
-        private void clearProviderDetails()
+
+            offerList.Clear();
+            foreach (var offVar in db.Offers)
+            {
+                offerList.Add(offVar);
+            }
+            lstOfferList.Items.Refresh();
+        }
+
+        private void RefreshApplicantList()
+        {
+            lstApplicantList.ItemsSource = applicantList;
+
+            applicantList.Clear();
+            foreach (var applict in db.UserFinancials)
+            {
+                applicantList.Add(applict);
+            }
+            lstApplicantList.Items.Refresh();
+        }
+
+        private void clearOfferDetails()
         {
             tbxQuoteId.Text = "";
-            tbxFirstName.Text = "";
-            tbxLastName.Text = "";
-            tbxTerm.Text = "";
-            tbxIntRate.Text= "";
+            tbxUserId.Text = "";
+            tbxOfferAmount.Text = "";
+            tbxOfferTerm.Text = "";
+            tbxOfferIntRate.Text = "";
             tbxProviderName.Text = "";
 
             cboOfferStatus.SelectedIndex = 0;
+
         }
 
-        private void lstProviderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lstOfferList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if (lstUserList.SelectedIndex > 0)
+            if (lstOfferList.SelectedIndex > 0)
             {
-               // offer = offerList.ElementAt(lstProviderList.SelectedIndex); //number corresponding to value on list view
+
+                selectedOffer = offerList.ElementAt(lstOfferList.SelectedIndex); //number corresponding to value on list view
                 submenuModifyOffer.IsEnabled = true;
                 submenuDeleteOffer.IsEnabled = true;
 
                 //User must click in another field if details do not auto populate
                 if (dbOperationOffer == DBOperation.Modify)
                 {
-                    offer.QuoteId = int.Parse(tbxQuoteId.Text.Trim());
-                    offer.FirstName = tbxFirstName.Text.Trim();
-                    offer.LastName = tbxLastName.Text.Trim();
-                    offer.OfferAmount = decimal.Parse(tbxOfferAmount.Text.Trim());
-                    offer.Term = int.Parse(tbxTerm.Text.Trim());
-                    offer.InterestRate = float.Parse(tbxIntRate.Text.Trim());
-                    offer.ProviderName = tbxProviderName.Text.Trim(); //combo box and selcted index in combo box
+                    //  tbxPassword.Text = selectedUser.Password;
+                    tbxQuoteId.Text = tbxQuoteId.Text;
+                    tbxUserId.Text = tbxUserId.Text;
+                    tbxOfferAmount.Text = tbxOfferAmount.Text;
+                    tbxOfferTerm.Text = tbxOfferTerm.Text;
+                    tbxOfferIntRate.Text = tbxOfferIntRate.Text;
+                    tbxProviderName.Text = tbxProviderName.Text;
+
+                    //cboAccessLevel.SelectedIndex = selectedUser.LevelId;
+                    cboOfferStatus.SelectedIndex = selectedOffer.OfferStatusId;
                 }
 
                 //User must click in another field to clear the auto loaded details to add a user
                 if (dbOperationOffer == DBOperation.Add)
                 {
-                    clearProviderDetails();
+                    clearOfferDetails();
                 }
             }
         }
 
         private void submenuAddUser_Click(object sender, RoutedEventArgs e)
         {
-            stkProviderDetails.Visibility = Visibility.Visible;
+            stkMakeOffer.Visibility = Visibility.Visible;
             dbOperationOffer = DBOperation.Add;
 
         }
@@ -197,26 +200,33 @@ namespace LoanApplication
 
         private void submenuModifyUser_Click(object sender, RoutedEventArgs e)
         {
-            stkProviderDetails.Visibility = Visibility.Visible;
+            stkMakeOffer.Visibility = Visibility.Visible;
             dbOperationOffer = DBOperation.Modify;
         }
 
         private void submenuDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            stkProviderDetails.Visibility = Visibility.Visible;
-            db.Users.RemoveRange(db.Users.Where(t => t.UserId == offer.UserId));
+            stkMakeOffer.Visibility = Visibility.Visible;
+            
+            db.Offers.RemoveRange(db.Offers.Where(t => t.OfferId == selectedOffer.OfferId));
             int saveSuccess = db.SaveChanges();
             if (saveSuccess == 1)
             {
                 MessageBox.Show("User deleted successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
-                //RefreshProviderList();
-                clearProviderDetails();
-                stkProviderDetails.Visibility = Visibility.Collapsed;
+                RefreshOfferList();
+                clearOfferDetails();
+                stkMakeOffer.Visibility = Visibility.Collapsed;
             }
             else
             {
                 MessageBox.Show("Problem deleting user record.", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void lstApplicantList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            stkMakeOffer.Visibility = Visibility.Collapsed; //check if this works
+
         }
     }
 }

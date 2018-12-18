@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66916E7C-F9C2-42DF-9187-A56257CF49FE}</ProjectGuid>
+    <ProjectGuid>{5C553AF9-F926-4908-A54E-7D2815DA2662}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoanAppLibV1</RootNamespace>
-    <AssemblyName>LoanAppLibV1</AssemblyName>
+    <RootNamespace>LoanAppLibraryV2</RootNamespace>
+    <AssemblyName>LoanAppLibraryV2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -50,46 +50,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoanAppEDMv1.Context.cs">
+    <Compile Include="LoanAppModelV2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LoanAppEDMv1.Context.tt</DependentUpon>
+      <DependentUpon>LoanAppModelV2.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LoanAppEDMv1.cs">
+    <Compile Include="LoanAppModelV2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LoanAppEDMv1.tt</DependentUpon>
+      <DependentUpon>LoanAppModelV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="LoanAppEDMv1.Designer.cs">
+    <Compile Include="LoanAppModelV2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LoanAppEDMv1.edmx</DependentUpon>
+      <DependentUpon>LoanAppModelV2.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="LoanAppEDMv1.edmx">
+    <EntityDeploy Include="LoanAppModelV2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LoanAppEDMv1.Designer.cs</LastGenOutput>
+      <LastGenOutput>LoanAppModelV2.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="LoanAppEDMv1.edmx.diagram">
-      <DependentUpon>LoanAppEDMv1.edmx</DependentUpon>
+    <None Include="LoanAppModelV2.edmx.diagram">
+      <DependentUpon>LoanAppModelV2.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LoanAppEDMv1.Context.tt">
+    <Content Include="LoanAppModelV2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LoanAppEDMv1.Context.cs</LastGenOutput>
-      <DependentUpon>LoanAppEDMv1.edmx</DependentUpon>
+      <LastGenOutput>LoanAppModelV2.Context.cs</LastGenOutput>
+      <DependentUpon>LoanAppModelV2.edmx</DependentUpon>
     </Content>
-    <Content Include="LoanAppEDMv1.tt">
+    <Content Include="LoanAppModelV2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LoanAppEDMv1.edmx</DependentUpon>
-      <LastGenOutput>LoanAppEDMv1.cs</LastGenOutput>
+      <DependentUpon>LoanAppModelV2.edmx</DependentUpon>
+      <LastGenOutput>LoanAppModelV2.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

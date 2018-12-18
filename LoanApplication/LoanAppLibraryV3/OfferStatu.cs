@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoanAppLibV1
+namespace LoanAppLibraryV3
 {
     using System;
     using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace LoanAppLibV1
             this.Offers = new HashSet<Offer>();
         }
     
-        public int OfferId { get; set; }
+        public int OfferStatusId { get; set; }
         public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
