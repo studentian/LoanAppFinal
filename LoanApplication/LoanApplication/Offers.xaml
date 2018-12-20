@@ -6,14 +6,14 @@
       xmlns:local="clr-namespace:LoanApplication"
       mc:Ignorable="d" 
       Loaded="Page_Loaded"
-      d:DesignHeight="400" d:DesignWidth="900"
+      d:DesignHeight="650" d:DesignWidth="900"
       Title="Offers">
 
     <Grid>
         <StackPanel>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30*"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -22,15 +22,17 @@
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70*"/>
-                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
 
                 </Grid.ColumnDefinitions>
 
             </Grid>
 
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <ListView Name="lstOfferList" Grid.Row="0" Height="320" Grid.ColumnSpan="1" Grid.RowSpan="3" SelectionChanged="lstOfferList_SelectionChanged">
+                <ListView Name="lstAcceptList" Grid.Row="0" Height="320" Grid.ColumnSpan="1" Grid.RowSpan="3" SelectionChanged="lstOfferList_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="UserId" Width="70">
@@ -111,25 +113,78 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
+
+                            <GridViewColumn Header="UserAccept" Width="90" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserAccept}"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
+
+                    <!-- Right Click Options==================================================-->
+                    <ListView.ContextMenu>
+                        <ContextMenu Name="UserListOverview" IsEnabled="True">
+                            <ContextMenu.Items>
+                                <MenuItem Header="Update Selected Offer" Name="submenuAcceptOffer" IsEnabled="True" Click="submenuAcceptOffer_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="Images/update.png" Stretch="Uniform"></Image>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu.Items>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                    <!-- EndRight Click Options==================================================-->
+
                 </ListView>
             </StackPanel>
 
-            <StackPanel Name="stkButton" Width="300" Visibility="Visible" HorizontalAlignment="Center">
+            <StackPanel Name="stkButton" Width="850" Visibility="Visible" Grid.Row="1" HorizontalAlignment="Center" Margin="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="200"/>
+                     </Grid.ColumnDefinitions>
+                    <Button Name="btnAccept" Grid.Column="2" Content="Accept Offer"  Width="100" Height="30" Click="btnAccept_Click"></Button>
+                    <Button Name="btnOffers" Grid.Column="3" Content="Get Offers"  Width="100" Height="30" Click="btnOffers_Click"></Button>
+
+                </Grid>
+            </StackPanel>
+
+            <!--start of Accept Offer StackPanel=======================================================-->
+            <StackPanel Name="stkAcceptOffer" Width="400" Margin="5" Visibility="Collapsed" HorizontalAlignment="Left" Grid.Column="4" VerticalAlignment="Top" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40*"/>
-                     </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*"/>
+
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
                     </Grid.RowDefinitions>
+                    <!---No need to add names as they will not have any interaction-->
+                    <Label Grid.Row="2" Grid.Column="0" Content="OfferStatus" />
 
+                    <ComboBox Name="cboAcceptor" Grid.Column="1" Grid.Row="2">
+                        <ComboBoxItem Content="Please select"/>
+                        <ComboBoxItem Content="Accept Offer"/>
+                        <ComboBoxItem Content="Reject Offer" />
+                    </ComboBox>
+                    <Button Name="btnUpdate" Grid.Row="10" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
                 </Grid>
-                <Button Name="btnOffers" Grid.Column="0" Grid.Row="7" Content="Get Offers"  Width="150" Height="50" Click="btnOffers_Click" Margin="10"></Button>
             </StackPanel>
+            <!--start of Accept Offer StackPanel=======================================================-->
 
-        </StackPanel><!--Closing stackpanel-->
-
+        </StackPanel><!--End Opening stackpanel-->
     </Grid>
 </Page>

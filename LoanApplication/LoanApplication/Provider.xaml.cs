@@ -1,6 +1,7 @@
-﻿using LoanAppLibraryV3;
+﻿using LoanAppLibraryV4;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,11 +62,15 @@ namespace LoanApplication
                 offer.OfferAmount = decimal.Parse(tbxOfferAmount.Text.Trim());
                 offer.Term = int.Parse(tbxOfferTerm.Text.Trim());
                 offer.InterestRate = float.Parse(tbxOfferIntRate.Text.Trim());
+                offer.FirstName = tbxFirstName.Text.Trim();
+                offer.LastName = tbxLastName.Text.Trim();
                 offer.ProviderName = tbxProviderName.Text.Trim();
+                offer.CompanyReg = tbxCompanyReg.Text.Trim();
 
                 offer.OfferStatusId = cboOfferStatus.SelectedIndex;
 
-                int saveSuccess = db.SaveChanges();
+                //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
+                int saveSuccess = SaveOffer(offer);
 
                 if (saveSuccess == 1)
                 {
@@ -89,12 +94,16 @@ namespace LoanApplication
                     offer.OfferAmount = decimal.Parse(tbxOfferAmount.Text.Trim());
                     offer.Term = int.Parse(tbxOfferTerm.Text.Trim());
                     offer.InterestRate = float.Parse(tbxOfferIntRate.Text.Trim());
+                    offer.FirstName = tbxFirstName.Text.Trim();
+                    offer.LastName = tbxLastName.Text.Trim();
                     offer.ProviderName = tbxProviderName.Text.Trim();
+                    offer.CompanyReg = tbxCompanyReg.Text.Trim();
 
                     offer.OfferStatusId = cboOfferStatus.SelectedIndex;
 
                 }
-
+                //This is dfferent to Add above. 
+                //Here in modify, db.SaveChanges saves all changes made in this context to the underlying database.
                 int saveSuccess = db.SaveChanges();
 
                 if (saveSuccess == 1)
@@ -112,11 +121,13 @@ namespace LoanApplication
             stkMakeOffer.Visibility = Visibility.Visible;
         }
 
-        public int SaveOffer(Offers saveOffer)
+        public int SaveOffer(Offer Offer)
         {
-            db.Entry(saveOffer).State = System.Data.Entity.EntityState.Added;
-            int saveSuccess = db.SaveChanges();
-            return saveSuccess;
+
+                db.Entry(Offer).State = System.Data.Entity.EntityState.Added;
+                int saveSuccess = db.SaveChanges();
+                return saveSuccess;
+
         }
 
         private void RefreshOfferList()
@@ -151,7 +162,10 @@ namespace LoanApplication
             tbxOfferAmount.Text = "";
             tbxOfferTerm.Text = "";
             tbxOfferIntRate.Text = "";
+            tbxFirstName.Text = "";
+            tbxLastName.Text = "";
             tbxProviderName.Text = "";
+            tbxCompanyReg.Text = "";
 
             cboOfferStatus.SelectedIndex = 0;
 
@@ -176,7 +190,10 @@ namespace LoanApplication
                     tbxOfferAmount.Text = tbxOfferAmount.Text;
                     tbxOfferTerm.Text = tbxOfferTerm.Text;
                     tbxOfferIntRate.Text = tbxOfferIntRate.Text;
+                    tbxFirstName.Text = tbxFirstName.Text.Trim();
+                    tbxLastName.Text = tbxLastName.Text.Trim();
                     tbxProviderName.Text = tbxProviderName.Text;
+                    tbxCompanyReg.Text = tbxCompanyReg.Text;
 
                     //cboAccessLevel.SelectedIndex = selectedUser.LevelId;
                     cboOfferStatus.SelectedIndex = selectedOffer.OfferStatusId;
@@ -198,7 +215,7 @@ namespace LoanApplication
         }
 
 
-        private void submenuModifyUser_Click(object sender, RoutedEventArgs e)
+        private void submenuModifyOffer_Click(object sender, RoutedEventArgs e)
         {
             stkMakeOffer.Visibility = Visibility.Visible;
             dbOperationOffer = DBOperation.Modify;
@@ -206,8 +223,19 @@ namespace LoanApplication
 
         private void submenuDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            stkMakeOffer.Visibility = Visibility.Visible;
             
+        }
+
+        private void lstApplicantList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            stkMakeOffer.Visibility = Visibility.Collapsed; //check if this works
+
+        }
+
+        private void submenuDeleteOffer_Click(object sender, RoutedEventArgs e)
+        {
+            stkMakeOffer.Visibility = Visibility.Visible;
+
             db.Offers.RemoveRange(db.Offers.Where(t => t.OfferId == selectedOffer.OfferId));
             int saveSuccess = db.SaveChanges();
             if (saveSuccess == 1)
@@ -221,12 +249,6 @@ namespace LoanApplication
             {
                 MessageBox.Show("Problem deleting user record.", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-        }
-
-        private void lstApplicantList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            stkMakeOffer.Visibility = Visibility.Collapsed; //check if this works
-
         }
     }
 }

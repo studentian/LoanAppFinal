@@ -1,4 +1,4 @@
-﻿using LoanAppLibraryV3;
+﻿using LoanAppLibraryV4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +57,6 @@ namespace LoanApplication
             foreach(var log in db.Logs)
             {
                 logs.Add(log);
-
             }
         }
     
@@ -68,7 +67,7 @@ namespace LoanApplication
                     User user = new User();
                     user.Password = tbxPassword.Text.Trim();
                     user.FirstName = tbxFirstName.Text.Trim();
-                    user.LastName_ = tbxLastName.Text.Trim();
+                    user.LastName = tbxLastName.Text.Trim();
                     user.Email = tbxEmail.Text.Trim();
                     user.Username = tbxUsername.Text.Trim(); 
                     user.LevelId = cboAccessLevel.SelectedIndex; //selected index is an Int and levelid is also an Int So selcted index here will match the selected index on the db.
@@ -94,7 +93,7 @@ namespace LoanApplication
                 {
                     user.Password = tbxPassword.Text.Trim();
                     user.FirstName = tbxFirstName.Text.Trim();
-                    user.LastName_ = tbxLastName.Text.Trim();
+                    user.LastName = tbxLastName.Text.Trim();
                     user.Email = tbxEmail.Text.Trim();
                     user.Username = tbxUsername.Text.Trim();
                     user.LevelId = cboAccessLevel.SelectedIndex;
@@ -110,7 +109,6 @@ namespace LoanApplication
                     stkUserDetails.Visibility = Visibility.Collapsed;
                 }
             }
-
         }
             
             public int SaveUser(User user)
@@ -141,9 +139,10 @@ namespace LoanApplication
             tbxUsername.Text = "";
             tbxAccessLevel.Text = "";
             cboAccessLevel.SelectedIndex = 0;
-
         }
 
+
+        //changes as you click on different users in teh tab item box 
         private void lstUserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -158,7 +157,7 @@ namespace LoanApplication
                 {
                     tbxPassword.Text = selectedUser.Password;
                     tbxFirstName.Text = selectedUser.FirstName;
-                    tbxLastName.Text = selectedUser.LastName_;
+                    tbxLastName.Text = selectedUser.LastName;
                     tbxEmail.Text = selectedUser.Email;
                     tbxUsername.Text = selectedUser.Username;
                     cboAccessLevel.SelectedIndex = selectedUser.LevelId; //combo box and selcted index in combo box
@@ -176,7 +175,6 @@ namespace LoanApplication
         {
             stkUserDetails.Visibility = Visibility.Visible;
             dbOperation = DBOperation.Add;
-
         }
 
 

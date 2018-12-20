@@ -39,12 +39,12 @@
           <Property Name="OfferAmount" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Term" Type="int" />
           <Property Name="InterestRate" Type="float" />
-          <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Date" Type="datetime" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
           <Property Name="OfferStatusId" Type="int" Nullable="false" />
           <Property Name="ProviderName" Type="varchar" MaxLength="50" />
           <Property Name="CompanyReg" Type="varchar" MaxLength="50" />
+          <Property Name="UserAccept" Type="int" />
         </EntityType>
         <EntityType Name="OfferStatus">
           <Key>
@@ -101,6 +101,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Offers__UserAcce__74AE54BC">
+          <End Role="OfferStatus" Type="Self.OfferStatus" Multiplicity="0..1" />
+          <End Role="Offers" Type="Self.Offers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfferStatus">
+              <PropertyRef Name="OfferStatusId" />
+            </Principal>
+            <Dependent Role="Offers">
+              <PropertyRef Name="UserAccept" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Log_To_User">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Log" Type="Self.Log" Multiplicity="*" />
@@ -148,6 +160,10 @@
             <End Role="OfferStatus" EntitySet="OfferStatus" />
             <End Role="Offers" EntitySet="Offers" />
           </AssociationSet>
+          <AssociationSet Name="FK__Offers__UserAcce__74AE54BC" Association="Self.FK__Offers__UserAcce__74AE54BC">
+            <End Role="OfferStatus" EntitySet="OfferStatus" />
+            <End Role="Offers" EntitySet="Offers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Log_To_User" Association="Self.FK_Log_To_User">
             <End Role="Users" EntitySet="Users" />
             <End Role="Log" EntitySet="Log" />
@@ -171,7 +187,7 @@
           </Key>
           <Property Name="LevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleProfile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="LoanAppDBModel.FK_Users_To_AccessLevel" FromRole="AccessLevel" ToRole="User" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_To_AccessLevel" FromRole="AccessLevel" ToRole="Users" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -189,7 +205,7 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="OfferStatusId" Type="Int32" />
           <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="LoanAppDBModel.FK_Log_To_User" FromRole="Log" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Log_To_User" FromRole="Log" ToRole="Users" />
         </EntityType>
         <EntityType Name="Offer">
           <Key>
@@ -201,14 +217,15 @@
           <Property Name="OfferAmount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Term" Type="Int32" />
           <Property Name="InterestRate" Type="Double" />
-          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="OfferStatusId" Type="Int32" Nullable="false" />
           <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CompanyReg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="OfferStatu" Relationship="Self.FK__Offers__OfferSta__73BA3083" FromRole="Offers" ToRole="OfferStatus" />
+          <NavigationProperty Name="OfferStatId" Relationship="Self.FK__Offers__OfferSta__73BA3083" FromRole="Offers" ToRole="OfferStatus" />
           <NavigationProperty Name="UserFinancial" Relationship="Self.FK_Offers_UserFinancials" FromRole="Offers" ToRole="UserFinancials" />
+          <Property Name="UserAccept" Type="Int32" />
+          <NavigationProperty Name="OfferStatu1" Relationship="LoanAppDBModel.FK__Offers__UserAcce__74AE54BC" FromRole="Offer" ToRole="OfferStatu" />
         </EntityType>
         <EntityType Name="OfferStatu">
           <Key>
@@ -217,6 +234,7 @@
           <Property Name="OfferStatusId" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Offers" Relationship="Self.FK__Offers__OfferSta__73BA3083" FromRole="OfferStatus" ToRole="Offers" />
+          <NavigationProperty Name="Offers1" Relationship="LoanAppDBModel.FK__Offers__UserAcce__74AE54BC" FromRole="OfferStatu" ToRole="Offer" />
         </EntityType>
         <EntityType Name="UserFinancial">
           <Key>
@@ -236,6 +254,51 @@
           <Property Name="OfferStatusId" Type="Int32" />
           <NavigationProperty Name="Offers" Relationship="Self.FK_Offers_UserFinancials" FromRole="UserFinancials" ToRole="Offers" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelId" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyReg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AccessLevel" Relationship="Self.FK_Users_To_AccessLevel" FromRole="Users" ToRole="AccessLevel" />
+          <NavigationProperty Name="Logs" Relationship="Self.FK_Log_To_User" FromRole="Users" ToRole="Log" />
+        </EntityType>
+        <Association Name="FK_Users_To_AccessLevel">
+          <End Role="AccessLevel" Type="Self.AccessLevel" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccessLevel">
+              <PropertyRef Name="LevelId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_To_User">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Offers__OfferSta__73BA3083">
           <End Role="OfferStatus" Type="Self.OfferStatu" Multiplicity="1" />
           <End Role="Offers" Type="Self.Offer" Multiplicity="*" />
@@ -266,6 +329,15 @@
           <EntitySet Name="Offers" EntityType="Self.Offer" />
           <EntitySet Name="OfferStatus" EntityType="Self.OfferStatu" />
           <EntitySet Name="UserFinancials" EntityType="Self.UserFinancial" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Users_To_AccessLevel" Association="Self.FK_Users_To_AccessLevel">
+            <End Role="AccessLevel" EntitySet="AccessLevels" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_To_User" Association="Self.FK_Log_To_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
           <AssociationSet Name="FK__Offers__OfferSta__73BA3083" Association="Self.FK__Offers__OfferSta__73BA3083">
             <End Role="OfferStatus" EntitySet="OfferStatus" />
             <End Role="Offers" EntitySet="Offers" />
@@ -274,58 +346,20 @@
             <End Role="UserFinancials" EntitySet="UserFinancials" />
             <End Role="Offers" EntitySet="Offers" />
           </AssociationSet>
-          <EntitySet Name="Users" EntityType="LoanAppDBModel.User" />
-          <AssociationSet Name="FK_Users_To_AccessLevel" Association="LoanAppDBModel.FK_Users_To_AccessLevel">
-            <End Role="AccessLevel" EntitySet="AccessLevels" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Log_To_User" Association="LoanAppDBModel.FK_Log_To_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Log" EntitySet="Logs" />
+          <AssociationSet Name="FK__Offers__UserAcce__74AE54BC" Association="LoanAppDBModel.FK__Offers__UserAcce__74AE54BC">
+            <End Role="OfferStatu" EntitySet="OfferStatus" />
+            <End Role="Offer" EntitySet="Offers" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LevelId" Type="Int32" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="AddressLine1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="AddressLine2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Postcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProviderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyReg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AccessLevel" Relationship="LoanAppDBModel.FK_Users_To_AccessLevel" FromRole="User" ToRole="AccessLevel" />
-          <NavigationProperty Name="Logs" Relationship="LoanAppDBModel.FK_Log_To_User" FromRole="User" ToRole="Log" />
-        </EntityType>
-        <Association Name="FK_Users_To_AccessLevel">
-          <End Type="LoanAppDBModel.AccessLevel" Role="AccessLevel" Multiplicity="1" />
-          <End Type="LoanAppDBModel.User" Role="User" Multiplicity="*" />
+        <Association Name="FK__Offers__UserAcce__74AE54BC">
+          <End Type="LoanAppDBModel.OfferStatu" Role="OfferStatu" Multiplicity="0..1" />
+          <End Type="LoanAppDBModel.Offer" Role="Offer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AccessLevel">
-              <PropertyRef Name="LevelId" />
+            <Principal Role="OfferStatu">
+              <PropertyRef Name="OfferStatusId" />
             </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="LevelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Log_To_User">
-          <End Type="LoanAppDBModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="LoanAppDBModel.Log" Role="Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Log">
-              <PropertyRef Name="UserId" />
+            <Dependent Role="Offer">
+              <PropertyRef Name="UserAccept" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -364,6 +398,7 @@
           <EntitySetMapping Name="Offers">
             <EntityTypeMapping TypeName="LoanAppDBModel.Offer">
               <MappingFragment StoreEntitySet="Offers">
+                <ScalarProperty Name="UserAccept" ColumnName="UserAccept" />
                 <ScalarProperty Name="OfferId" ColumnName="OfferId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
@@ -372,7 +407,6 @@
                 <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
                 <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
                 <ScalarProperty Name="CompanyReg" ColumnName="CompanyReg" />
@@ -408,20 +442,20 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LoanAppDBModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="CompanyReg" ColumnName="CompanyReg" />
-                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="LastName" ColumnName="LastName " />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName " />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="CompanyReg" ColumnName="CompanyReg" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

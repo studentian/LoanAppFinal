@@ -5,16 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LoanApplication"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="600"
+      d:DesignHeight="450" d:DesignWidth="800"
       Loaded="Page_Loaded"  
       Title="Admin">
 
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="90*" />
-            <RowDefinition Height="40*" />
-            <RowDefinition Height="40*" />
+            <RowDefinition Height="250" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -25,25 +24,23 @@
 
         </Grid.ColumnDefinitions>
 
-        <TabControl Height="400" Grid.ColumnSpan="4">
+        <TabControl Grid.ColumnSpan="4">
 
             <TabItem Header="Admin User">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="117*"/>
-                        <ColumnDefinition Width="13*"/>
-                        <ColumnDefinition Width="464*"/>
+                        <ColumnDefinition Width="785"/>
+                        
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50*"/>
-                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="220"/> <!--bottom of Admin user tab-->
                     </Grid.RowDefinitions>
 
                     <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="3" SelectionChanged="lstUserList_SelectionChanged">
                         <ListView.View>
                             <GridView>
 
-                                <GridViewColumn Header="UserId" Width="120" >
+                                <GridViewColumn Header="UserId" Width="50" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding UserId}"></TextBlock>
@@ -51,7 +48,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="FirstName" Width="120" >
+                                <GridViewColumn Header="FirstName" Width="80" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding FirstName}" ></TextBlock>
@@ -59,7 +56,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="LastName" Width="120" >
+                                <GridViewColumn Header="LastName" Width="100" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding LastName}" ></TextBlock>
@@ -67,7 +64,15 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Email" Width="120" >
+                                <GridViewColumn Header="Postcode" Width="70" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Postcode}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Email" Width="150" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Email}"></TextBlock>
@@ -75,7 +80,15 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Username" Width="120" >
+                                <GridViewColumn Header="Telephone" Width="120" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Telephone}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Username" Width="90" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Username}"></TextBlock>
@@ -118,13 +131,12 @@
             <TabItem Header="Admin Logs">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="117*"/>
-                        <ColumnDefinition Width="13*"/>
-                        <ColumnDefinition Width="464*"/>
+                        <ColumnDefinition Width="785"/>
+
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50*"/>
-                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="220"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="3">
@@ -147,7 +159,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Date" Width="120" >
+                                <GridViewColumn Header="Date" Width="200" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Date}"></TextBlock>
@@ -155,7 +167,7 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Description" Width="120" >
+                                <GridViewColumn Header="Description" Width="200" >
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Description}"></TextBlock>

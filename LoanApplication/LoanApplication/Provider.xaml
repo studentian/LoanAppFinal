@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:LoanApplication"
       mc:Ignorable="d" 
       Loaded="Page_Loaded"
-      d:DesignHeight="500" d:DesignWidth="900"
+      d:DesignHeight="600" d:DesignWidth="900"
       Title="Provider">
 
     <Grid>
@@ -110,7 +110,7 @@
                             </GridView>
                         </ListView.View>
 
-                        <!--Enables right click-->
+                        <!-- Right Click Options==================================================-->
                         <ListView.ContextMenu>
                             <ContextMenu Name="UserListOverview" IsEnabled="True">
                                 <ContextMenu.Items>
@@ -119,14 +119,14 @@
                                             <Image Source="Images/add.png" Stretch="Uniform"></Image>
                                         </MenuItem.Icon>
                                     </MenuItem>
-                                    <MenuItem Header="Update Selected Offer" Name="submenuModifyOffer" IsEnabled="True" >
+                                    <MenuItem Header="Update Selected Offer" Name="submenuModifyOffer" IsEnabled="True" Click="submenuModifyOffer_Click">
                                         <MenuItem.Icon>
                                             <Image Source="Images/update.png" Stretch="Uniform"></Image>
                                         </MenuItem.Icon>
 
                                     </MenuItem>
 
-                                    <MenuItem Header="Remove Selected Offer" Name="submenuDeleteOffer" IsEnabled="True">
+                                    <MenuItem Header="Remove Selected Offer" Name="submenuDeleteOffer" IsEnabled="True" Click="submenuDeleteOffer_Click">
                                         <MenuItem.Icon>
                                             <Image Source="Images/remove.png" Stretch="Uniform"></Image>
                                         </MenuItem.Icon>
@@ -136,6 +136,7 @@
                             </ContextMenu>
 
                         </ListView.ContextMenu>
+                        <!-- EndRight Click Options==================================================-->
                     </ListView>
 
                 </Grid>
@@ -237,7 +238,7 @@
 
 
         <!--users and Logs tabs-->
-        <StackPanel Name="stkMakeOffer" Grid.RowSpan="4" Height="400" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Width="400" Visibility="Visible" HorizontalAlignment="Center">
+        <StackPanel Name="stkMakeOffer" Grid.RowSpan="4" Height="295" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Width="400" Visibility="Visible" HorizontalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40*"/>
@@ -263,17 +264,23 @@
                 <Label Grid.Row="2" Grid.Column="0" Content="OfferAmount" />
                 <Label Grid.Row="3" Grid.Column="0" Content="OfferTerm" />
                 <Label Grid.Row="4" Grid.Column="0" Content="OfferIntRate" />
-                <Label Grid.Row="5" Grid.Column="0" Content="Provider Name" />
-                <Label Grid.Row="8" Grid.Column="0" Content="Offer Status" />
+                <Label Grid.Row="5" Grid.Column="0" Content="FirstName" />
+                <Label Grid.Row="6" Grid.Column="0" Content="LastName" />
+                <Label Grid.Row="7" Grid.Column="0" Content="ProviderName" />
+                <Label Grid.Row="8" Grid.Column="0" Content="CompanyReg" />
+                <Label Grid.Row="9" Grid.Column="0" Content="OfferStatus" />
 
                 <TextBox Grid.Row="0" Grid.Column="1" Name="tbxUserId" />
                 <TextBox Grid.Row="1" Grid.Column="1" Name="tbxQuoteId" />
                 <TextBox Grid.Row="2" Grid.Column="1" Name="tbxOfferAmount" />
                 <TextBox Grid.Row="3" Grid.Column="1" Name="tbxOfferTerm" />
                 <TextBox Grid.Row="4" Grid.Column="1" Name="tbxOfferIntRate" />
-                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxProviderName" />
+                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxFirstName" />
+                <TextBox Grid.Row="6" Grid.Column="1" Name="tbxLastName" />
+                <TextBox Grid.Row="7" Grid.Column="1" Name="tbxProviderName" />
+                <TextBox Grid.Row="8" Grid.Column="1" Name="tbxCompanyReg" />
 
-                <ComboBox Name="cboOfferStatus" Grid.Column="1" Grid.Row="8">
+                <ComboBox Name="cboOfferStatus" Grid.Column="1" Grid.Row="9">
                     <ComboBoxItem Content="Please select"/>
                     <ComboBoxItem Content="Approved"/>
                     <ComboBoxItem Content="Rejected" />
@@ -281,7 +288,7 @@
                     <ComboBoxItem Content="Revised Offer" />
                 </ComboBox>
 
-                <Button Name="btnUpdate" Grid.Row="9" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
+                <Button Name="btnUpdate" Grid.Row="10" Grid.Column="2" Content="Update" Width="60" Height="30" HorizontalAlignment="Center" Click="btnUpdate_Click"></Button>
             </Grid>
         </StackPanel>
     </Grid>

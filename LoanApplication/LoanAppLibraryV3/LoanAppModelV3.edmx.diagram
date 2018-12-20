@@ -7,15 +7,15 @@
       <Diagram DiagramId="44f1447ea5da45a0bd49d19d143e5649" Name="Diagram1">
         <EntityTypeShape EntityType="LoanAppDBModel.AccessLevel" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LoanAppDBModel.Log" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LoanAppDBModel.Offer" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="LoanAppDBModel.OfferStatu" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LoanAppDBModel.UserFinancial" Width="1.5" PointX="5.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LoanAppDBModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="LoanAppDBModel.FK_Users_To_AccessLevel" ManuallyRouted="false" />
-        <AssociationConnector Association="LoanAppDBModel.FK_Log_To_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LoanAppDBModel.Offer" Width="1.5" PointX="10.375" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LoanAppDBModel.OfferStatu" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LoanAppDBModel.UserFinancial" Width="1.5" PointX="7.875" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="LoanAppDBModel.FK__Offers__OfferSta__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="LoanAppDBModel.FK_Offers_UserFinancials" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="LoanAppDBModel.User" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="LoanAppDBModel.FK_Users_To_AccessLevel" />
+        <AssociationConnector Association="LoanAppDBModel.FK_Log_To_User" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
