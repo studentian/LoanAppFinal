@@ -28,6 +28,8 @@ namespace LoanApplication
         List<Offer> offerList = new List<Offer>();
         List<UserFinancial> applicantList = new List<UserFinancial>();
 
+        List<LoanAppLibraryV4.Offer> offerListType = new List <LoanAppLibraryV4.Offer> ();
+
         Offer selectedOffer = new Offer();
         UserFinancial applicant = new UserFinancial();
 
@@ -54,6 +56,8 @@ namespace LoanApplication
 
         public void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            
+
             if (dbOperationOffer == DBOperation.Add)
             {
                 Offer offer = new Offer();
@@ -68,6 +72,8 @@ namespace LoanApplication
                 offer.CompanyReg = tbxCompanyReg.Text.Trim();
 
                 offer.OfferStatusId = cboOfferStatus.SelectedIndex;
+
+                ValidateUserInput();
 
                 //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
                 int saveSuccess = SaveOffer(offer);
@@ -249,6 +255,56 @@ namespace LoanApplication
             {
                 MessageBox.Show("Problem deleting user record.", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        //validation for user inputs into fields on Provider.xaml
+        private bool ValidateUserInput()
+        {
+            bool validated = true;
+
+            if(tbxUserId.Text.Length == 0 || tbxUserId.Text.Length > 5)
+            {
+                validated = false;
+            }
+
+            if (tbxQuoteId.Text.Length == 0 || tbxQuoteId.Text.Length > 5)
+            {
+                validated = false;
+            }
+
+            if (tbxOfferAmount.Text.Length == 0 || tbxOfferAmount.Text.Length > 12)
+            {
+                validated = false;
+            }
+
+            if (tbxOfferTerm.Text.Length == 0 || tbxOfferTerm.Text.Length > 2)
+            {
+                validated = false;
+            }
+
+            if (tbxOfferIntRate.Text.Length == 0 || tbxOfferIntRate.Text.Length > 4)
+            {
+                validated = false;
+            }
+
+            if (tbxFirstName.Text.Length == 0 || tbxFirstName.Text.Length > 20)
+            {
+                validated = false;
+            }
+
+            if (tbxLastName.Text.Length == 0 || tbxLastName.Text.Length > 20)
+            {
+                validated = false;
+            }
+            if (tbxProviderName.Text.Length == 0 || tbxProviderName.Text.Length > 50)
+            {
+                validated = false;
+            }
+            if (cboOfferStatus.SelectedIndex < 0 || cboOfferStatus.SelectedIndex > offerListType.Count - 1)
+            {
+                validated = false;
+            }
+            return validated;
         }
     }
 }

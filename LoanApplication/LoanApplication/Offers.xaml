@@ -175,7 +175,7 @@
                     <!---No need to add names as they will not have any interaction-->
                     <Label Grid.Row="2" Grid.Column="0" Content="OfferStatus" />
 
-                    <ComboBox Name="cboAcceptor" Grid.Column="1" Grid.Row="2">
+                    <ComboBox Name="cboAcceptor" Grid.Column="1" Grid.Row="2" SelectedIndex="0">
                         <ComboBoxItem Content="Please select"/>
                         <ComboBoxItem Content="Accept Offer"/>
                         <ComboBoxItem Content="Reject Offer" />

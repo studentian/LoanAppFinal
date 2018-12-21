@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="LoanApplication.Analysis"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LoanApplication"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            
+            <!--Row 0-->
+        <ScrollViewer Grid.Row="0" Grid.Column="1" Margin="10">
+            <TextBlock Name="tbkAnalysisOutput" TextWrapping="Wrap" FontSize="14" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <!--Stackpanel row 0-->
+                <Label Grid.Row="0" Content="Please choose analysis type" HorizontalAlignment="Center" FontSize="16"/>
+                <Label Grid.Row="0" Grid.Column="1" Content="Please choose database table" HorizontalAlignment="Center" FontSize="16"/>
+                
+                <!--Row 1-->
+                <!--Selection changed transferred the method which will enable this combo box to do something-->
+                <ComboBox Name="cboAnalysisType" Margin="0,10" Grid.Row="1" Grid.Column="0" Width="150" Height="26" SelectedIndex="0" SelectionChanged="cboAnalysisType_SelectionChanged" >
+                    <ComboBoxItem Content="Please select"  />
+                    <ComboBoxItem Content="Summary"  />
+                    <ComboBoxItem Content="Count"  />
+                    <ComboBoxItem Content="Statistics"  />
+                </ComboBox>
+
+                <!--Row 1--><!--Column 1-->
+                <ComboBox Name="cboChooseTable" Margin="0,10" Grid.Row="1" Grid.Column="1" Width="150" Height="26" SelectedIndex="0" SelectionChanged="cboChooseTable_SelectionChanged" >
+                    <ComboBoxItem Content="Please select"  />
+                    <ComboBoxItem Content="User"  />
+                    <ComboBoxItem Content="UserFinancial"  />
+                    <ComboBoxItem Content="Offers"  />
+                    <ComboBoxItem Content="Log"  />
+                </ComboBox>
+
+                <!--Row 2-->
+                <Button Name="btnAnalyse" Content="Analyse" Grid.Row="2" Grid.Column="1" Height="26" Width="150" Background="LightGreen" Click="btnAnalyse_Click"></Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

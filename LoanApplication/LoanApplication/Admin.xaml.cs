@@ -25,6 +25,7 @@ namespace LoanApplication
 
         //all methods need to access the list
         List<User> users = new List<User>();
+        List<LoanAppLibraryV4.User> loanAppUserList = new List<LoanAppLibraryV4.User>();
 
         //open logs
         List<Log> logs = new List<Log>();
@@ -71,6 +72,8 @@ namespace LoanApplication
                     user.Email = tbxEmail.Text.Trim();
                     user.Username = tbxUsername.Text.Trim(); 
                     user.LevelId = cboAccessLevel.SelectedIndex; //selected index is an Int and levelid is also an Int So selcted index here will match the selected index on the db.
+
+                ValidateUserInput();
 
                 int saveSuccess = SaveUser(user);
 
@@ -146,7 +149,7 @@ namespace LoanApplication
         private void lstUserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            if(lstUserList.SelectedIndex > 0)
+            if (lstUserList.SelectedIndex > 0)
             {
                     selectedUser = users.ElementAt(lstUserList.SelectedIndex); //number corresponding to value on list view
                     submenuModifyUser.IsEnabled = true;
@@ -200,6 +203,48 @@ namespace LoanApplication
             {
                 MessageBox.Show("Problem deleting user record.", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        //validation for user inputs into fields on Admin.xaml
+        private bool ValidateUserInput()
+        {
+            bool validated = true;
+
+            if (tbxPassword.Text.Length == 0 || tbxPassword.Text.Length > 5)
+            {
+                validated = false;
+            }
+
+            if (tbxFirstName.Text.Length == 0 || tbxFirstName.Text.Length > 5)
+            {
+                validated = false;
+            }
+
+            if (tbxLastName.Text.Length == 0 || tbxLastName.Text.Length > 12)
+            {
+                validated = false;
+            }
+
+            if (tbxEmail.Text.Length == 0 || tbxEmail.Text.Length > 2)
+            {
+                validated = false;
+            }
+
+            if (tbxUsername.Text.Length == 0 || tbxUsername.Text.Length > 4)
+            {
+                validated = false;
+            }
+
+            if (tbxAccessLevel.Text.Length == 0 || tbxAccessLevel.Text.Length > 20)
+            {
+                validated = false;
+            }
+
+            if (cboAccessLevel.SelectedIndex < 0 || cboAccessLevel.SelectedIndex > loanAppUserList.Count - 1)
+            {
+                validated = false;
+            }
+            return validated;
         }
     }
 }

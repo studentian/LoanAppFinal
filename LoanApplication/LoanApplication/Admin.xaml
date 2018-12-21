@@ -10,7 +10,6 @@
       Title="Admin">
 
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="250" />
             <RowDefinition Height="*" />
@@ -179,10 +178,9 @@
                     </ListView>
                 </Grid>
             </TabItem>
+
         </TabControl>
-        
-        
-        
+
         <!--Right click - Add User Account (Set to collapsed or Visible)=============================-->
         <StackPanel Name="stkUserDetails" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2" Width="500" Visibility="Collapsed">
                             <Grid>

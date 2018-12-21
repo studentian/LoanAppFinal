@@ -18,11 +18,11 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="16" />
+            <ColumnDefinition Width="*" />
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -33,25 +33,20 @@
 
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.ColumnSpan="8">
-            <Menu DockPanel.Dock="Top" Margin="2,5">
-                <MenuItem Header="_File" >
-                    <MenuItem Header="_New" Name="mnuNew" />
-                    <MenuItem Header="_Open" Name="mnuOpen" />
-                    <MenuItem Header="_Save" Name="mnuSave" />
-                    <Separator />
-                    <MenuItem Header="_Exit" Name="mnuExit" />
-                </MenuItem>
-
-                <MenuItem Header="_User"  Name="mnuClient"></MenuItem>
-                <MenuItem Header="_Provider" Name="mnuProvider" ></MenuItem>
-                <MenuItem Header="_Admin" Name="mnuAdmin"></MenuItem>
-
-            </Menu>
-            
-                <TextBox AcceptsReturn="True" />
-            
-        </DockPanel>
+        <Menu Name="mnuMain" HorizontalAlignment="Stretch" Grid.ColumnSpan="8" Grid.Row="0">
+            <MenuItem Header="File" Margin="10,0">
+                <MenuItem Header="Logout" Click="MenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Client" Margin="10,0" Name="mnuClientView">
+                <MenuItem Header="View Offers"/>
+            </MenuItem>
+            <MenuItem Header="Provider" Margin="10,0" Name="mnuProviderView">
+                <MenuItem Header="View Applicants"/>
+            </MenuItem>
+            <MenuItem Header="Administrator" Margin="10,0" Name="mnuAdministratorView">
+                <MenuItem Header="Administrator View"/>
+            </MenuItem>
+        </Menu>
 
         <StackPanel Orientation="Horizontal"  Grid.Column="1" Grid.Row="1" Width="100">  
                 <Button Name="btnSearch" Content="Search" Width="100" Height="35" Grid.Column="1" Grid.Row="4"></Button> 

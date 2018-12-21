@@ -38,22 +38,27 @@ namespace LoanApplication
 
             if (user.LevelId == 3)
             {
-                btnClient.Visibility = Visibility.Visible;
-                btnProvider.Visibility = Visibility.Visible;
-                btnAdmin.Visibility = Visibility.Visible;
+                    btnClient.Visibility = Visibility.Visible;
+                    btnProvider.Visibility = Visibility.Visible;
+                    btnAdmin.Visibility = Visibility.Visible;
+                    mnuMain.Visibility = Visibility.Visible;
             }
 
             if (user.LevelId == 1)
                 {
                     btnClient.Visibility = Visibility.Visible;
-
-
-                }
+                    mnuMain.Visibility = Visibility.Visible;
+                    mnuClientView.Visibility = Visibility.Visible;
+                    mnuProviderView.Visibility = Visibility.Collapsed;
+                    mnuAdministratorView.Visibility = Visibility.Collapsed;
+            }
             if (user.LevelId == 2)
                 {
                     btnProvider.Visibility = Visibility.Visible;
-                    mnuProvider.Visibility = Visibility.Visible;
-                }
+                    mnuMain.Visibility = Visibility.Visible;
+                    mnuClientView.Visibility = Visibility.Collapsed;
+                    mnuAdministratorView.Visibility = Visibility.Collapsed;
+            }
 
 
         }
@@ -95,7 +100,11 @@ namespace LoanApplication
             this.Close();
             Environment.Exit(0);
         }
-        
-       
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Environment.Exit(0);
+        }
     }
 }
