@@ -111,10 +111,7 @@ namespace LoanApplication
                 {
                     offerList.Add(offer);
                 }
-                foreach (var log in db.Logs)
-                {
-                    logList.Add(log);
-                }
+                
         }
 
         private void btnAnalyse_Click(object sender, RoutedEventArgs e)
@@ -123,8 +120,15 @@ namespace LoanApplication
             //check combobox list options
             if (analysisType == AnalysisType.Summary && tableSelected == TableSelected.User)
             {
+                //Clear Variables
                 int recordCount = 0;
                 string output = "";
+                tbkAnalysisOutput.Text = "";
+
+                //store count summary. To Count LevelId's in db
+                int level1CountSummary = 0;
+                int level2CountSummary = 0;
+                int level3CountSummary = 0;
 
                 //display message in textblock
                 foreach (var item in userList)
@@ -133,14 +137,67 @@ namespace LoanApplication
                     recordCount++;
 
                     //add new line
-                    output = output + Environment.NewLine + 
-                        $"Record {recordCount} is for user named {item.FullName}, Username {item.Username}, {item.UserId}" + 
+                    //FullName was created in User.cs Entity Framework combining First Name and Last Name in a get request 
+                    output = output + Environment.NewLine +
+                        $"Record {recordCount}, Name {item.FullName}, UserId {item.UserId}, Username {item.Username}, " +
+                        $"RoleProfile {item.AccessLevel.RoleProfile} " +
                         Environment.NewLine;
-                                        
-                }
 
+                    if (item.LevelId == 1)
+                    {
+                        level1CountSummary++;
+                    }
+                    if (item.LevelId == 2)
+                    {
+                        level2CountSummary++;
+                    }
+                    if (item.LevelId == 3)
+                    {
+                        level3CountSummary++;
+                    }
+                }
+                output = output + Environment.NewLine + $"Total users with Applicant level Access {level1CountSummary}." + Environment.NewLine;
+                output = output + Environment.NewLine + $"Total users with Provider level Access {level2CountSummary}." + Environment.NewLine;
+                output = output + Environment.NewLine + $"Total users with Administrator level Access {level3CountSummary}." + Environment.NewLine;
+
+                output = output + Environment.NewLine + $"Total records = {recordCount}" + Environment.NewLine;
+                tbkAnalysisOutput.Text = output;
             }
 
+            if (analysisType == AnalysisType.Summary && tableSelected == TableSelected.UserFinancial)
+            {
+                //Clear Variables
+                int recordCount = 0;
+                string output = "";
+                tbkAnalysisOutput.Text = "";
+
+                foreach (var applicant in applicantList)
+                {
+                    recordCount++;
+                    output = output + Environment.NewLine + $"Record {recordCount}, QuoteId {applicant.QuoteId},UserId {applicant.UserId}, Salary {applicant.Salary}, " +
+                        $"Expenses {applicant.Expenses}, Qualify Amount {applicant.QualifyAmount}, Deposit {applicant.Deposit} " + Environment.NewLine;
+                }
+                output = output + Environment.NewLine + $"Total records = {recordCount}" + Environment.NewLine;
+                tbkAnalysisOutput.Text = output;
+            }
+
+            if (analysisType == AnalysisType.Summary && tableSelected == TableSelected.Offers)
+            {
+                //Clear Variables
+                int recordCount = 0;
+                string output = "";
+                tbkAnalysisOutput.Text = "";
+
+                foreach (var offer in db.Offers)
+                {
+                    recordCount++;
+                    output = output + Environment.NewLine + $"Record {recordCount}, OfferId {offer.OfferId}, ProviderName {offer.ProviderName}, " +
+                        $"Offer Amount {offer.OfferAmount}" + Environment.NewLine;
+                }
+                output = output + Environment.NewLine + $"Total records = {recordCount}" + Environment.NewLine;
+                tbkAnalysisOutput.Text = output;
+
+            }
         }
     }
 }

@@ -155,6 +155,41 @@
 
                     </Grid>
                 </TabItem>
+
+                <TabItem Name="tbUpload" Header="Document upload" Width="150" FontSize="15" FontWeight="Bold" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="Label">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontFamily" Value="Calibri"/>
+                                <Setter Property="FontSize" Value="16" />
+                            </Style>
+                        </Grid.Resources>
+                        <Label Content="Document Path" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
+                        <TextBox Name="tbxDocumentPath" Grid.Row="2" Grid.Column="3" IsReadOnly="True" Margin="0,20"/>
+                        <Button Name="btnUpload" Content="Change" Width="150" Height="40" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="4" Margin="0,10" Click="btnUpload_Click" />
+
+                        <Label Content="Document Description" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"  />
+                        <TextBox Name="tbxDocumentDescription" Grid.Row="3" Grid.Column="3" IsReadOnly="True" Margin="0,20" />
+                        <Button Name="btnChangeDescription" Content="Change" Width="150" Height="40" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="4" Margin="0,10"/>
+
+                    </Grid>
+                </TabItem>
             </TabControl>
         </StackPanel>
 

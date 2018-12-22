@@ -25,6 +25,8 @@ namespace LoanApplication
 
         List<UserFinancial> applicantList = new List<UserFinancial>();
 
+        UserFinancial applicant = new UserFinancial();
+
         public ClientViews()
         {
             InitializeComponent();
@@ -38,14 +40,18 @@ namespace LoanApplication
 
         private void btnAffNext_Click(object sender, RoutedEventArgs e)
         {
-                UserFinancial applicant = new UserFinancial();
-
                 applicant.Salary = decimal.Parse(tboxAffSalary.Text);
                 applicant.Expenses = decimal.Parse(tboxAffExpenses.Text);
                 applicant.PurchasePrice = decimal.Parse(tboxRpmtPurchasePrice.Text);
                 applicant.Deposit = decimal.Parse(tboxRpmtDeposit.Text);
                 applicant.AffIntRate = float.Parse(tboxAffIntRate.Text);
                 applicant.LoanTerm = int.Parse(tboxAffTerm.Text);
+
+                //qualify amount calculation
+                applicant.QualifyAmount = QualifyAmount();
+
+                //monthly mortgage repayment amount
+                applicant.RpmtLoanTerm = MonthlyRepayment();
 
             int saveSuccess = saveUser(applicant);
 
@@ -59,6 +65,28 @@ namespace LoanApplication
             {
                 MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        //qualify amount calculation
+        public decimal? QualifyAmount()
+        {
+            decimal? deposit = applicant.Deposit;
+            decimal? salary = applicant.Salary;
+            decimal? qualifyAmount = ((salary * 3) + deposit);
+
+            return qualifyAmount;
+        }
+
+        //monthly mortgage repayment amount
+        public int? MonthlyRepayment()
+        {
+            int? MonthlyRepayment = 0;
+
+            decimal? qualifyAmount = QualifyAmount();
+            int? convertedQualifyAmount = Convert.ToInt32(qualifyAmount);
+            int? term = applicant.LoanTerm;
+
+            return MonthlyRepayment = (convertedQualifyAmount / (term * 12));
 
         }
 
@@ -69,5 +97,23 @@ namespace LoanApplication
             return saveSuccess;
         }
 
+        private void btnUpload_Click(object sender, RoutedEventArgs e)
+        {
+            //create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+
+            //set filter for file extensionand default file extensions
+            dialog.DefaultExt = ".pdf";
+            dialog.Filter = "pdf files (*.pdf) | *.pdf";
+
+            //display OpenFileDialog by calling ShowDialog method
+            //question mark means that it does not need to contain anything
+            bool? result = dialog.ShowDialog();
+
+            if(result.HasValue && result.Value)
+            {
+                tbxDocumentPath.Text = dialog.FileName.Trim();
+            }
+        }
     }
 }

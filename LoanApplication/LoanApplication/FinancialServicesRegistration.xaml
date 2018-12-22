@@ -66,6 +66,7 @@
             <Image Source="Images\coffee.jpg" Height="100" Width="180" />
             <Image Source="Images\callcentre.jpg" Height="100" Width="180" />
             <Image Source="Images\laptop.jpg" Height="100" Width="180" />
+            <Image Source="Images\coffee.jpg" />
         </WrapPanel>
     </Grid>
 </Window>

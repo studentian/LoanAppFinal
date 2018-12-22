@@ -38,15 +38,11 @@ namespace LoanApplication
 
             if (user.LevelId == 3)
             {
-                    btnClient.Visibility = Visibility.Visible;
-                    btnProvider.Visibility = Visibility.Visible;
-                    btnAdmin.Visibility = Visibility.Visible;
                     mnuMain.Visibility = Visibility.Visible;
             }
 
             if (user.LevelId == 1)
                 {
-                    btnClient.Visibility = Visibility.Visible;
                     mnuMain.Visibility = Visibility.Visible;
                     mnuClientView.Visibility = Visibility.Visible;
                     mnuProviderView.Visibility = Visibility.Collapsed;
@@ -54,7 +50,6 @@ namespace LoanApplication
             }
             if (user.LevelId == 2)
                 {
-                    btnProvider.Visibility = Visibility.Visible;
                     mnuMain.Visibility = Visibility.Visible;
                     mnuClientView.Visibility = Visibility.Collapsed;
                     mnuAdministratorView.Visibility = Visibility.Collapsed;
@@ -63,32 +58,10 @@ namespace LoanApplication
 
         }
 
-        /*Create a new instance of the screen then create a new instance to show on the screen*/
-        private void btnAdmin_Click(object sender, RoutedEventArgs e)
-        {
-            Admin admin = new Admin();
-            //now assign the admin instance into the frame
-            frmMain.Navigate(admin);
-        }
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             Environment.Exit(0);
-        }
-
-        private void btnProvider_Click(object sender, RoutedEventArgs e)
-        {
-            Provider provider = new Provider();
-            frmMain.Navigate(provider);
-        }
-
-        private void btnClient_Click(object sender, RoutedEventArgs e)
-        {
-
-            Offers offers = new Offers();
-            frmMain.Navigate(offers);
-
         }
 
         private void btnlogout_Click(object sender, RoutedEventArgs e)
@@ -105,6 +78,31 @@ namespace LoanApplication
         {
             this.Close();
             Environment.Exit(0);
+        }
+
+        private void mnuAnalysisView_Click(object sender, RoutedEventArgs e)
+        {
+            Analysis analysis = new Analysis();
+            frmMain.Navigate(analysis);
+        }
+
+        private void mnuClientView_Click(object sender, RoutedEventArgs e)
+        {
+            Offers offers = new Offers();
+            frmMain.Navigate(offers);
+        }
+
+        private void mnuProviderView_Click(object sender, RoutedEventArgs e)
+        {
+            Provider provider = new Provider();
+            frmMain.Navigate(provider);
+        }
+
+        private void mnuAdministratorView_Click(object sender, RoutedEventArgs e)
+        {
+            Admin admin = new Admin();
+            //now assign the admin instance into the frame
+            frmMain.Navigate(admin);
         }
     }
 }

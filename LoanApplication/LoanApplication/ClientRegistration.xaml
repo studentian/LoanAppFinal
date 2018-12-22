@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoanApplication"
         mc:Ignorable="d"
-        Title="ClientRegistration" Height="450" Width="950">
+        Title="ClientRegistration" Height="450" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="30" />
+        <ColumnDefinition Width="5" />
         <ColumnDefinition Width="auto" />
         <ColumnDefinition Width="auto" />
         <ColumnDefinition Width="auto" />
         <ColumnDefinition Width="auto" />
         <ColumnDefinition Width="auto" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="30" />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="5" />
+            
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -26,19 +28,23 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="5" />
+            
         </Grid.RowDefinitions>
         <TextBlock Text="Client Registration" Margin="5" Grid.ColumnSpan="4" TextDecorations="underline" TextAlignment="Center" Grid.Row="1" Grid.Column="1" FontSize="30" FontFamily="Ariel" />
         <TextBlock Text="Not a member? Please register below:" Margin="6" FontSize="15" FontStyle="Italic" Grid.Row="2" Grid.Column="2" TextAlignment="Center" Grid.ColumnSpan="2"  TextDecorations="underline" />
 
-        <Button Content="Register" Name="btnRegister" Grid.Column="6" Width="100" Grid.Row="4" FontSize="16" Click="btnRegister_Click"/>
-        <Button Content="Back" Name="btnback" Grid.Column="6" Width="100" Grid.Row="6" FontSize="16" Click="btnback_Click" />
+        <Button Content="Register" Name="btnRegister" Grid.Column="7" Width="70" Grid.Row="4" FontSize="16" Click="btnRegister_Click" Margin="5"/>
+        <Button Content="Back" Name="btnback" Grid.Column="7" Width="70" Grid.Row="6" FontSize="16" Click="btnback_Click" Margin="5" />
         
-        <TextBlock Margin="5" Text="Password" Grid.Column="1" Grid.Row="3" Padding="2 2 2 2" TextAlignment="Right" FontSize="16"/>
+        <TextBlock Margin="5" Text="Username" Grid.Column="1" Grid.Row="3" Padding="2 2 2 2" TextAlignment="Right" FontSize="16"/>
         <TextBox Grid.Column="2" Grid.Row="3" Width="200" Name="tbxUserName" FontSize="16" />
         
-        <TextBlock Margin="5" Text="Confirm Pswd" Grid.Column="3" Grid.Row="3" Width="100" Padding="2 2 2 2" TextAlignment="left" FontSize="16" />
+        <TextBlock Margin="5" Text="Password" Grid.Column="3" Grid.Row="3" Width="100" Padding="2 2 2 2" TextAlignment="left" FontSize="16" />
         <TextBox Grid.Column="4" Grid.Row="3" Width="200" Name="tbxPassword" FontSize="16"/>
+        
+        <TextBlock Margin="5" Text="Confirm Password" Grid.Column="6" Grid.Row="3" Width="150" Padding="2 2 2 2" TextAlignment="left" FontSize="16" />
+        <TextBox Grid.Column="7" Grid.Row="3" Width="200" Name="tbxConfirmPassword" FontSize="16"/>
 
         <TextBlock Margin="5" Text="First Name" Grid.Column="1" Grid.Row="4" TextAlignment="Right" FontSize="16"/>
         <TextBox Grid.Column="2" Grid.Row="4" Width="200" Name="tbxFirstName" FontSize="16" />
@@ -58,11 +64,13 @@
         <TextBlock Margin="5" Text="Email" Grid.Column="3" Grid.Row="6" Width="100" TextAlignment="Right" FontSize="16"/>
         <TextBox Grid.Column="4" Grid.Row="6" Width="200" Name="tbxEmail" FontSize="16"/>
 
-        <WrapPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="6" Margin="5" Height="100" >
+        <WrapPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="8" Margin="5" Height="100" >
             <Image Source="Images\coffee.jpg" Height="100" Width="180" />
             <Image Source="Images\callcentre.jpg" />
             <Image Source="Images\laptop.jpg" />
             <Image Source="Images\startup.jpg" />
+            <Image Source="Images\laptop.jpg" />
+            <Image Source="Images\coffee.jpg" />
         </WrapPanel>
     </Grid>
 </Window>

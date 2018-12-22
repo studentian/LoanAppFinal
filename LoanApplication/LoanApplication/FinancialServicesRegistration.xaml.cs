@@ -23,73 +23,63 @@ namespace LoanApplication
     {
         LoanAppDBEntities db = new LoanAppDBEntities();
 
-        public enum DBOperation
-        {
-            Add,
-        }
-
-        //create an instance of DB Enum
-        public DBOperation dbOperation = new DBOperation();
+        User finRegUser = new User();
 
         public FinancialServicesRegistration()
         {
             InitializeComponent();
         }
 
-        public int SaveUser(User user)
-        {
-            db.Entry(user).State = System.Data.Entity.EntityState.Added;
-            int saveSuccess = db.SaveChanges();
-            return saveSuccess;
-        }
-
         public void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User();
-            dbOperation = DBOperation.Add;
+          
+                finRegUser.Username = tbxUsername.Text.Trim();
+                finRegUser.ProviderName = tbxCompanyName.Text.Trim();
+                finRegUser.CompanyReg = tbxRegistration.Text.Trim();
+                finRegUser.Password= tbxPassword.Text.Trim();
+                finRegUser.AddressLine1 = tbxAddress.Text.Trim();
+                finRegUser.Postcode = tbxPostCode.Text.Trim();
+                finRegUser.Telephone = tbxTelephone.Text.Trim();
+                finRegUser.Email = tbxEmail.Text.Trim();
+                finRegUser.LevelId = 2;
+                finRegUser.LastName = "Provider";
+                finRegUser.FirstName = "Provider";
+                finRegUser.AddressLine2 = "Provider";
+                finRegUser.City = "Provider";
+                
+                //vailidates user inputs
+                ValidateUserInput();
 
-            user.ProviderName = tbxCompanyName.Text.Trim();
-            user.Password = tbxPassword.Text.Trim();
-            user.AddressLine1 = tbxAddress.Text.Trim();
-            user.Postcode = tbxPostCode.Text.Trim();
-            user.CompanyReg = tbxRegistration.Text.Trim();
-            user.Telephone = tbxTelephone.Text.Trim();
-            user.Email = tbxEmail.Text.Trim();
-            user.Username = tbxUsername.Text.Trim();
-            user.LevelId = 2;
+                //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
+            int saveSuccess = RegisterUser(finRegUser);
 
-            int saveSuccess = db.SaveChanges();
+                if (saveSuccess == 1)
+                {
+                    MessageBox.Show("Thank you for registering" + finRegUser.FirstName, "Please login!", MessageBoxButton.OK);
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
 
-            //string CompanyName = tbxCompanyName.Text;
-            //string Password = tbxPassword.Text;
-            //string AddressLine1 = tbxAddress.Text;
-            //string PostCode = tbxPostCode.Text;
-            //string CompanyReg = tbxRegistration.Text;
-            //string Telephone = tbxTelephone.Text;
-            //string Email = tbxEmail.Text;
-            //string ProviderName = tbxCompanyName.Text;
-            //string Username = tbxUsername.Text;
-            //int LevelId = user.LevelId = 2;
+                    this.Close();
 
-            //SqlConnection sqlConnection = new SqlConnection("data source=192.168.1.138;initial catalog=loanappdb;user id=ianl;password = Apples2018");
-            // SqlCommand dbReg = new SqlCommand("Insert into Users(LevelId,tbxCompanyName, tbxPassword,tbxAddress,tbxPostCode,tbxRegistration,tbxTelephone,tbxEmail, tbxUsername) values('" + LevelId + "','" + CompanyName + "', '" + Password + "', '" + AddressLine1 + "', '" + PostCode + "', '" + Telephone + "', '" + Email + "', '" + ProviderName + "', '" + CompanyReg + "', '" + Username + "')", sqlConnection);
-
-            if (saveSuccess == 1)
-            {
-                SaveUser(user);
-                //clearUserDetails();
-                MessageBox.Show("Welcome! \nRegistration Confirmed!", "Thank you for registering!", MessageBoxButton.OK);
-
-                Dashboard dashboard = new Dashboard();
-                dashboard.user = user;
-                dashboard.Show();
-                this.Hide();
             }
-            else
-            {
-                MessageBox.Show("Please try again", "Registration unsuccessful!", MessageBoxButton.OK);
+                else
+                {
+                    MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+
+                    this.Close();
             }
+              
         }
+
+        public int RegisterUser(User finRegUser)
+        {
+                db.Entry(finRegUser).State = System.Data.Entity.EntityState.Added;
+                int saveSuccess = db.SaveChanges();
+                return saveSuccess;
+        }
+
 
         private void btnback_Click(object sender, RoutedEventArgs e)
         {
@@ -99,17 +89,52 @@ namespace LoanApplication
             this.Close();
         }
 
+        private bool ValidateUserInput()
+        {
+            bool validated = true;
 
-        //private void clearUserDetails()
-        //{
-        //    tbxPassword.Text = "";
-        //    tbxFirstName.Text = "";
-        //    tbxLastName.Text = "";
-        //    tbxEmail.Text = "";
-        //    tbxUsername.Text = "";
-        //    tbxAccessLevel.Text = "";
-        //    cboAccessLevel.SelectedIndex = 0;
-        //}
+            if (tbxUsername.Text.Length == 0 || tbxUsername.Text.Length > 20)
+            {
+                validated = false;
+            }
+
+            if (tbxCompanyName.Text.Length == 0 || tbxCompanyName.Text.Length > 20)
+            {
+                validated = false;
+            }
+
+            if (tbxPassword.Text.Length == 0 || tbxPassword.Text.Length > 20)
+            {
+                validated = false;
+            }
+
+            if (tbxAddress.Text.Length == 0 || tbxAddress.Text.Length > 50)
+            {
+                validated = false;
+            }
+
+            if (tbxPostCode.Text.Length == 0 || tbxPostCode.Text.Length > 10)
+            {
+                validated = false;
+            }
+
+            if (tbxRegistration.Text.Length == 0 || tbxRegistration.Text.Length > 20)
+            {
+                validated = false;
+            }
+
+            if (tbxTelephone.Text.Length == 0 || tbxTelephone.Text.Length > 20)
+            {
+                validated = false;
+            }
+            if (tbxEmail.Text.Length == 0 || tbxEmail.Text.Length > 50)
+            {
+                validated = false;
+            }
+
+            return validated;
+        }
+
     }
 }
 
