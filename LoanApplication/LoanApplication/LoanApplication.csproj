@@ -67,9 +67,6 @@
     <Compile Include="Analysis.xaml.cs">
       <DependentUpon>Analysis.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ClientUserControl.xaml.cs">
-      <DependentUpon>ClientUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Offers.xaml.cs">
       <DependentUpon>Offers.xaml</DependentUpon>
     </Compile>
@@ -85,10 +82,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ClientRegistration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ClientUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

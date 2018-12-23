@@ -52,6 +52,7 @@
           </Key>
           <Property Name="OfferStatusId" Type="int" Nullable="false" />
           <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserAcceptId" Type="int" />
         </EntityType>
         <EntityType Name="UserFinancials">
           <Key>
@@ -67,8 +68,8 @@
           <Property Name="QualifyAmount" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Expenses" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="RpmtLoanTerm" Type="int" />
-          <Property Name="OfferStatusId" Type="int" />
+          <Property Name="MonthlyRepayment" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TotalDueInclInterest" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -235,6 +236,7 @@
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Offers" Relationship="Self.FK__Offers__OfferSta__73BA3083" FromRole="OfferStatus" ToRole="Offers" />
           <NavigationProperty Name="Offers1" Relationship="LoanAppDBModel.FK__Offers__UserAcce__74AE54BC" FromRole="OfferStatu" ToRole="Offer" />
+          <Property Name="UserAcceptId" Type="Int32" />
         </EntityType>
         <EntityType Name="UserFinancial">
           <Key>
@@ -250,9 +252,9 @@
           <Property Name="QualifyAmount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Expenses" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="RpmtLoanTerm" Type="Int32" />
-          <Property Name="OfferStatusId" Type="Int32" />
           <NavigationProperty Name="Offers" Relationship="Self.FK_Offers_UserFinancials" FromRole="UserFinancials" ToRole="Offers" />
+          <Property Name="MonthlyRepayment" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TotalDueInclInterest" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -416,6 +418,7 @@
           <EntitySetMapping Name="OfferStatus">
             <EntityTypeMapping TypeName="LoanAppDBModel.OfferStatu">
               <MappingFragment StoreEntitySet="OfferStatus">
+                <ScalarProperty Name="UserAcceptId" ColumnName="UserAcceptId" />
                 <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
@@ -424,6 +427,8 @@
           <EntitySetMapping Name="UserFinancials">
             <EntityTypeMapping TypeName="LoanAppDBModel.UserFinancial">
               <MappingFragment StoreEntitySet="UserFinancials">
+                <ScalarProperty Name="TotalDueInclInterest" ColumnName="TotalDueInclInterest" />
+                <ScalarProperty Name="MonthlyRepayment" ColumnName="MonthlyRepayment" />
                 <ScalarProperty Name="QuoteId" ColumnName="QuoteId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LoanTerm" ColumnName="LoanTerm" />
@@ -434,8 +439,6 @@
                 <ScalarProperty Name="QualifyAmount" ColumnName="QualifyAmount" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Expenses" ColumnName="Expenses" />
-                <ScalarProperty Name="RpmtLoanTerm" ColumnName="RpmtLoanTerm" />
-                <ScalarProperty Name="OfferStatusId" ColumnName="OfferStatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

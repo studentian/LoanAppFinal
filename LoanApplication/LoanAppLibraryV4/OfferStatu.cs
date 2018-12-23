@@ -23,6 +23,7 @@ namespace LoanAppLibraryV4
     
         public int OfferStatusId { get; set; }
         public string Status { get; set; }
+        public Nullable<int> UserAcceptId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Offer> Offers { get; set; }

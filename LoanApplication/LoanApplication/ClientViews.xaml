@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:LoanApplication"
         mc:Ignorable="d"
 
-        Title="ClientViews" Height="600" Width="1000">
+        Title="ClientViews" Height="700" Width="1000">
     <Grid>
-           
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="10">
-            <TabControl Width="950" Height="500">
+            <TabControl Width="980" Height="600">
                 <TabControl.Resources>
                     <Style TargetType="{x:Type TabItem}">
                         <Setter Property="FontSize" Value="14"/>
@@ -41,15 +41,14 @@
                 </TabControl.Resources>
 
                 <TabItem Name="tbAfforability" Header="Affordability" Width="150" Height="40"  FontSize="15" FontWeight="Bold">
-                    <StackPanel Orientation="Horizontal" Width="900" Height="500">
+                    <StackPanel Orientation="Horizontal" Width="950" Height="550">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
@@ -60,46 +59,76 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
-                               
+
                             </Grid.RowDefinitions>
-                            <!--Row0-->
-                            <TextBlock Name="tblockAffSalary" Text="Gross monthly salary" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  />
-                            <TextBox Name="tboxAffSalary" Width="250" Height="30" Grid.Column="2" Grid.Row="1" Margin="5" />
-                            <!--Row2-->
-                            <TextBlock Name="tblockAffExpenses" Text="Total monthly expenses" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"  />
-                            <TextBox Name="tboxAffExpenses" Width="250" Height="30" Grid.Column="2" Grid.Row="2" Margin="5" />
 
-                            <TextBlock Name="tblockRpmtPurchasePrice" Text="Purchase Price" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" />
-                            <TextBox Name="tboxRpmtPurchasePrice" Width="250" Height="30" Grid.Column="2" Grid.Row="3" Margin="5" />
+                            <TextBlock Name="tblockUserId" Grid.Column="0" Text="UserID" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
+                            <TextBox Name="tboxUserId" Width="250" Height="30" Grid.Column="2" Grid.Row="1" Margin="4.297,23,5.703,23" Grid.ColumnSpan="2" />
 
-                            <TextBlock Name="tblockRpmtDeposit" Text="Deposit (optional)" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"  />
-                            <TextBox Name="tboxRpmtDeposit" Width="250" Height="30" Grid.Column="2" Grid.Row="4" Margin="5" />
+                            <TextBlock Name="tblockAffSalary" Grid.Column="0" Text="Gross monthly salary" Grid.Row="2" VerticalAlignment="Center" Grid.ColumnSpan="2" />
+                            <TextBox Name="tboxAffSalary" Width="250" Height="30" Grid.Column="2" Grid.Row="2" Margin="4.297,23,5.703,23" Grid.ColumnSpan="2" />
 
+                            <TextBlock Name="tblockAffExpenses" Grid.Column="0" Text="Total monthly expenses" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
+                            <TextBox Name="tboxAffExpenses" Width="250" Height="30" Grid.Column="2" Grid.Row="3" Margin="5.297,23,4.703,23" Grid.ColumnSpan="2" />
 
-                            <!--Row3-->
-                            <Label Name="lbllockAffTerm" Content="Term of your loan" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"  />
-                            <TextBox Name="tboxAffTerm" Width="250" Height="30" Grid.Column="2" Grid.Row="5" Margin="5" />
+                            <TextBlock Name="tblockRpmtPurchasePrice" Grid.Column="0" Text="Purchase Price" Grid.ColumnSpan="5" Grid.Row="4" VerticalAlignment="Center" />
+                            <TextBox Name="tboxRpmtPurchasePrice" Width="250" Height="30" Grid.Column="2" Grid.Row="4" Margin="5.297,23,4.703,23" Grid.ColumnSpan="2" />
 
-                            <!--Row4-->
-                            <Label Name="lblAffIntRate" Content="Interest Rate" Grid.Column="1" Grid.Row="6" VerticalAlignment="Center"/>
-                            <TextBox Name="tboxAffIntRate" Width="250" Height="30" Grid.Column="2" Grid.Row="6" Margin="5" />
-                            
+                            <TextBlock Name="tblockRpmtDeposit" Text="Deposit (optional)" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
+                            <TextBox Name="tboxRpmtDeposit" Width="250" Height="30" Grid.Column="2" Grid.Row="5" Margin="5.297,22,4.703,23" Grid.ColumnSpan="2" />
+
+                            <Label Name="lbllockAffTerm" Content="Term of your loan" Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Grid.ColumnSpan="2"  />
+                            <TextBox Name="tboxAffTerm" Width="250" Height="30" Grid.Column="2" Grid.Row="6" Margin="5.297,23,4.703,23" Grid.ColumnSpan="2" />
+
+                            <Label Name="lblAffIntRate" Content="Interest Rate" Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Grid.ColumnSpan="2" />
+                            <TextBox Name="tboxAffIntRate" Width="250" Height="30" Grid.Column="2" Grid.Row="7" Margin="5.297,23,4.703,22" Grid.ColumnSpan="2" />
+
                             <!--You qualify for=============================-->
-                            <StackPanel Grid.Column="4" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Margin="8">
-                                <TextBlock Name="tblockAffQuality" Text="You qualify for:" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  />
-                                <TextBox Name="tboxAffQualify" Width="300" Height="90" Grid.Column="1" Grid.Row="1" Margin="10" />
+                            <StackPanel Grid.Column="4" Height="300" Grid.Row="1" Grid.RowSpan="7" VerticalAlignment="Top" Margin="8.297,8,7.703,0" Grid.ColumnSpan="2">
+
+                                <TextBlock Name="tblockAffQuality" FontSize="18" Text="Things you should consider when taking out a loan" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                                <BulletDecorator Margin="10">
+                                    <BulletDecorator.Bullet>
+                                        <Ellipse Height="10" Width="10" Fill="Blue" />
+                                    </BulletDecorator.Bullet>
+                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="After clicking save, you will direct to the Summary page" />
+                                </BulletDecorator>
+                                <BulletDecorator Margin="10">
+                                    <BulletDecorator.Bullet>
+                                        <Ellipse Height="10" Width="10" Fill="Blue" />
+                                    </BulletDecorator.Bullet>
+                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="Be sure to note the amount you will have paid after making all loan repayments." />
+                                </BulletDecorator>
+                                <BulletDecorator Margin="10">
+                                    <BulletDecorator.Bullet>
+                                        <Ellipse Height="10" Width="10" Fill="Blue" />
+                                    </BulletDecorator.Bullet>
+                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="Negotiate with the Bank. The interest rate you negotiate with the banks, can greatly affect how much you pay back." />
+                                </BulletDecorator>
+                                <BulletDecorator Margin="10">
+                                    <BulletDecorator.Bullet>
+                                        <Ellipse Height="10" Width="10" Fill="Blue" />
+                                    </BulletDecorator.Bullet>
+                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="If you purchase a home for the amount you qualify for, you may not have money to afford a good lifestyle. " />
+                                </BulletDecorator>
                             </StackPanel>
-                           
-                            <StackPanel Grid.Column="4" Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Top" Margin="5">
+
+                            <StackPanel Grid.Row="4" Grid.Column="4" Margin="0,25" Grid.ColumnSpan="3" Grid.RowSpan="6" Orientation="Vertical" >
+                                <Image Source="Images\callcentre.jpg" Height="200" Width="350" VerticalAlignment="Bottom" />
+                            </StackPanel>
+
+                            <!--<StackPanel Grid.Column="4" Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Top" Margin="5.297,5,4.703,0" Grid.ColumnSpan="2">
+                                <TextBox Name="tboxAffQualify" Width="300" Height="90" Grid.Column="1" Grid.Row="1" Margin="10" />
                                 <TextBlock Name="tblockAffEstimatedRepayment" Width="200" Text="Your estimated monthly repayment will be:" TextWrapping="Wrap" />
                                 <TextBox Name="tboxAffEstimatedRepayment" Width="50" Height="30" Grid.Column="1" Grid.Row="1" Margin="5" />
-                            </StackPanel>
+                            </StackPanel> -->
+                            
                             <!--Row1 End You qualify for=============================-->
 
                             <!--Save to DB and jump to next tab=============================-->
-                            <Button Name="btnAffNext" Width="140" Height="50"   Content="Save" Grid.Column="4" Grid.Row="5" Margin="2" BorderBrush="Aqua" Click="btnAffNext_Click"/>
-                                
-                            
+                            <Button Name="btnAffNext" Width="140" Height="50"   Content="Save" Grid.Column="4" Grid.Row="9" Margin="98.297,12,97.703,13" BorderBrush="Aqua" Click="btnAffNext_Click" Grid.ColumnSpan="2"/>
+
+
                         </Grid>
                     </StackPanel>
                 </TabItem>
@@ -120,43 +149,50 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
                         <TextBlock Name="tblockSummmaryBorrow" Text="Summary" FontSize="20" TextDecorations="underline" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" />
 
+                        <TextBlock Name="tblockSummmaryUserId" Text="UserID" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"  />
+                        <TextBlock Name="tboxSummmaryUserId" Width="150" Height="30" Grid.Column="2" Grid.Row="5" Margin="5" Text="{Binding tboxSummmaryUserId}" />
+
                         <TextBlock Name="tblockSummmarySalary" Text="Gross monthly salary" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  />
-                        <TextBlock Name="tboxSummmarySalary" Width="150" Height="30" Grid.Column="2" Grid.Row="1" Margin="5" />
+                        <TextBlock Name="tboxSummmarySalary" Width="150" Height="30" Grid.Column="2" Grid.Row="1" Margin="5" Text="{Binding tboxSummmarySalary}" />
 
                         <TextBlock Name="tblockSummmaryExpenses" Text="Total monthly expenses" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"  />
-                        <TextBlock Name="tboxSummmaryExpenses" Width="150" Height="30" Grid.Column="2" Grid.Row="2" Margin="5" />
+                        <TextBlock Name="tboxSummmaryExpenses" Width="150" Height="30" Grid.Column="2" Grid.Row="2" Margin="5" Text="{Binding tboxSummmaryExpenses}"/>
 
                         <TextBlock Name="tblockSummmaryfTerm" Text="Term of your loan" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"  />
-                        <TextBlock Name="tboxSummmaryTerm" Width="150" Height="30" Grid.Column="2" Grid.Row="3" Margin="5" />
+                        <TextBlock Name="tboxSummmaryTerm" Width="150" Height="30" Grid.Column="2" Grid.Row="3" Margin="5" Text="{Binding tboxSummmaryTerm}"/>
 
                         <TextBlock Name="tblockSummmaryInterestRate" Text="Interest Rate" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"  />
-                        <TextBlock Name="tboxSummmaryInterestRate" Width="150" Height="30" Grid.Column="2" Grid.Row="4" Margin="5" />
+                        <TextBlock Name="tboxSummmaryInterestRate" Width="150" Height="30" Grid.Column="2" Grid.Row="4" Margin="5" Text="{Binding tboxSummmaryInterestRate}"/>
 
 
                         <TextBlock Name="tblockSummaryPurchasePrice" Text="Purchase Price" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" />
-                        <TextBlock Name="tboxRpmtSummaryPrice" Width="150" Height="30" Grid.Column="4" Grid.Row="1" Margin="5" />
+                        <TextBlock Name="tboxRpmtSummaryPrice" Width="150" Height="30" Grid.Column="4" Grid.Row="1" Margin="5" Text="{Binding tboxRpmtSummaryPrice}"/>
 
                         <TextBlock Name="tblockSummaryDeposit" Text="Deposit (optional)" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"  />
-                        <TextBlock Name="tboxSummaryDeposit" Width="150" Height="30" Grid.Column="4" Grid.Row="2" Margin="5" />
+                        <TextBlock Name="tboxSummaryDeposit" Width="150" Height="30" Grid.Column="4" Grid.Row="2" Margin="5" Text="{Binding tboxSummaryDeposit}"/>
 
-                        <TextBlock Name="tblockSummaryMaxQualify" Text="Qualfication amount" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center"  />
-                        <TextBlock Name="tboxSummaryTerm" Width="150" Height="30" Grid.Column="4" Grid.Row="3" Margin="5" />
+                        <TextBlock Name="tblockSummaryMaxQualify" Text="You Qualify for a loan of" Foreground="DeepSkyBlue" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center"  />
+                        <TextBlock Name="tboxSummaryMaxQualify" Width="150" Height="30" Grid.Column="4" Foreground="DeepSkyBlue" Grid.Row="3" Margin="5" Text="{Binding tboxSummaryMaxQualify}"/>
 
-                        <TextBlock Name="tblockSummaryMaxRepayment" Text="Maximum repayment" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"  />
-                        <TextBlock Name="tboxSummaryInterestRate" Width="150" Height="30" Grid.Column="4" Grid.Row="4" Margin="5" />
+                        <TextBlock Name="tblockSummaryMaxRepayment" Text="Monthly repayment" Foreground="DeepSkyBlue"  Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"  />
+                        <TextBlock Name="tboxSummaryMaxRepayment" Width="150" Height="30" Foreground="DeepSkyBlue" Grid.Column="4" Grid.Row="4" Margin="5" Text="{Binding tboxSummaryMaxRepayment}"/>
+
+                        <TextBlock Name="tblockSummaryLoanCost" Text="By the time you will have made all monthly replayments, this loan will cost you" TextWrapping="Wrap" Foreground="PaleVioletRed" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"  />
+                        <TextBlock Name="tboxSummaryLoanCost" Width="150" Height="30" Foreground="PaleVioletRed" Grid.Column="4" Grid.Row="5" Margin="5" Text="{Binding tboxSummaryMaxRepayment}"/>
 
                         <!--step3 button-->
-                        <Button Name="btnSummarySubmit" Content="Submit" Grid.Column="4" Grid.Row="5" Margin="10" BorderBrush="Aqua" Click="btnSummarySubmit_Click"/>
-
+                        <Button Name="btnSummarySubmit" Content="Display Summary" Grid.Column="4" Grid.Row="6" Margin="10" BorderBrush="Aqua" Click="btnSummarySubmit_Click"/>
 
                     </Grid>
+
                 </TabItem>
 
-                <TabItem Name="tbUpload" Header="Document upload" Width="150" FontSize="15" FontWeight="Bold" >
+                <!--<TabItem Name="tbUpload" Header="Document upload" Width="150" FontSize="15" FontWeight="Bold" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20"/>
@@ -189,7 +225,8 @@
                         <Button Name="btnChangeDescription" Content="Change" Width="150" Height="40" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="4" Margin="0,10"/>
 
                     </Grid>
-                </TabItem>
+                </TabItem>-->
+
             </TabControl>
         </StackPanel>
 

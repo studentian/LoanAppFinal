@@ -1,6 +1,7 @@
 ﻿using LoanAppLibraryV4;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace LoanApplication
         LoanAppDBEntities db = new LoanAppDBEntities();
 
         List<UserFinancial> applicantList = new List<UserFinancial>();
+        List<User> userList = new List<User>();
+        List<Offer> offerList = new List<Offer>();
 
         UserFinancial applicant = new UserFinancial();
 
@@ -34,24 +37,70 @@ namespace LoanApplication
 
         private void btnSummarySubmit_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Thank you! \nPlease check back in 24 hours. \nReceive quotes by email?", "Client View", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
-            this.Close();
+            
+            foreach (var applicant in db.UserFinancials)
+            {
+                applicantList.Add(applicant);
+
+                //declare string variables to update DB output into appropriate grid position
+                string outputUserId, salary, expenses, loan, intRate, price, deposit, QAmount, Repayment, loanCost = "";
+                
+                outputUserId = $"{applicant.UserId}";
+                tboxSummmaryUserId.Text = outputUserId;
+
+                salary = $"{applicant.Salary}";
+                tboxSummmarySalary.Text = salary;
+
+                expenses = $"{applicant.Expenses}";
+                tboxSummmaryExpenses.Text = expenses;
+
+                loan = $"{applicant.LoanTerm}";
+                tboxSummmaryTerm.Text = loan;
+
+                intRate = $"{applicant.AffIntRate}";
+                tboxSummmaryInterestRate.Text = intRate;
+
+                price = $"{applicant.PurchasePrice}";
+                tboxRpmtSummaryPrice.Text = price;
+
+                deposit = $"{applicant.Deposit}";
+                tboxSummaryDeposit.Text = deposit;
+
+                QAmount = $"{applicant.QualifyAmount}";
+                tboxSummaryMaxQualify.Text = QAmount;
+
+                Repayment = $"{applicant.MonthlyRepayment}";
+                tboxSummaryMaxRepayment.Text = Repayment;
+
+                loanCost = $"{applicant.TotalDueInclInterest}";
+                tboxSummaryLoanCost.Text = loanCost;
+                                             
+            }
+            
         }
 
         private void btnAffNext_Click(object sender, RoutedEventArgs e)
         {
+                //User created here to push userid into the DB table
+                User user = new User(); 
+                applicant.UserId = int.Parse(tboxUserId.Text);
+
+                //text inputs from users parsed to write to db
                 applicant.Salary = decimal.Parse(tboxAffSalary.Text);
                 applicant.Expenses = decimal.Parse(tboxAffExpenses.Text);
                 applicant.PurchasePrice = decimal.Parse(tboxRpmtPurchasePrice.Text);
                 applicant.Deposit = decimal.Parse(tboxRpmtDeposit.Text);
                 applicant.AffIntRate = float.Parse(tboxAffIntRate.Text);
                 applicant.LoanTerm = int.Parse(tboxAffTerm.Text);
-
+                
                 //qualify amount calculation
                 applicant.QualifyAmount = QualifyAmount();
 
                 //monthly mortgage repayment amount
-                applicant.RpmtLoanTerm = MonthlyRepayment();
+                applicant.MonthlyRepayment = MonthlyRepayment();
+                
+                //Total due including interest
+                applicant.TotalDueInclInterest = TotalDueInclInterest();
 
             int saveSuccess = saveUser(applicant);
 
@@ -70,24 +119,57 @@ namespace LoanApplication
         //qualify amount calculation
         public decimal? QualifyAmount()
         {
+            //salary less expenses + deposit makes up qualify amount
             decimal? deposit = applicant.Deposit;
             decimal? salary = applicant.Salary;
-            decimal? qualifyAmount = ((salary * 3) + deposit);
-
+            decimal? expenses = applicant.Expenses;
+            decimal? net = salary - expenses;
+            decimal? qualifyAmount = ((net * 3 * 12) + deposit);
+            
             return qualifyAmount;
         }
 
-        //monthly mortgage repayment amount
-        public int? MonthlyRepayment()
+       //monthly mortgage repayment amount
+        public decimal? MonthlyRepayment()
         {
-            int? MonthlyRepayment = 0;
+            decimal? MonthlyRepayment = 0;
 
-            decimal? qualifyAmount = QualifyAmount();
-            int? convertedQualifyAmount = Convert.ToInt32(qualifyAmount);
-            int? term = applicant.LoanTerm;
+            //Qualify amount becomes the principle amount
+            decimal? principle = QualifyAmount();            
+            decimal? term = Convert.ToDecimal(applicant.LoanTerm);
 
-            return MonthlyRepayment = (convertedQualifyAmount / (term * 12));
+            decimal? interestRate = Convert.ToDecimal(applicant.AffIntRate);
 
+            //Compound interest calculation
+            decimal? nt = 1 / (12 * term);
+            decimal? brackets = (1 + (interestRate / 12));
+            decimal? CompoundInterest = principle * (brackets * nt);
+
+            //Rounds up decimal or result will contain too many characters to write to DB
+            double MonthlyR = (double)CompoundInterest;
+            double? x = Math.Truncate(MonthlyR * 100 / 100);
+            decimal? Amount = (decimal) x;
+
+            MonthlyRepayment = (Amount * 3);
+
+            return MonthlyRepayment;
+
+        }
+
+        //Total due including interest
+        public decimal? TotalDueInclInterest()
+        {
+            decimal? totDu;
+            decimal term = Convert.ToDecimal(applicant.LoanTerm) * 12;
+
+            totDu = MonthlyRepayment() * term;
+
+            //Rounds up decimal or result will contain too many characters to write to DB
+            double td = (double)totDu;
+            double? x = Math.Truncate(td * 100 / 100);
+            decimal? totalDue = (decimal) x;
+                        
+            return totalDue;
         }
 
         public int saveUser(UserFinancial applicant)
@@ -95,25 +177,6 @@ namespace LoanApplication
             db.Entry(applicant).State = System.Data.Entity.EntityState.Added;
             int saveSuccess = db.SaveChanges();
             return saveSuccess;
-        }
-
-        private void btnUpload_Click(object sender, RoutedEventArgs e)
-        {
-            //create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-
-            //set filter for file extensionand default file extensions
-            dialog.DefaultExt = ".pdf";
-            dialog.Filter = "pdf files (*.pdf) | *.pdf";
-
-            //display OpenFileDialog by calling ShowDialog method
-            //question mark means that it does not need to contain anything
-            bool? result = dialog.ShowDialog();
-
-            if(result.HasValue && result.Value)
-            {
-                tbxDocumentPath.Text = dialog.FileName.Trim();
-            }
         }
     }
 }

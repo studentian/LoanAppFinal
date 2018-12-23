@@ -37,12 +37,9 @@ namespace LoanAppLibraryV4
 
         public string FullName
         {
-            get
-            {
-                return $"{FirstName} {LastName}";
-            }
+            get { return FirstName + " " + LastName; }
         }
-    
+
         public virtual AccessLevel AccessLevel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Log> Logs { get; set; }

@@ -30,8 +30,8 @@ namespace LoanAppLibraryV4
         public Nullable<decimal> QualifyAmount { get; set; }
         public Nullable<decimal> Salary { get; set; }
         public Nullable<decimal> Expenses { get; set; }
-        public Nullable<int> RpmtLoanTerm { get; set; }
-        public Nullable<int> OfferStatusId { get; set; }
+        public Nullable<decimal> MonthlyRepayment { get; set; }
+        public Nullable<decimal> TotalDueInclInterest { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Offer> Offers { get; set; }

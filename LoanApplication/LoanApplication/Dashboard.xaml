@@ -48,7 +48,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Client" Margin="10,0" Name="mnuClientView" Click="mnuClientView_Click">
+            <MenuItem Header="Client" Margin="10,0" Name="mnuClientView" Click="mnuClientView_Click" >
                 <MenuItem Header="View Offers">
                     <MenuItem.Icon>
                         <Image Source="Images/customer.png" Stretch="Uniform"></Image>
@@ -62,14 +62,14 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Administrator" Margin="10,0" Name="mnuAdministratorView" Click="mnuAdministratorView_Click">
+            <MenuItem Header="Administrator" Margin="10,0" Name="mnuAdministratorView" Click="mnuAdministratorView_Click" >
                 <MenuItem Header="Administrator View">
                     <MenuItem.Icon>
                         <Image Source="Images/administrator.png" Stretch="Uniform"></Image>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Analysis" Margin="10,0" Name="mnuAnalysisView" Click="mnuAnalysisView_Click">
+            <MenuItem Header="Analysis" Margin="10,0" Name="mnuAnalysisView" Click="mnuAnalysisView_Click" >
                 <MenuItem Header="Analysis View">
                     <MenuItem.Icon>
                         <Image Source="Images/chart.png" Stretch="Uniform"></Image>
