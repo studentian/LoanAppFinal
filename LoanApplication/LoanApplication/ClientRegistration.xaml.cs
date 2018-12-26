@@ -29,7 +29,7 @@ namespace LoanApplication
         /// random number method 
         /// </summary>
         /// <returns>string</returns>
-        private string GetRandomNumber()
+        private string RandomNumber()
         {
             var chars = "5423589435";
             var random = new Random();
@@ -44,7 +44,7 @@ namespace LoanApplication
         {
 
             clientRegUser.Username = tbxUserName.Text.Trim();
-            clientRegUser.Password = GetRandomNumber();//writing a random number to the db for the user registration to allow for validation checks by a staff member
+            clientRegUser.Password = RandomNumber();//writing a random number to the db for the user registration to allow for validation checks by a staff member
             clientRegUser.FirstName = tbxFirstName.Text.Trim();
             clientRegUser.LastName = tbxLastName.Text.Trim();
             clientRegUser.AddressLine1 = tbxAddress.Text.Trim();

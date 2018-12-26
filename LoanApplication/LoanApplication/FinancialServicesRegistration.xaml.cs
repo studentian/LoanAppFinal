@@ -33,9 +33,9 @@ namespace LoanApplication
         /// random number method
         /// </summary>
         /// <returns>string</returns>
-        private string GetRandomNumber()
+        private string RandomNumber()
         {
-            var chars = "0123456789";
+            var chars = "7563256982";
             var random = new Random();
             var result = new string(
                 Enumerable.Repeat(chars, 6)
@@ -52,7 +52,7 @@ namespace LoanApplication
                 finRegUser.Username = tbxUsername.Text.Trim();
                 finRegUser.ProviderName = tbxCompanyName.Text.Trim();
                 finRegUser.CompanyReg = tbxRegistration.Text.Trim();
-                finRegUser.Password = GetRandomNumber(); //writing a random number to the db for the user registration to allow for validation checks by a staff member
+                finRegUser.Password = RandomNumber(); //writing a random number to the db for the user registration to allow for validation checks by a staff member
                 finRegUser.AddressLine1 = tbxAddress.Text.Trim();
                 finRegUser.Postcode = tbxPostCode.Text.Trim();
                 finRegUser.Telephone = tbxTelephone.Text.Trim();
