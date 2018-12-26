@@ -29,14 +29,30 @@ namespace LoanApplication
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// random number method
+        /// </summary>
+        /// <returns>string</returns>
+        private string GetRandomNumber()
+        {
+            var chars = "0123456789";
+            var random = new Random();
+            var result = new string(
+                Enumerable.Repeat(chars, 6)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+            return result;
+        }
 
         public void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-          
+            //try catch error to ensure users complete all fields
+            try
+            {
                 finRegUser.Username = tbxUsername.Text.Trim();
                 finRegUser.ProviderName = tbxCompanyName.Text.Trim();
                 finRegUser.CompanyReg = tbxRegistration.Text.Trim();
-                finRegUser.Password= tbxPassword.Text.Trim();
+                finRegUser.Password = GetRandomNumber(); //writing a random number to the db for the user registration to allow for validation checks by a staff member
                 finRegUser.AddressLine1 = tbxAddress.Text.Trim();
                 finRegUser.Postcode = tbxPostCode.Text.Trim();
                 finRegUser.Telephone = tbxTelephone.Text.Trim();
@@ -46,31 +62,44 @@ namespace LoanApplication
                 finRegUser.FirstName = "Provider";
                 finRegUser.AddressLine2 = "Provider";
                 finRegUser.City = "Provider";
-                
-                //vailidates user inputs
-                ValidateUserInput();
 
-                //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
-            int saveSuccess = RegisterUser(finRegUser);
+                bool validation = ValidateUserInput();
 
-                if (saveSuccess == 1)
+                if (validation == true)
                 {
-                    MessageBox.Show("Thank you for registering" + finRegUser.FirstName, "Please login!", MessageBoxButton.OK);
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
 
-                    this.Close();
+                    //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
+                    int saveSuccess = RegisterUser(finRegUser);
 
-            }
+                    if (saveSuccess == 1)
+                    {
+                        MessageBox.Show("Thank you for registering" + finRegUser.FirstName, "Please login!", MessageBoxButton.OK);
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+
+                        this.Close();
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+
+                        this.Close();
+                    }
+                }
                 else
                 {
-                    MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-
-                    this.Close();
+                    MessageBox.Show("Validation Error", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
-              
+            catch (Exception)
+            {
+                MessageBox.Show("Error", "Please complete all fields", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            
         }
 
         public int RegisterUser(User finRegUser)

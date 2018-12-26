@@ -58,52 +58,12 @@ namespace LoanApplication
 
         public void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            
-
-            if (dbOperationOffer == DBOperation.Add)
+            try
             {
-                Offer offer = new Offer();
-                offer.QuoteId = int.Parse(tbxQuoteId.Text.Trim());
-                offer.UserId = int.Parse(tbxUserId.Text.Trim());
-                offer.OfferAmount = decimal.Parse(tbxOfferAmount.Text.Trim());
-                offer.Term = int.Parse(tbxOfferTerm.Text.Trim());
-                offer.InterestRate = float.Parse(tbxOfferIntRate.Text.Trim());
-                offer.FirstName = tbxFirstName.Text.Trim();
-                offer.LastName = tbxLastName.Text.Trim();
-                offer.ProviderName = tbxProviderName.Text.Trim();
-                offer.CompanyReg = tbxCompanyReg.Text.Trim();
 
-                offer.OfferStatusId = cboOfferStatus.SelectedIndex;
-
-                bool validation = ValidateUserInput();
-
-                if (validation == true)
+                if (dbOperationOffer == DBOperation.Add)
                 {
-                    //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
-                    int saveSuccess = SaveOffer(offer);
-
-                    if (saveSuccess == 1)
-                    {
-                        MessageBox.Show("User saved successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
-                        RefreshOfferList();
-                        clearOfferDetails();
-                        stkMakeOffer.Visibility = Visibility.Collapsed;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Validation failed.", "Please try again", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-
-            if (dbOperationOffer == DBOperation.Modify)
-            {
-                foreach (var offer in db.Offers.Where(t => t.OfferId == selectedOffer.OfferId))
-                {
+                    Offer offer = new Offer();
                     offer.QuoteId = int.Parse(tbxQuoteId.Text.Trim());
                     offer.UserId = int.Parse(tbxUserId.Text.Trim());
                     offer.OfferAmount = decimal.Parse(tbxOfferAmount.Text.Trim());
@@ -116,29 +76,77 @@ namespace LoanApplication
 
                     offer.OfferStatusId = cboOfferStatus.SelectedIndex;
 
+                    bool validation = ValidateUserInput();
+
+                    if (validation == true)
+                    {
+                        //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
+                        int saveSuccess = SaveOffer(offer);
+
+                        if (saveSuccess == 1)
+                        {
+                            MessageBox.Show("User saved successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                            RefreshOfferList();
+                            clearOfferDetails();
+                            stkMakeOffer.Visibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Validation failed.", "Please try again", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+
+
                 }
 
-                bool validation = ValidateUserInput();
-
-                if (validation == true)
+                if (dbOperationOffer == DBOperation.Modify)
                 {
-
-                    //This is dfferent to Add above. 
-                    //Here in modify, db.SaveChanges saves all changes made in this context to the underlying database.
-                    int saveSuccess = db.SaveChanges();
-
-                    if (saveSuccess == 1)
+                    foreach (var offer in db.Offers.Where(t => t.OfferId == selectedOffer.OfferId))
                     {
-                        MessageBox.Show("User modified successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
-                        RefreshOfferList();
-                        clearOfferDetails();
-                        stkMakeOffer.Visibility = Visibility.Collapsed;
+                        offer.QuoteId = int.Parse(tbxQuoteId.Text.Trim());
+                        offer.UserId = int.Parse(tbxUserId.Text.Trim());
+                        offer.OfferAmount = decimal.Parse(tbxOfferAmount.Text.Trim());
+                        offer.Term = int.Parse(tbxOfferTerm.Text.Trim());
+                        offer.InterestRate = float.Parse(tbxOfferIntRate.Text.Trim());
+                        offer.FirstName = tbxFirstName.Text.Trim();
+                        offer.LastName = tbxLastName.Text.Trim();
+                        offer.ProviderName = tbxProviderName.Text.Trim();
+                        offer.CompanyReg = tbxCompanyReg.Text.Trim();
+
+                        offer.OfferStatusId = cboOfferStatus.SelectedIndex;
+
+                    }
+
+                    bool validation = ValidateUserInput();
+
+                    if (validation == true)
+                    {
+
+                        //This is dfferent to Add above. 
+                        //Here in modify, db.SaveChanges saves all changes made in this context to the underlying database.
+                        int saveSuccess = db.SaveChanges();
+
+                        if (saveSuccess == 1)
+                        {
+                            MessageBox.Show("User modified successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                            RefreshOfferList();
+                            clearOfferDetails();
+                            stkMakeOffer.Visibility = Visibility.Collapsed;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Validation failed.", "Please try again", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Validation failed.", "Please try again", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error", "Please complete all fields", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

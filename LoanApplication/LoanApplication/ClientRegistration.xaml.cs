@@ -25,12 +25,26 @@ namespace LoanApplication
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// random number method 
+        /// </summary>
+        /// <returns>string</returns>
+        private string GetRandomNumber()
+        {
+            var chars = "5423589435";
+            var random = new Random();
+            var result = new string(
+                Enumerable.Repeat(chars, 6)
+                          .Select(s => s[random.Next(s.Length)])
+                          .ToArray());
+            return result;
+        }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
 
             clientRegUser.Username = tbxUserName.Text.Trim();
-            clientRegUser.Password = tbxPassword.Text.Trim();
+            clientRegUser.Password = GetRandomNumber();//writing a random number to the db for the user registration to allow for validation checks by a staff member
             clientRegUser.FirstName = tbxFirstName.Text.Trim();
             clientRegUser.LastName = tbxLastName.Text.Trim();
             clientRegUser.AddressLine1 = tbxAddress.Text.Trim();
@@ -43,28 +57,35 @@ namespace LoanApplication
             clientRegUser.ProviderName = "Client";
             clientRegUser.CompanyReg = "Client";
 
-            //vailidates user inputs
-            ValidateUserInput();
+            bool validation = ValidateUserInput();
 
-            //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
-            int saveSuccess = RegisterUser(clientRegUser);
-
-            if (saveSuccess == 1)
+            if (validation == true)
             {
-                MessageBox.Show("Thank you for registering" + clientRegUser.FirstName, "Please login!", MessageBoxButton.OK);
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
 
-                this.Close();
+                //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
+                int saveSuccess = RegisterUser(clientRegUser);
 
+                if (saveSuccess == 1)
+                {
+                    MessageBox.Show("Thank you for registering" + clientRegUser.FirstName, "Please login!", MessageBoxButton.OK);
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+
+                    this.Close();
+                }
             }
             else
             {
-                MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-
-                this.Close();
+                MessageBox.Show("Validaton Error", "Validaton Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
