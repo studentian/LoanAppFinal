@@ -39,6 +39,11 @@ namespace LoanApplication
             if (user.LevelId == 3)
             {
                     mnuMain.Visibility = Visibility.Visible;
+                    mnuClientView.Visibility = Visibility.Visible;
+                    mnuProviderView.Visibility = Visibility.Visible;
+                    mnuAdministratorView.Visibility = Visibility.Visible;
+                    mnuAnalysisView.Visibility = Visibility.Visible;
+
             }
 
             if (user.LevelId == 1)
@@ -47,12 +52,15 @@ namespace LoanApplication
                     mnuClientView.Visibility = Visibility.Visible;
                     mnuProviderView.Visibility = Visibility.Collapsed;
                     mnuAdministratorView.Visibility = Visibility.Collapsed;
+                    mnuAnalysisView.Visibility = Visibility.Collapsed;
             }
             if (user.LevelId == 2)
                 {
                     mnuMain.Visibility = Visibility.Visible;
                     mnuClientView.Visibility = Visibility.Collapsed;
+                    mnuProviderView.Visibility = Visibility.Visible;
                     mnuAdministratorView.Visibility = Visibility.Collapsed;
+                    mnuAnalysisView.Visibility = Visibility.Collapsed;
             }
 
 

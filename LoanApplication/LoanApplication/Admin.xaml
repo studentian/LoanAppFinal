@@ -35,6 +35,7 @@
                         <RowDefinition Height="220"/> <!--bottom of Admin user tab-->
                     </Grid.RowDefinitions>
 
+                    <!--This tab contains bindings. It also contains output fields from the user table in the DB-->
                     <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="3" SelectionChanged="lstUserList_SelectionChanged">
                         <ListView.View>
                             <GridView>
@@ -138,7 +139,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <ListView Name="lstProviderList" Grid.Row="0" Grid.ColumnSpan="3">
+                    <ListView Name="lstLogList" Grid.Row="0" Grid.ColumnSpan="3">
                         <ListView.View>
                             <GridView>
 

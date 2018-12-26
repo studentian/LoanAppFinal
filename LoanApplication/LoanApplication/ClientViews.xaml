@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="10">
-            <TabControl Width="980" Height="600">
+            <TabControl Width="880" Height="600">
                 <TabControl.Resources>
                     <Style TargetType="{x:Type TabItem}">
                         <Setter Property="FontSize" Value="14"/>
@@ -41,7 +41,7 @@
                 </TabControl.Resources>
 
                 <TabItem Name="tbAfforability" Header="Affordability" Width="150" Height="40"  FontSize="15" FontWeight="Bold">
-                    <StackPanel Orientation="Horizontal" Width="950" Height="550">
+                    <StackPanel Orientation="Horizontal" Width="850" Height="550">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
@@ -86,48 +86,38 @@
                             <!--You qualify for=============================-->
                             <StackPanel Grid.Column="4" Height="300" Grid.Row="1" Grid.RowSpan="7" VerticalAlignment="Top" Margin="8.297,8,7.703,0" Grid.ColumnSpan="2">
 
-                                <TextBlock Name="tblockAffQuality" FontSize="18" Text="Things you should consider when taking out a loan" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                                <TextBlock Name="tblockAffQuality" FontSize="18" Text="Things a client should consider when taking out a loan" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
                                 <BulletDecorator Margin="10">
                                     <BulletDecorator.Bullet>
                                         <Ellipse Height="10" Width="10" Fill="Blue" />
                                     </BulletDecorator.Bullet>
-                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="After clicking save, you will direct to the Summary page" />
+                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="Clicking save, on Summary page, Advise Client to take note of Qualify Amount and monthly repayment. " />
                                 </BulletDecorator>
                                 <BulletDecorator Margin="10">
                                     <BulletDecorator.Bullet>
                                         <Ellipse Height="10" Width="10" Fill="Blue" />
                                     </BulletDecorator.Bullet>
-                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="Be sure to note the amount you will have paid after making all loan repayments." />
+                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="Advise customer to note, the amount they will pay after making all the loan repayments." />
                                 </BulletDecorator>
                                 <BulletDecorator Margin="10">
                                     <BulletDecorator.Bullet>
                                         <Ellipse Height="10" Width="10" Fill="Blue" />
                                     </BulletDecorator.Bullet>
-                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="Negotiate with the Bank. The interest rate you negotiate with the banks, can greatly affect how much you pay back." />
+                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="Advise customer to negotiate with the Bank. The interest rate they will negotiate with the banks, can greatly affect how much they will pay back." />
                                 </BulletDecorator>
                                 <BulletDecorator Margin="10">
                                     <BulletDecorator.Bullet>
                                         <Ellipse Height="10" Width="10" Fill="Blue" />
                                     </BulletDecorator.Bullet>
-                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="If you purchase a home for the amount you qualify for, you may not have money to afford a good lifestyle. " />
+                                    <TextBox Width="400" Margin="10,0" Foreground="DarkViolet" TextWrapping="Wrap" Text="Advise customer that, if they agree to a loan for the amount they qualify for, they may not have money to afford a good lifestyle. " />
                                 </BulletDecorator>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="4" Grid.Column="4" Margin="0,25" Grid.ColumnSpan="3" Grid.RowSpan="6" Orientation="Vertical" >
-                                <Image Source="Images\callcentre.jpg" Height="200" Width="350" VerticalAlignment="Bottom" />
+                            <StackPanel Grid.Row="4" Grid.Column="4" Margin="0,80, 10,15" Grid.ColumnSpan="3" Grid.RowSpan="6" Orientation="Vertical" >
+                                <Image Source="Images\callcentre.jpg" Height="130" Width="350" VerticalAlignment="Bottom"  />
                             </StackPanel>
 
-                            <!--<StackPanel Grid.Column="4" Grid.Row="3" Grid.RowSpan="2" VerticalAlignment="Top" Margin="5.297,5,4.703,0" Grid.ColumnSpan="2">
-                                <TextBox Name="tboxAffQualify" Width="300" Height="90" Grid.Column="1" Grid.Row="1" Margin="10" />
-                                <TextBlock Name="tblockAffEstimatedRepayment" Width="200" Text="Your estimated monthly repayment will be:" TextWrapping="Wrap" />
-                                <TextBox Name="tboxAffEstimatedRepayment" Width="50" Height="30" Grid.Column="1" Grid.Row="1" Margin="5" />
-                            </StackPanel> -->
-                            
-                            <!--Row1 End You qualify for=============================-->
-
-                            <!--Save to DB and jump to next tab=============================-->
                             <Button Name="btnAffNext" Width="140" Height="50"   Content="Save" Grid.Column="4" Grid.Row="9" Margin="98.297,12,97.703,13" BorderBrush="Aqua" Click="btnAffNext_Click" Grid.ColumnSpan="2"/>
-
 
                         </Grid>
                     </StackPanel>
@@ -182,7 +172,7 @@
                         <TextBlock Name="tblockSummaryMaxRepayment" Text="Monthly repayment" Foreground="DeepSkyBlue"  Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"  />
                         <TextBlock Name="tboxSummaryMaxRepayment" Width="150" Height="30" Foreground="DeepSkyBlue" Grid.Column="4" Grid.Row="4" Margin="5" Text="{Binding tboxSummaryMaxRepayment}"/>
 
-                        <TextBlock Name="tblockSummaryLoanCost" Text="By the time you will have made all monthly replayments, this loan will cost you" TextWrapping="Wrap" Foreground="PaleVioletRed" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"  />
+                        <TextBlock Name="tblockSummaryLoanCost" Text="Total amount paid after all repayments have ben made." TextWrapping="Wrap" Foreground="PaleVioletRed" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"  />
                         <TextBlock Name="tboxSummaryLoanCost" Width="150" Height="30" Foreground="PaleVioletRed" Grid.Column="4" Grid.Row="5" Margin="5" Text="{Binding tboxSummaryMaxRepayment}"/>
 
                         <!--step3 button-->
@@ -191,44 +181,7 @@
                     </Grid>
 
                 </TabItem>
-
-                <!--<TabItem Name="tbUpload" Header="Document upload" Width="150" FontSize="15" FontWeight="Bold" >
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20"/>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.Resources>
-                            <Style TargetType="Label">
-                                <Setter Property="Foreground" Value="Black"/>
-                                <Setter Property="FontFamily" Value="Calibri"/>
-                                <Setter Property="FontSize" Value="16" />
-                            </Style>
-                        </Grid.Resources>
-                        <Label Content="Document Path" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
-                        <TextBox Name="tbxDocumentPath" Grid.Row="2" Grid.Column="3" IsReadOnly="True" Margin="0,20"/>
-                        <Button Name="btnUpload" Content="Change" Width="150" Height="40" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="4" Margin="0,10" Click="btnUpload_Click" />
-
-                        <Label Content="Document Description" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"  />
-                        <TextBox Name="tbxDocumentDescription" Grid.Row="3" Grid.Column="3" IsReadOnly="True" Margin="0,20" />
-                        <Button Name="btnChangeDescription" Content="Change" Width="150" Height="40" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="4" Margin="0,10"/>
-
-                    </Grid>
-                </TabItem>-->
-
             </TabControl>
         </StackPanel>
-
     </Grid>
 </Window>

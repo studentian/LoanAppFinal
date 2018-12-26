@@ -238,7 +238,7 @@
 
 
         <!--users and Logs tabs-->
-        <StackPanel Name="stkMakeOffer" Grid.RowSpan="4" Height="295" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Width="400" Visibility="Visible" HorizontalAlignment="Center">
+        <StackPanel Name="stkMakeOffer" Grid.RowSpan="4" Height="295" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Width="400" Visibility="Collapsed" HorizontalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40*"/>

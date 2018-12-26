@@ -41,8 +41,6 @@
                 <ComboBox Name="cboAnalysisType" Margin="0,10" Grid.Row="1" Grid.Column="0" Width="150" Height="26" SelectedIndex="0" SelectionChanged="cboAnalysisType_SelectionChanged" >
                     <ComboBoxItem Content="Please select"  />
                     <ComboBoxItem Content="Summary"  />
-                    <ComboBoxItem Content="Count"  />
-                    <ComboBoxItem Content="Statistics"  />
                 </ComboBox>
 
                 <!--Row 1--><!--Column 1-->

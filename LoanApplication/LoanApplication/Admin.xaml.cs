@@ -21,6 +21,7 @@ namespace LoanApplication
     /// </summary>
     public partial class Admin : Page
     {
+        //connects to the enity framework
         LoanAppDBEntities db = new LoanAppDBEntities();
 
         //all methods need to access the list
@@ -30,6 +31,7 @@ namespace LoanApplication
         //open logs
         List<Log> logs = new List<Log>();
 
+        //User object of the class user
         User selectedUser = new User();
 
         enum DBOperation
@@ -48,19 +50,21 @@ namespace LoanApplication
             InitializeComponent();
         }
 
+        //first method tha runs after the xaml page is opened
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            //This is method which will refresh the userlist
             RefreshUserList();
-
-            lstProviderList.ItemsSource = logs;
-
+            
+            //loads logs into listview form logs table on db
+            lstLogList.ItemsSource = logs;
             foreach(var log in db.Logs)
             {
                 logs.Add(log);
             }
         }
-    
+        
+        //Click event to write to the DB, user details entered into the fields.  
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             if (dbOperation == DBOperation.Add)
@@ -73,20 +77,30 @@ namespace LoanApplication
                     user.Username = tbxUsername.Text.Trim(); 
                     user.LevelId = cboAccessLevel.SelectedIndex; //selected index is an Int and levelid is also an Int So selcted index here will match the selected index on the db.
 
-                ValidateUserInput();
+                bool validation = ValidateUserInput(); 
 
-                int saveSuccess = SaveUser(user);
-
-                if (saveSuccess == 1)
+                if (validation == true)
                 {
-                    MessageBox.Show("User saved successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
-                    RefreshUserList();
-                    clearUserDetails();
-                    stkUserDetails.Visibility = Visibility.Collapsed;
+
+                
+                    int saveSuccess = SaveUser(user);
+
+                    if (saveSuccess == 1)
+                    {
+                        MessageBox.Show("User saved successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                        RefreshUserList();
+                        clearUserDetails();
+                        stkUserDetails.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Validation failed.", "Please try again", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
@@ -124,15 +138,22 @@ namespace LoanApplication
 
         private void RefreshUserList()
         {
+            //lstUserList is the ListView
+            //Item source - lists items from the Users table in the db
             lstUserList.ItemsSource = users;
+            //users.Clear clears users
             users.Clear(); 
+            
+            //foreach variable user in db.users, add a user 
             foreach(var user in db.Users)
             {
                 users.Add(user);
             }
+            //and refresh the user list, so that new entries will update onto the list view
             lstUserList.Items.Refresh();
         }
 
+        //users.Clear clears the textboxes
         private void clearUserDetails()
         {
             tbxPassword.Text = "";
@@ -145,10 +166,10 @@ namespace LoanApplication
         }
 
 
-        //changes as you click on different users in teh tab item box 
+        //changes as you click on different users in the tab item box 
         private void lstUserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //if selection on Combo box in UserList is greater than zero  
             if (lstUserList.SelectedIndex > 0)
             {
                     selectedUser = users.ElementAt(lstUserList.SelectedIndex); //number corresponding to value on list view
@@ -206,44 +227,35 @@ namespace LoanApplication
         }
 
         //validation for user inputs into fields on Admin.xaml
-        private bool ValidateUserInput()
+        public bool ValidateUserInput()
         {
             bool validated = true;
 
-            if (tbxPassword.Text.Length == 0 || tbxPassword.Text.Length > 5)
+            if (tbxPassword.Text.Length == 0 || tbxPassword.Text.Length > 20)
             {
                 validated = false;
             }
 
-            if (tbxFirstName.Text.Length == 0 || tbxFirstName.Text.Length > 5)
+            if (tbxFirstName.Text.Length == 0 || tbxFirstName.Text.Length > 15)
             {
                 validated = false;
             }
 
-            if (tbxLastName.Text.Length == 0 || tbxLastName.Text.Length > 12)
+            if (tbxLastName.Text.Length == 0 || tbxLastName.Text.Length > 15)
             {
                 validated = false;
             }
 
-            if (tbxEmail.Text.Length == 0 || tbxEmail.Text.Length > 2)
+            if (tbxEmail.Text.Length == 0 || tbxEmail.Text.Length > 20)
             {
                 validated = false;
             }
 
-            if (tbxUsername.Text.Length == 0 || tbxUsername.Text.Length > 4)
+            if (tbxUsername.Text.Length == 0 || tbxUsername.Text.Length > 20)
             {
                 validated = false;
             }
 
-            if (tbxAccessLevel.Text.Length == 0 || tbxAccessLevel.Text.Length > 20)
-            {
-                validated = false;
-            }
-
-            if (cboAccessLevel.SelectedIndex < 0 || cboAccessLevel.SelectedIndex > loanAppUserList.Count - 1)
-            {
-                validated = false;
-            }
             return validated;
         }
     }

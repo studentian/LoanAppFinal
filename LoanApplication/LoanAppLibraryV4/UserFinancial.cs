@@ -24,7 +24,6 @@ namespace LoanAppLibraryV4
         public int UserId { get; set; }
         public Nullable<int> LoanTerm { get; set; }
         public Nullable<double> AffIntRate { get; set; }
-        public Nullable<double> RpmtIntRate { get; set; }
         public Nullable<decimal> PurchasePrice { get; set; }
         public Nullable<decimal> Deposit { get; set; }
         public Nullable<decimal> QualifyAmount { get; set; }

@@ -128,6 +128,7 @@ namespace LoanApplication
                 if (dbOperationAccept == DBOperation.Modify)
                 {
                     cboAcceptor.SelectedIndex = selectedAccept.OfferStatusId;
+
                 }
 
             }

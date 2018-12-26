@@ -62,7 +62,6 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="LoanTerm" Type="int" />
           <Property Name="AffIntRate" Type="float" />
-          <Property Name="RpmtIntRate" Type="float" />
           <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Deposit" Type="decimal" Precision="18" Scale="0" />
           <Property Name="QualifyAmount" Type="decimal" Precision="18" Scale="0" />
@@ -246,7 +245,6 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="LoanTerm" Type="Int32" />
           <Property Name="AffIntRate" Type="Double" />
-          <Property Name="RpmtIntRate" Type="Double" />
           <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Deposit" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="QualifyAmount" Type="Decimal" Precision="18" Scale="0" />
@@ -433,7 +431,6 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LoanTerm" ColumnName="LoanTerm" />
                 <ScalarProperty Name="AffIntRate" ColumnName="AffIntRate" />
-                <ScalarProperty Name="RpmtIntRate" ColumnName="RpmtIntRate" />
                 <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
                 <ScalarProperty Name="Deposit" ColumnName="Deposit" />
                 <ScalarProperty Name="QualifyAmount" ColumnName="QualifyAmount" />

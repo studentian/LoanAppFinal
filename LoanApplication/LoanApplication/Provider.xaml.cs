@@ -23,10 +23,11 @@ namespace LoanApplication
     /// </summary>
     public partial class Provider : Page
     {
+        //conects application to the Entity Framework
         LoanAppDBEntities db = new LoanAppDBEntities();
-
+        
         List<Offer> offerList = new List<Offer>();
-        List<UserFinancial> applicantList = new List<UserFinancial>();
+        List<UserFinancial> applicantList = new List<UserFinancial>(); 
 
         List<LoanAppLibraryV4.Offer> offerListType = new List <LoanAppLibraryV4.Offer> ();
 
@@ -52,6 +53,7 @@ namespace LoanApplication
         {
             RefreshOfferList();
             RefreshApplicantList();
+
         }
 
         public void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -73,21 +75,28 @@ namespace LoanApplication
 
                 offer.OfferStatusId = cboOfferStatus.SelectedIndex;
 
-                ValidateUserInput();
+                bool validation = ValidateUserInput();
 
-                //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
-                int saveSuccess = SaveOffer(offer);
-
-                if (saveSuccess == 1)
+                if (validation == true)
                 {
-                    MessageBox.Show("User saved successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
-                    RefreshOfferList();
-                    clearOfferDetails();
-                    stkMakeOffer.Visibility = Visibility.Collapsed;
+                    //int saveSuccess contains method SaveOffer(). Offer object contains all details inputted by user above. 
+                    int saveSuccess = SaveOffer(offer);
+
+                    if (saveSuccess == 1)
+                    {
+                        MessageBox.Show("User saved successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                        RefreshOfferList();
+                        clearOfferDetails();
+                        stkMakeOffer.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Validation failed.", "Please try again", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
 
@@ -108,16 +117,27 @@ namespace LoanApplication
                     offer.OfferStatusId = cboOfferStatus.SelectedIndex;
 
                 }
-                //This is dfferent to Add above. 
-                //Here in modify, db.SaveChanges saves all changes made in this context to the underlying database.
-                int saveSuccess = db.SaveChanges();
 
-                if (saveSuccess == 1)
+                bool validation = ValidateUserInput();
+
+                if (validation == true)
                 {
-                    MessageBox.Show("User modified successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
-                    RefreshOfferList();
-                    clearOfferDetails();
-                    stkMakeOffer.Visibility = Visibility.Collapsed;
+
+                    //This is dfferent to Add above. 
+                    //Here in modify, db.SaveChanges saves all changes made in this context to the underlying database.
+                    int saveSuccess = db.SaveChanges();
+
+                    if (saveSuccess == 1)
+                    {
+                        MessageBox.Show("User modified successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                        RefreshOfferList();
+                        clearOfferDetails();
+                        stkMakeOffer.Visibility = Visibility.Collapsed;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Validation failed.", "Please try again", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
@@ -136,10 +156,10 @@ namespace LoanApplication
 
         }
 
+        //Refresh the offer list
         private void RefreshOfferList()
         {
             lstOfferList.ItemsSource = offerList;
-
 
             offerList.Clear();
             foreach (var offVar in db.Offers)
@@ -149,10 +169,10 @@ namespace LoanApplication
             lstOfferList.Items.Refresh();
         }
 
+        //Refresh the Applicant List
         private void RefreshApplicantList()
         {
-            lstApplicantList.ItemsSource = applicantList;
-
+            lstApplicantList.ItemsSource = applicantList; 
             applicantList.Clear();
             foreach (var applict in db.UserFinancials)
             {
@@ -227,14 +247,11 @@ namespace LoanApplication
             dbOperationOffer = DBOperation.Modify;
         }
 
-        private void submenuDeleteUser_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
+        //the Applicant List is for providers to veiw a list of applicants only 
+        //to make an offer the user would been to make an offer using the Offers TabItem
         private void lstApplicantList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            stkMakeOffer.Visibility = Visibility.Collapsed; //check if this works
+            stkMakeOffer.Visibility = Visibility.Collapsed; 
 
         }
 
@@ -246,14 +263,14 @@ namespace LoanApplication
             int saveSuccess = db.SaveChanges();
             if (saveSuccess == 1)
             {
-                MessageBox.Show("User deleted successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Offer deleted successfully.", "Save to Database", MessageBoxButton.OK, MessageBoxImage.Information);
                 RefreshOfferList();
                 clearOfferDetails();
                 stkMakeOffer.Visibility = Visibility.Collapsed;
             }
             else
             {
-                MessageBox.Show("Problem deleting user record.", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Problem deleting offer record.", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -262,22 +279,22 @@ namespace LoanApplication
         {
             bool validated = true;
 
-            if(tbxUserId.Text.Length == 0 || tbxUserId.Text.Length > 5)
+            if(tbxUserId.Text.Length == 0 || tbxUserId.Text.Length > 8)
             {
                 validated = false;
             }
 
-            if (tbxQuoteId.Text.Length == 0 || tbxQuoteId.Text.Length > 5)
+            if (tbxQuoteId.Text.Length == 0 || tbxQuoteId.Text.Length > 8)
             {
                 validated = false;
             }
 
-            if (tbxOfferAmount.Text.Length == 0 || tbxOfferAmount.Text.Length > 12)
+            if (tbxOfferAmount.Text.Length == 0 || tbxOfferAmount.Text.Length > 8)
             {
                 validated = false;
             }
 
-            if (tbxOfferTerm.Text.Length == 0 || tbxOfferTerm.Text.Length > 2)
+            if (tbxOfferTerm.Text.Length == 0 || tbxOfferTerm.Text.Length > 3)
             {
                 validated = false;
             }
@@ -287,23 +304,20 @@ namespace LoanApplication
                 validated = false;
             }
 
-            if (tbxFirstName.Text.Length == 0 || tbxFirstName.Text.Length > 20)
+            if (tbxFirstName.Text.Length == 0 || tbxFirstName.Text.Length > 15)
             {
                 validated = false;
             }
 
-            if (tbxLastName.Text.Length == 0 || tbxLastName.Text.Length > 20)
+            if (tbxLastName.Text.Length == 0 || tbxLastName.Text.Length > 15)
             {
                 validated = false;
             }
-            if (tbxProviderName.Text.Length == 0 || tbxProviderName.Text.Length > 50)
+            if (tbxProviderName.Text.Length == 0 || tbxProviderName.Text.Length > 15)
             {
                 validated = false;
             }
-            if (cboOfferStatus.SelectedIndex < 0 || cboOfferStatus.SelectedIndex > offerListType.Count - 1)
-            {
-                validated = false;
-            }
+
             return validated;
         }
     }

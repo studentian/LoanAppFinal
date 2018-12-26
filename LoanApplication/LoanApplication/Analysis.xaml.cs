@@ -31,8 +31,7 @@ namespace LoanApplication
         enum AnalysisType
         {
             Summary,
-            Count,
-            Statistics
+
         }
 
         private AnalysisType analysisType = new AnalysisType();
@@ -62,14 +61,7 @@ namespace LoanApplication
                     //enum variable = summary (on comboxbox listing)
                     analysisType = AnalysisType.Summary;
                 }
-                if (cboAnalysisType.SelectedIndex == 2)
-                {
-                    analysisType = AnalysisType.Count;
-                }
-                if (cboAnalysisType.SelectedIndex == 3)
-                {
-                    analysisType = AnalysisType.Statistics;
-                }
+                
             }
         }
         private void cboChooseTable_SelectionChanged(object sender, SelectionChangedEventArgs e)

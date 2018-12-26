@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,8 +82,12 @@ namespace LoanApplication
 
         private void btnAffNext_Click(object sender, RoutedEventArgs e)
         {
+            //try catch error to ensure users complete all fields when updating the fields
+            try
+            {
+
                 //User created here to push userid into the DB table
-                User user = new User(); 
+                User user = new User();
                 applicant.UserId = int.Parse(tboxUserId.Text);
 
                 //text inputs from users parsed to write to db
@@ -92,28 +97,75 @@ namespace LoanApplication
                 applicant.Deposit = decimal.Parse(tboxRpmtDeposit.Text);
                 applicant.AffIntRate = float.Parse(tboxAffIntRate.Text);
                 applicant.LoanTerm = int.Parse(tboxAffTerm.Text);
-                
+
                 //qualify amount calculation
                 applicant.QualifyAmount = QualifyAmount();
 
                 //monthly mortgage repayment amount
                 applicant.MonthlyRepayment = MonthlyRepayment();
-                
+
                 //Total due including interest
                 applicant.TotalDueInclInterest = TotalDueInclInterest();
 
-            int saveSuccess = saveUser(applicant);
+                bool validation = ValidateUserInput();
 
-            if (saveSuccess == 1)
+                if (validation == true)
+                {
+
+                    int saveSuccess = saveUser(applicant);
+
+                    if (saveSuccess == 1)
+                    {
+                        MessageBox.Show("Saved! \nSummary", "Details Saved!", MessageBoxButton.OK);
+                        tbSummary.IsSelected = true;
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Validation failed.", "Please try again", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch(Exception)
             {
-                MessageBox.Show("Saved! \nSummary", "Details Saved!", MessageBoxButton.OK);
-                tbSummary.IsSelected = true;
+                MessageBox.Show("Error!.", "Be sure to complete all fields", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private bool ValidateUserInput()
+        {
+            bool validated = true;
+
+            if (tboxUserId.Text.Length == 0 || tboxUserId.Text.Length > 8)
+            {
+                validated = false;
             }
 
-            else
+            if (tboxAffExpenses.Text.Length == 0 || tboxAffExpenses.Text.Length > 8)
             {
-                MessageBox.Show("Problem saving user record.", "Save to database", MessageBoxButton.OK, MessageBoxImage.Warning);
+                validated = false;
             }
+
+            if (tboxRpmtPurchasePrice.Text.Length == 0 || tboxRpmtPurchasePrice.Text.Length > 8)
+            {
+                validated = false;
+            }
+
+            if (tboxRpmtDeposit.Text.Length < 0 || tboxRpmtDeposit.Text.Length > 8)
+            {
+                validated = false;
+            }
+
+            if (tboxAffTerm.Text.Length == 0 || tboxAffTerm.Text.Length > 3)
+            {
+                validated = false;
+            }
+
+            return validated;
         }
 
         //qualify amount calculation
@@ -148,9 +200,13 @@ namespace LoanApplication
             //Rounds up decimal or result will contain too many characters to write to DB
             double MonthlyR = (double)CompoundInterest;
             double? x = Math.Truncate(MonthlyR * 100 / 100);
-            decimal? Amount = (decimal) x;
+            decimal? compoundInterestAmount = (decimal) x;
 
-            MonthlyRepayment = (Amount * 3);
+            double netR = (double) (principle / (term * 12));
+            double netRepaym = (double) Math.Truncate(netR * 100 / 100);
+            decimal? netRepayment = (decimal)netRepaym;
+
+            MonthlyRepayment = compoundInterestAmount + netRepayment;
 
             return MonthlyRepayment;
 
