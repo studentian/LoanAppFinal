@@ -113,8 +113,9 @@ namespace LoanApplication
                 //Total due including interest
                 applicant.TotalDueInclInterest = TotalDueInclInterest();
 
-                //bool validation = ValidateUserInput();
-
+                //bool validation = ValidateUserInput(); //unit test below commented out for unit test
+                //When testing is completed the method which was tested, will be used in the production environment. 
+               
                 //=====================unit test=================================
 
                 int userIdTest = int.Parse(tboxUserId.Text);
