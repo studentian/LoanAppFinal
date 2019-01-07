@@ -1,4 +1,5 @@
-﻿using LoanAppLibraryV4;
+﻿using LoanAppLibrary.Tests;
+using LoanAppLibraryV4;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -24,6 +25,10 @@ namespace LoanApplication
     {
 
         LoanAppDBEntities db = new LoanAppDBEntities();
+
+        //LoanAppLibrary.Tests
+        //used in unit test line 118 
+        ClientViewProcess clientViewProcess = new ClientViewProcess();
 
         List<UserFinancial> applicantList = new List<UserFinancial>();
         List<User> userList = new List<User>();
@@ -80,6 +85,7 @@ namespace LoanApplication
             
         }
 
+        //save button on Affordability tab
         private void btnAffNext_Click(object sender, RoutedEventArgs e)
         {
             //try catch error to ensure users complete all fields when updating the fields
@@ -107,8 +113,19 @@ namespace LoanApplication
                 //Total due including interest
                 applicant.TotalDueInclInterest = TotalDueInclInterest();
 
-                bool validation = ValidateUserInput();
+                //bool validation = ValidateUserInput();
 
+                //=====================unit test=================================
+
+                int userIdTest = int.Parse(tboxUserId.Text);
+                decimal expensesTest = decimal.Parse(tboxAffExpenses.Text);
+                decimal purchasePriceTest = decimal.Parse(tboxRpmtPurchasePrice.Text);
+                decimal rmptDepositTest = decimal.Parse(tboxRpmtDeposit.Text);
+                int affTermTest = int.Parse(tboxAffTerm.Text);
+
+                bool validation = clientViewProcess.ValidateUserInput(userIdTest, expensesTest, purchasePriceTest, rmptDepositTest, affTermTest);
+
+                //=====================End unit test=============================
                 if (validation == true)
                 {
 
@@ -136,37 +153,37 @@ namespace LoanApplication
             }
         }
 
-        private bool ValidateUserInput()
-        {
-            bool validated = true;
+        //private bool ValidateUserInput()
+        //{
+        //    bool validated = true;
 
-            if (tboxUserId.Text.Length == 0 || tboxUserId.Text.Length > 8)
-            {
-                validated = false;
-            }
+        //    if (tboxUserId.Text.Length == 0 || tboxUserId.Text.Length > 8)
+        //    {
+        //        validated = false;
+        //    }
 
-            if (tboxAffExpenses.Text.Length == 0 || tboxAffExpenses.Text.Length > 8)
-            {
-                validated = false;
-            }
+        //    if (tboxAffExpenses.Text.Length == 0 || tboxAffExpenses.Text.Length > 8)
+        //    {
+        //        validated = false;
+        //    }
 
-            if (tboxRpmtPurchasePrice.Text.Length == 0 || tboxRpmtPurchasePrice.Text.Length > 8)
-            {
-                validated = false;
-            }
+        //    if (tboxRpmtPurchasePrice.Text.Length == 0 || tboxRpmtPurchasePrice.Text.Length > 8)
+        //    {
+        //        validated = false;
+        //    }
 
-            if (tboxRpmtDeposit.Text.Length < 0 || tboxRpmtDeposit.Text.Length > 8)
-            {
-                validated = false;
-            }
+        //    if (tboxRpmtDeposit.Text.Length < 0 || tboxRpmtDeposit.Text.Length > 8)
+        //    {
+        //        validated = false;
+        //    }
 
-            if (tboxAffTerm.Text.Length == 0 || tboxAffTerm.Text.Length > 3)
-            {
-                validated = false;
-            }
+        //    if (tboxAffTerm.Text.Length == 0 || tboxAffTerm.Text.Length > 3)
+        //    {
+        //        validated = false;
+        //    }
 
-            return validated;
-        }
+        //    return validated;
+        //}
 
         //qualify amount calculation
         public decimal? QualifyAmount()

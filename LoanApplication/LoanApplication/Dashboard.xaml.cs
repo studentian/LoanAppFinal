@@ -35,34 +35,35 @@ namespace LoanApplication
 
         private void checkUserAccess(User user)
         {
-
-            if (user.LevelId == 3)
+            if (user.LevelId > 0) //refactoring and improving program code
             {
+                if (user.LevelId == 3)
+                {
                     mnuMain.Visibility = Visibility.Visible;
                     mnuClientView.Visibility = Visibility.Visible;
                     mnuProviderView.Visibility = Visibility.Visible;
                     mnuAdministratorView.Visibility = Visibility.Visible;
                     mnuAnalysisView.Visibility = Visibility.Visible;
 
-            }
+                }
 
-            if (user.LevelId == 1)
+                if (user.LevelId == 1)
                 {
                     mnuMain.Visibility = Visibility.Visible;
                     mnuClientView.Visibility = Visibility.Visible;
                     mnuProviderView.Visibility = Visibility.Collapsed;
                     mnuAdministratorView.Visibility = Visibility.Collapsed;
                     mnuAnalysisView.Visibility = Visibility.Collapsed;
-            }
-            if (user.LevelId == 2)
+                }
+                if (user.LevelId == 2)
                 {
                     mnuMain.Visibility = Visibility.Visible;
                     mnuClientView.Visibility = Visibility.Collapsed;
                     mnuProviderView.Visibility = Visibility.Visible;
                     mnuAdministratorView.Visibility = Visibility.Collapsed;
                     mnuAnalysisView.Visibility = Visibility.Collapsed;
+                }
             }
-
 
         }
 

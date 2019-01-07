@@ -53,6 +53,7 @@
     <Compile Include="AccessLevel.cs">
       <DependentUpon>LoanAppModelV4.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClientViewProcess.cs" />
     <Compile Include="LoanAppModelV4.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,6 +72,7 @@
     <Compile Include="Log.cs">
       <DependentUpon>LoanAppModelV4.tt</DependentUpon>
     </Compile>
+    <Compile Include="LoginProcess.cs" />
     <Compile Include="Offer.cs">
       <DependentUpon>LoanAppModelV4.tt</DependentUpon>
     </Compile>

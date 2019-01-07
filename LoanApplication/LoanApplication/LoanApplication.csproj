@@ -183,6 +183,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LoanAppLibrary.Tests\LoanAppLibrary.Tests.csproj">
+      <Project>{8EBBD9B0-E024-4360-8C6D-D5FE5D8FD1DC}</Project>
+      <Name>LoanAppLibrary.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LoanAppLibraryV4\LoanAppLibraryV4.csproj">
       <Project>{8CD1C054-4E0C-408F-BC5B-5FF6760ADC06}</Project>
       <Name>LoanAppLibraryV4</Name>
