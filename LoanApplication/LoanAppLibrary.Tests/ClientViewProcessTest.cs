@@ -9,6 +9,8 @@ using LoanAppLibraryV4;
 namespace LoanAppLibrary.Tests
 {
     public class ClientViewProcessTest
+
+        //CA4 Part A - Unit Test of the Client View Input Validation process
     {
         [Theory] //is better than fact when method has too much information entering it.
         [InlineData (1000, 5000, 10000, 500000, 20, true )] //normal data input
